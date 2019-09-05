@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gs.mapper.PomsRoleAuthorizationMapper" >
+  <resultMap id="BaseResultMap" type="com.gs.domain.PomsRoleAuthorization" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="ROLE_CODES" property="roleCodes" jdbcType="VARCHAR" />
+    <result column="ROLE_NAME" property="roleName" jdbcType="VARCHAR" />
+    <result column="ROLE_DESCRIPTION" property="roleDescription" jdbcType="VARCHAR" />
+    <result column="ROLE_BACKUPS" property="roleBackups" jdbcType="VARCHAR" />
+    <result column="ROLE_CREATER" property="roleCreater" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, ROLE_CODES, ROLE_NAME, ROLE_DESCRIPTION, ROLE_BACKUPS, ROLE_CREATER
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_role_authorization
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from poms_role_authorization
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gs.domain.PomsRoleAuthorization" >
+    insert into poms_role_authorization (ID, ROLE_CODES, ROLE_NAME, 
+      ROLE_DESCRIPTION, ROLE_BACKUPS, ROLE_CREATER
+      )
+    values (#{id,jdbcType=VARCHAR}, #{roleCodes,jdbcType=VARCHAR}, #{roleName,jdbcType=VARCHAR}, 
+      #{roleDescription,jdbcType=VARCHAR}, #{roleBackups,jdbcType=VARCHAR}, #{roleCreater,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gs.domain.PomsRoleAuthorization" >
+    insert into poms_role_authorization
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="roleCodes != null" >
+        ROLE_CODES,
+      </if>
+      <if test="roleName != null" >
+        ROLE_NAME,
+      </if>
+      <if test="roleDescription != null" >
+        ROLE_DESCRIPTION,
+      </if>
+      <if test="roleBackups != null" >
+        ROLE_BACKUPS,
+      </if>
+      <if test="roleCreater != null" >
+        ROLE_CREATER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="roleCodes != null" >
+        #{roleCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="roleName != null" >
+        #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="roleDescription != null" >
+        #{roleDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="roleBackups != null" >
+        #{roleBackups,jdbcType=VARCHAR},
+      </if>
+      <if test="roleCreater != null" >
+        #{roleCreater,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gs.domain.PomsRoleAuthorization" >
+    update poms_role_authorization
+    <set >
+      <if test="roleCodes != null" >
+        ROLE_CODES = #{roleCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="roleName != null" >
+        ROLE_NAME = #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="roleDescription != null" >
+        ROLE_DESCRIPTION = #{roleDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="roleBackups != null" >
+        ROLE_BACKUPS = #{roleBackups,jdbcType=VARCHAR},
+      </if>
+      <if test="roleCreater != null" >
+        ROLE_CREATER = #{roleCreater,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gs.domain.PomsRoleAuthorization" >
+    update poms_role_authorization
+    set ROLE_CODES = #{roleCodes,jdbcType=VARCHAR},
+      ROLE_NAME = #{roleName,jdbcType=VARCHAR},
+      ROLE_DESCRIPTION = #{roleDescription,jdbcType=VARCHAR},
+      ROLE_BACKUPS = #{roleBackups,jdbcType=VARCHAR},
+      ROLE_CREATER = #{roleCreater,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

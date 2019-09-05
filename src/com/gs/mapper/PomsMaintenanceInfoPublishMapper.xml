@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gs.mapper.PomsMaintenanceInfoPublishMapper" >
+  <resultMap id="BaseResultMap" type="com.gs.domain.PomsMaintenanceInfoPublish" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="UM_ID" property="umId" jdbcType="VARCHAR" />
+    <result column="MIP_TITLE" property="mipTitle" jdbcType="VARCHAR" />
+    <result column="MIP_EDITTIME" property="mipEdittime" jdbcType="VARCHAR" />
+    <result column="MIP_CONTENT" property="mipContent" jdbcType="VARCHAR" />
+    <result column="MIP_MODULES" property="mipModules" jdbcType="VARCHAR" />
+    <result column="MIP_ISPUBLISHED" property="mipIspublished" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, UM_ID, MIP_TITLE, MIP_EDITTIME, MIP_CONTENT, MIP_MODULES, MIP_ISPUBLISHED
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_maintenance_info_publish
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from poms_maintenance_info_publish
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gs.domain.PomsMaintenanceInfoPublish" >
+    insert into poms_maintenance_info_publish (ID, UM_ID, MIP_TITLE, 
+      MIP_EDITTIME, MIP_CONTENT, MIP_MODULES, 
+      MIP_ISPUBLISHED)
+    values (#{id,jdbcType=VARCHAR}, #{umId,jdbcType=VARCHAR}, #{mipTitle,jdbcType=VARCHAR}, 
+      #{mipEdittime,jdbcType=VARCHAR}, #{mipContent,jdbcType=VARCHAR}, #{mipModules,jdbcType=VARCHAR}, 
+      #{mipIspublished,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gs.domain.PomsMaintenanceInfoPublish" >
+    insert into poms_maintenance_info_publish
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="umId != null" >
+        UM_ID,
+      </if>
+      <if test="mipTitle != null" >
+        MIP_TITLE,
+      </if>
+      <if test="mipEdittime != null" >
+        MIP_EDITTIME,
+      </if>
+      <if test="mipContent != null" >
+        MIP_CONTENT,
+      </if>
+      <if test="mipModules != null" >
+        MIP_MODULES,
+      </if>
+      <if test="mipIspublished != null" >
+        MIP_ISPUBLISHED,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="umId != null" >
+        #{umId,jdbcType=VARCHAR},
+      </if>
+      <if test="mipTitle != null" >
+        #{mipTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="mipEdittime != null" >
+        #{mipEdittime,jdbcType=VARCHAR},
+      </if>
+      <if test="mipContent != null" >
+        #{mipContent,jdbcType=VARCHAR},
+      </if>
+      <if test="mipModules != null" >
+        #{mipModules,jdbcType=VARCHAR},
+      </if>
+      <if test="mipIspublished != null" >
+        #{mipIspublished,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gs.domain.PomsMaintenanceInfoPublish" >
+    update poms_maintenance_info_publish
+    <set >
+      <if test="umId != null" >
+        UM_ID = #{umId,jdbcType=VARCHAR},
+      </if>
+      <if test="mipTitle != null" >
+        MIP_TITLE = #{mipTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="mipEdittime != null" >
+        MIP_EDITTIME = #{mipEdittime,jdbcType=VARCHAR},
+      </if>
+      <if test="mipContent != null" >
+        MIP_CONTENT = #{mipContent,jdbcType=VARCHAR},
+      </if>
+      <if test="mipModules != null" >
+        MIP_MODULES = #{mipModules,jdbcType=VARCHAR},
+      </if>
+      <if test="mipIspublished != null" >
+        MIP_ISPUBLISHED = #{mipIspublished,jdbcType=CHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gs.domain.PomsMaintenanceInfoPublish" >
+    update poms_maintenance_info_publish
+    set UM_ID = #{umId,jdbcType=VARCHAR},
+      MIP_TITLE = #{mipTitle,jdbcType=VARCHAR},
+      MIP_EDITTIME = #{mipEdittime,jdbcType=VARCHAR},
+      MIP_CONTENT = #{mipContent,jdbcType=VARCHAR},
+      MIP_MODULES = #{mipModules,jdbcType=VARCHAR},
+      MIP_ISPUBLISHED = #{mipIspublished,jdbcType=CHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

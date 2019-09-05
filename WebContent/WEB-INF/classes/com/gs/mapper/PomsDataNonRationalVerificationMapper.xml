@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gs.mapper.PomsDataNonRationalVerificationMapper" >
+  <resultMap id="BaseResultMap" type="com.gs.domain.PomsDataNonRationalVerification" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="VERIFICATION_CODE" property="verificationCode" jdbcType="VARCHAR" />
+    <result column="VERIFICATION_NAME" property="verificationName" jdbcType="VARCHAR" />
+    <result column="DNRV_DESCRIPTION" property="dnrvDescription" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, VERIFICATION_CODE, VERIFICATION_NAME, DNRV_DESCRIPTION
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_data_non_rational_verification
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from poms_data_non_rational_verification
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gs.domain.PomsDataNonRationalVerification" >
+    insert into poms_data_non_rational_verification (ID, VERIFICATION_CODE, VERIFICATION_NAME, 
+      DNRV_DESCRIPTION)
+    values (#{id,jdbcType=VARCHAR}, #{verificationCode,jdbcType=VARCHAR}, #{verificationName,jdbcType=VARCHAR}, 
+      #{dnrvDescription,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gs.domain.PomsDataNonRationalVerification" >
+    insert into poms_data_non_rational_verification
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="verificationCode != null" >
+        VERIFICATION_CODE,
+      </if>
+      <if test="verificationName != null" >
+        VERIFICATION_NAME,
+      </if>
+      <if test="dnrvDescription != null" >
+        DNRV_DESCRIPTION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="verificationCode != null" >
+        #{verificationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="verificationName != null" >
+        #{verificationName,jdbcType=VARCHAR},
+      </if>
+      <if test="dnrvDescription != null" >
+        #{dnrvDescription,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gs.domain.PomsDataNonRationalVerification" >
+    update poms_data_non_rational_verification
+    <set >
+      <if test="verificationCode != null" >
+        VERIFICATION_CODE = #{verificationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="verificationName != null" >
+        VERIFICATION_NAME = #{verificationName,jdbcType=VARCHAR},
+      </if>
+      <if test="dnrvDescription != null" >
+        DNRV_DESCRIPTION = #{dnrvDescription,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gs.domain.PomsDataNonRationalVerification" >
+    update poms_data_non_rational_verification
+    set VERIFICATION_CODE = #{verificationCode,jdbcType=VARCHAR},
+      VERIFICATION_NAME = #{verificationName,jdbcType=VARCHAR},
+      DNRV_DESCRIPTION = #{dnrvDescription,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

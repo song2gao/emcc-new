@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gs.mapper.PomsConsumeEnergyTerminalRefMapper" >
+  <resultMap id="BaseResultMap" type="com.gs.domain.PomsConsumeEnergyTerminalRef" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="CAL_ID" property="calId" jdbcType="VARCHAR" />
+    <result column="CONSUME_ENERGY_TYPE" property="consumeEnergyType" jdbcType="VARCHAR" />
+    <result column="CONSUME_ENERGY_ID" property="consumeEnergyId" jdbcType="VARCHAR" />
+    <result column="CETR_BACKUPS" property="cetrBackups" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, CAL_ID, CONSUME_ENERGY_TYPE, CONSUME_ENERGY_ID, CETR_BACKUPS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_consume_energy_terminal_ref
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+   <select id="selectCtdsByTypeAndCode" resultType="java.lang.String" parameterType="java.lang.String" >
+   		select CAL_ID from poms_consume_energy_terminal_ref 
+   		where CONSUME_ENERGY_TYPE=#{type} and CONSUME_ENERGY_ID=#{code} 
+   </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from poms_consume_energy_terminal_ref
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gs.domain.PomsConsumeEnergyTerminalRef" >
+    insert into poms_consume_energy_terminal_ref (id, CAL_ID, CONSUME_ENERGY_TYPE, 
+      CONSUME_ENERGY_ID, CETR_BACKUPS)
+    values (#{id,jdbcType=VARCHAR}, #{calId,jdbcType=VARCHAR}, #{consumeEnergyType,jdbcType=VARCHAR}, 
+      #{consumeEnergyId,jdbcType=VARCHAR}, #{cetrBackups,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gs.domain.PomsConsumeEnergyTerminalRef" >
+    insert into poms_consume_energy_terminal_ref
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="calId != null" >
+        CAL_ID,
+      </if>
+      <if test="consumeEnergyType != null" >
+        CONSUME_ENERGY_TYPE,
+      </if>
+      <if test="consumeEnergyId != null" >
+        CONSUME_ENERGY_ID,
+      </if>
+      <if test="cetrBackups != null" >
+        CETR_BACKUPS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="calId != null" >
+        #{calId,jdbcType=VARCHAR},
+      </if>
+      <if test="consumeEnergyType != null" >
+        #{consumeEnergyType,jdbcType=VARCHAR},
+      </if>
+      <if test="consumeEnergyId != null" >
+        #{consumeEnergyId,jdbcType=VARCHAR},
+      </if>
+      <if test="cetrBackups != null" >
+        #{cetrBackups,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gs.domain.PomsConsumeEnergyTerminalRef" >
+    update poms_consume_energy_terminal_ref
+    <set >
+      <if test="calId != null" >
+        CAL_ID = #{calId,jdbcType=VARCHAR},
+      </if>
+      <if test="consumeEnergyType != null" >
+        CONSUME_ENERGY_TYPE = #{consumeEnergyType,jdbcType=VARCHAR},
+      </if>
+      <if test="consumeEnergyId != null" >
+        CONSUME_ENERGY_ID = #{consumeEnergyId,jdbcType=VARCHAR},
+      </if>
+      <if test="cetrBackups != null" >
+        CETR_BACKUPS = #{cetrBackups,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gs.domain.PomsConsumeEnergyTerminalRef" >
+    update poms_consume_energy_terminal_ref
+    set CAL_ID = #{calId,jdbcType=VARCHAR},
+      CONSUME_ENERGY_TYPE = #{consumeEnergyType,jdbcType=VARCHAR},
+      CONSUME_ENERGY_ID = #{consumeEnergyId,jdbcType=VARCHAR},
+      CETR_BACKUPS = #{cetrBackups,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

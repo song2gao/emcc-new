@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gs.mapper.PomsModuleActionMapper" >
+  <resultMap id="BaseResultMap" type="com.gs.domain.PomsModuleAction" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="ACTION_NAME" property="actionName" jdbcType="VARCHAR" />
+    <result column="ACTION_BACKUPS" property="actionBackups" jdbcType="VARCHAR" />
+    <result column="ACTION_DESCRIPTION" property="actionDescription" jdbcType="VARCHAR" />
+    <result column="ACTION_FIELD_ONE" property="actionFieldOne" jdbcType="VARCHAR" />
+    <result column="ACTION_FIELD_TWO" property="actionFieldTwo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, ACTION_NAME, ACTION_BACKUPS, ACTION_DESCRIPTION, ACTION_FIELD_ONE, ACTION_FIELD_TWO
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_module_action
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from poms_module_action
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gs.domain.PomsModuleAction" >
+    insert into poms_module_action (ID, ACTION_NAME, ACTION_BACKUPS, 
+      ACTION_DESCRIPTION, ACTION_FIELD_ONE, ACTION_FIELD_TWO
+      )
+    values (#{id,jdbcType=VARCHAR}, #{actionName,jdbcType=VARCHAR}, #{actionBackups,jdbcType=VARCHAR}, 
+      #{actionDescription,jdbcType=VARCHAR}, #{actionFieldOne,jdbcType=VARCHAR}, #{actionFieldTwo,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gs.domain.PomsModuleAction" >
+    insert into poms_module_action
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="actionName != null" >
+        ACTION_NAME,
+      </if>
+      <if test="actionBackups != null" >
+        ACTION_BACKUPS,
+      </if>
+      <if test="actionDescription != null" >
+        ACTION_DESCRIPTION,
+      </if>
+      <if test="actionFieldOne != null" >
+        ACTION_FIELD_ONE,
+      </if>
+      <if test="actionFieldTwo != null" >
+        ACTION_FIELD_TWO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="actionName != null" >
+        #{actionName,jdbcType=VARCHAR},
+      </if>
+      <if test="actionBackups != null" >
+        #{actionBackups,jdbcType=VARCHAR},
+      </if>
+      <if test="actionDescription != null" >
+        #{actionDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="actionFieldOne != null" >
+        #{actionFieldOne,jdbcType=VARCHAR},
+      </if>
+      <if test="actionFieldTwo != null" >
+        #{actionFieldTwo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gs.domain.PomsModuleAction" >
+    update poms_module_action
+    <set >
+      <if test="actionName != null" >
+        ACTION_NAME = #{actionName,jdbcType=VARCHAR},
+      </if>
+      <if test="actionBackups != null" >
+        ACTION_BACKUPS = #{actionBackups,jdbcType=VARCHAR},
+      </if>
+      <if test="actionDescription != null" >
+        ACTION_DESCRIPTION = #{actionDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="actionFieldOne != null" >
+        ACTION_FIELD_ONE = #{actionFieldOne,jdbcType=VARCHAR},
+      </if>
+      <if test="actionFieldTwo != null" >
+        ACTION_FIELD_TWO = #{actionFieldTwo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gs.domain.PomsModuleAction" >
+    update poms_module_action
+    set ACTION_NAME = #{actionName,jdbcType=VARCHAR},
+      ACTION_BACKUPS = #{actionBackups,jdbcType=VARCHAR},
+      ACTION_DESCRIPTION = #{actionDescription,jdbcType=VARCHAR},
+      ACTION_FIELD_ONE = #{actionFieldOne,jdbcType=VARCHAR},
+      ACTION_FIELD_TWO = #{actionFieldTwo,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

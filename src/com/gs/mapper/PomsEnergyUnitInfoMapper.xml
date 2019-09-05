@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gs.mapper.PomsEnergyUnitInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.gs.domain.PomsEnergyUnitInfo" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="EUI_CODE" property="euiCode" jdbcType="VARCHAR" />
+    <result column="EUI_NAMES" property="euiNames" jdbcType="VARCHAR" />
+    <result column="EUI_REPRESENTATIVE" property="euiRepresentative" jdbcType="VARCHAR" />
+    <result column="EUI_BELONG_INDUSTRY" property="euiBelongIndustry" jdbcType="VARCHAR" />
+    <result column="EUI_BELONG_DISTRCT" property="euiBelongDistrct" jdbcType="VARCHAR" />
+    <result column="EUI_CONSUME_BAND" property="euiConsumeBand" jdbcType="VARCHAR" />
+    <result column="EUI_CHARGE_DEPARTMENT" property="euiChargeDepartment" jdbcType="VARCHAR" />
+    <result column="EUI_LOCATION" property="euiLocation" jdbcType="VARCHAR" />
+    <result column="EUI_CONTENT_WAY" property="euiContentWay" jdbcType="VARCHAR" />
+    <result column="EUI_BUILDING_AREA" property="euiBuildingArea" jdbcType="DECIMAL" />
+    <result column="EUI_HOLD_PERSON" property="euiHoldPerson" jdbcType="DECIMAL" />
+    <result column="EUI_BACKUPS" property="euiBackups" jdbcType="VARCHAR" />
+    <result column="EUI_PARENTID" property="euiParentid" jdbcType="VARCHAR" />
+    <result column="EUI_REFERENCE_DEVICE" property="euiReferenceDevice" jdbcType="VARCHAR" />
+    <result column="EUI_REFERENCE_DEVICE_NAME" property="euiReferenceDeviceName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, EUI_CODE, EUI_NAMES, EUI_REPRESENTATIVE, EUI_BELONG_INDUSTRY, EUI_BELONG_DISTRCT, 
+    EUI_CONSUME_BAND, EUI_CHARGE_DEPARTMENT, EUI_LOCATION, EUI_CONTENT_WAY, EUI_BUILDING_AREA, 
+    EUI_HOLD_PERSON, EUI_BACKUPS, EUI_PARENTID, EUI_REFERENCE_DEVICE, EUI_REFERENCE_DEVICE_NAME
+  </sql>
+  
+  
+  <select id="selectByParentid" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_energy_unit_info where EUI_PARENTID=#{euiParentid}
+  </select>
+  
+  <select id="findEnegryUnits" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_energy_unit_info where EUI_NAMES like #{code}
+  </select>
+  
+  <select id="findAllEnegryUnits" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_energy_unit_info where ID NOT IN('ROOT');
+  </select>
+  
+   <select id="selectAll" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_energy_unit_info where EUI_PARENTID='ROOT'
+  </select>
+  
+  
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_energy_unit_info
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectAllById" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_energy_unit_info
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from poms_energy_unit_info
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gs.domain.PomsEnergyUnitInfo" >
+    insert into poms_energy_unit_info (ID, EUI_CODE, EUI_NAMES, 
+      EUI_REPRESENTATIVE, EUI_BELONG_INDUSTRY, EUI_BELONG_DISTRCT, 
+      EUI_CONSUME_BAND, EUI_CHARGE_DEPARTMENT, EUI_LOCATION, 
+      EUI_CONTENT_WAY, EUI_BUILDING_AREA, EUI_HOLD_PERSON, 
+      EUI_BACKUPS, EUI_PARENTID, EUI_REFERENCE_DEVICE, 
+      EUI_REFERENCE_DEVICE_NAME)
+    values (#{id,jdbcType=VARCHAR}, #{euiCode,jdbcType=VARCHAR}, #{euiNames,jdbcType=VARCHAR}, 
+      #{euiRepresentative,jdbcType=VARCHAR}, #{euiBelongIndustry,jdbcType=VARCHAR}, #{euiBelongDistrct,jdbcType=VARCHAR}, 
+      #{euiConsumeBand,jdbcType=VARCHAR}, #{euiChargeDepartment,jdbcType=VARCHAR}, #{euiLocation,jdbcType=VARCHAR}, 
+      #{euiContentWay,jdbcType=VARCHAR}, #{euiBuildingArea,jdbcType=DECIMAL}, #{euiHoldPerson,jdbcType=DECIMAL}, 
+      #{euiBackups,jdbcType=VARCHAR}, #{euiParentid,jdbcType=VARCHAR}, #{euiReferenceDevice,jdbcType=VARCHAR}, 
+      #{euiReferenceDeviceName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gs.domain.PomsEnergyUnitInfo" >
+    insert into poms_energy_unit_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="euiCode != null" >
+        EUI_CODE,
+      </if>
+      <if test="euiNames != null" >
+        EUI_NAMES,
+      </if>
+      <if test="euiRepresentative != null" >
+        EUI_REPRESENTATIVE,
+      </if>
+      <if test="euiBelongIndustry != null" >
+        EUI_BELONG_INDUSTRY,
+      </if>
+      <if test="euiBelongDistrct != null" >
+        EUI_BELONG_DISTRCT,
+      </if>
+      <if test="euiConsumeBand != null" >
+        EUI_CONSUME_BAND,
+      </if>
+      <if test="euiChargeDepartment != null" >
+        EUI_CHARGE_DEPARTMENT,
+      </if>
+      <if test="euiLocation != null" >
+        EUI_LOCATION,
+      </if>
+      <if test="euiContentWay != null" >
+        EUI_CONTENT_WAY,
+      </if>
+      <if test="euiBuildingArea != null" >
+        EUI_BUILDING_AREA,
+      </if>
+      <if test="euiHoldPerson != null" >
+        EUI_HOLD_PERSON,
+      </if>
+      <if test="euiBackups != null" >
+        EUI_BACKUPS,
+      </if>
+      <if test="euiParentid != null" >
+        EUI_PARENTID,
+      </if>
+      <if test="euiReferenceDevice != null" >
+        EUI_REFERENCE_DEVICE,
+      </if>
+      <if test="euiReferenceDeviceName != null" >
+        EUI_REFERENCE_DEVICE_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="euiCode != null" >
+        #{euiCode,jdbcType=VARCHAR},
+      </if>
+      <if test="euiNames != null" >
+        #{euiNames,jdbcType=VARCHAR},
+      </if>
+      <if test="euiRepresentative != null" >
+        #{euiRepresentative,jdbcType=VARCHAR},
+      </if>
+      <if test="euiBelongIndustry != null" >
+        #{euiBelongIndustry,jdbcType=VARCHAR},
+      </if>
+      <if test="euiBelongDistrct != null" >
+        #{euiBelongDistrct,jdbcType=VARCHAR},
+      </if>
+      <if test="euiConsumeBand != null" >
+        #{euiConsumeBand,jdbcType=VARCHAR},
+      </if>
+      <if test="euiChargeDepartment != null" >
+        #{euiChargeDepartment,jdbcType=VARCHAR},
+      </if>
+      <if test="euiLocation != null" >
+        #{euiLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="euiContentWay != null" >
+        #{euiContentWay,jdbcType=VARCHAR},
+      </if>
+      <if test="euiBuildingArea != null" >
+        #{euiBuildingArea,jdbcType=DECIMAL},
+      </if>
+      <if test="euiHoldPerson != null" >
+        #{euiHoldPerson,jdbcType=DECIMAL},
+      </if>
+      <if test="euiBackups != null" >
+        #{euiBackups,jdbcType=VARCHAR},
+      </if>
+      <if test="euiParentid != null" >
+        #{euiParentid,jdbcType=VARCHAR},
+      </if>
+      <if test="euiReferenceDevice != null" >
+        #{euiReferenceDevice,jdbcType=VARCHAR},
+      </if>
+      <if test="euiReferenceDeviceName != null" >
+        #{euiReferenceDeviceName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gs.domain.PomsEnergyUnitInfo" >
+    update poms_energy_unit_info
+    <set >
+      <if test="euiCode != null" >
+        EUI_CODE = #{euiCode,jdbcType=VARCHAR},
+      </if>
+      <if test="euiNames != null" >
+        EUI_NAMES = #{euiNames,jdbcType=VARCHAR},
+      </if>
+      <if test="euiRepresentative != null" >
+        EUI_REPRESENTATIVE = #{euiRepresentative,jdbcType=VARCHAR},
+      </if>
+      <if test="euiBelongIndustry != null" >
+        EUI_BELONG_INDUSTRY = #{euiBelongIndustry,jdbcType=VARCHAR},
+      </if>
+      <if test="euiBelongDistrct != null" >
+        EUI_BELONG_DISTRCT = #{euiBelongDistrct,jdbcType=VARCHAR},
+      </if>
+      <if test="euiConsumeBand != null" >
+        EUI_CONSUME_BAND = #{euiConsumeBand,jdbcType=VARCHAR},
+      </if>
+      <if test="euiChargeDepartment != null" >
+        EUI_CHARGE_DEPARTMENT = #{euiChargeDepartment,jdbcType=VARCHAR},
+      </if>
+      <if test="euiLocation != null" >
+        EUI_LOCATION = #{euiLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="euiContentWay != null" >
+        EUI_CONTENT_WAY = #{euiContentWay,jdbcType=VARCHAR},
+      </if>
+      <if test="euiBuildingArea != null" >
+        EUI_BUILDING_AREA = #{euiBuildingArea,jdbcType=DECIMAL},
+      </if>
+      <if test="euiHoldPerson != null" >
+        EUI_HOLD_PERSON = #{euiHoldPerson,jdbcType=DECIMAL},
+      </if>
+      <if test="euiBackups != null" >
+        EUI_BACKUPS = #{euiBackups,jdbcType=VARCHAR},
+      </if>
+      <if test="euiParentid != null" >
+        EUI_PARENTID = #{euiParentid,jdbcType=VARCHAR},
+      </if>
+      <if test="euiReferenceDevice != null" >
+        EUI_REFERENCE_DEVICE = #{euiReferenceDevice,jdbcType=VARCHAR},
+      </if>
+      <if test="euiReferenceDeviceName != null" >
+        EUI_REFERENCE_DEVICE_NAME = #{euiReferenceDeviceName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gs.domain.PomsEnergyUnitInfo" >
+    update poms_energy_unit_info
+    set EUI_CODE = #{euiCode,jdbcType=VARCHAR},
+      EUI_NAMES = #{euiNames,jdbcType=VARCHAR},
+      EUI_REPRESENTATIVE = #{euiRepresentative,jdbcType=VARCHAR},
+      EUI_BELONG_INDUSTRY = #{euiBelongIndustry,jdbcType=VARCHAR},
+      EUI_BELONG_DISTRCT = #{euiBelongDistrct,jdbcType=VARCHAR},
+      EUI_CONSUME_BAND = #{euiConsumeBand,jdbcType=VARCHAR},
+      EUI_CHARGE_DEPARTMENT = #{euiChargeDepartment,jdbcType=VARCHAR},
+      EUI_LOCATION = #{euiLocation,jdbcType=VARCHAR},
+      EUI_CONTENT_WAY = #{euiContentWay,jdbcType=VARCHAR},
+      EUI_BUILDING_AREA = #{euiBuildingArea,jdbcType=DECIMAL},
+      EUI_HOLD_PERSON = #{euiHoldPerson,jdbcType=DECIMAL},
+      EUI_BACKUPS = #{euiBackups,jdbcType=VARCHAR},
+      EUI_PARENTID = #{euiParentid,jdbcType=VARCHAR},
+      EUI_REFERENCE_DEVICE = #{euiReferenceDevice,jdbcType=VARCHAR},
+      EUI_REFERENCE_DEVICE_NAME = #{euiReferenceDeviceName,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

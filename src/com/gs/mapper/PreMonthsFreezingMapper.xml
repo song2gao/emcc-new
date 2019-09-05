@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gs.mapper.PreMonthsFreezingMapper" >
+  <resultMap id="BaseResultMap" type="com.gs.domain.PreMonthsFreezing" >
+    <id column="months_freezing_msa_codes" property="monthsFreezingMsaCodes" jdbcType="VARCHAR" />
+    <id column="months_freezing_equipment_codes" property="monthsFreezingEquipmentCodes" jdbcType="VARCHAR" />
+    <id column="months_freezing_point_codes" property="monthsFreezingPointCodes" jdbcType="VARCHAR" />
+    <id column="months_freezing_storage_date" property="monthsFreezingStorageDate" jdbcType="TIMESTAMP" />
+    <result column="p1" property="p1" jdbcType="DECIMAL" />
+    <result column="p2" property="p2" jdbcType="DECIMAL" />
+    <result column="p3" property="p3" jdbcType="DECIMAL" />
+    <result column="p4" property="p4" jdbcType="DECIMAL" />
+    <result column="p5" property="p5" jdbcType="DECIMAL" />
+    <result column="p6" property="p6" jdbcType="DECIMAL" />
+    <result column="p7" property="p7" jdbcType="DECIMAL" />
+    <result column="p8" property="p8" jdbcType="DECIMAL" />
+    <result column="p9" property="p9" jdbcType="DECIMAL" />
+    <result column="p10" property="p10" jdbcType="DECIMAL" />
+    <result column="p11" property="p11" jdbcType="DECIMAL" />
+    <result column="p12" property="p12" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    months_freezing_msa_codes, months_freezing_equipment_codes, months_freezing_point_codes, 
+    months_freezing_storage_date, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.gs.domain.PreMonthsFreezingKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from pre_months_freezing
+    where months_freezing_msa_codes = #{monthsFreezingMsaCodes,jdbcType=VARCHAR}
+      and months_freezing_equipment_codes = #{monthsFreezingEquipmentCodes,jdbcType=VARCHAR}
+      and months_freezing_point_codes = #{monthsFreezingPointCodes,jdbcType=VARCHAR}
+      and months_freezing_storage_date = #{monthsFreezingStorageDate,jdbcType=TIMESTAMP}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.gs.domain.PreMonthsFreezingKey" >
+    delete from pre_months_freezing
+    where months_freezing_msa_codes = #{monthsFreezingMsaCodes,jdbcType=VARCHAR}
+      and months_freezing_equipment_codes = #{monthsFreezingEquipmentCodes,jdbcType=VARCHAR}
+      and months_freezing_point_codes = #{monthsFreezingPointCodes,jdbcType=VARCHAR}
+      and months_freezing_storage_date = #{monthsFreezingStorageDate,jdbcType=TIMESTAMP}
+  </delete>
+  <insert id="insert" parameterType="com.gs.domain.PreMonthsFreezing" >
+    insert into pre_months_freezing (months_freezing_msa_codes, months_freezing_equipment_codes, 
+      months_freezing_point_codes, months_freezing_storage_date, 
+      p1, p2, p3, p4, 
+      p5, p6, p7, p8, 
+      p9, p10, p11, p12
+      )
+    values (#{monthsFreezingMsaCodes,jdbcType=VARCHAR}, #{monthsFreezingEquipmentCodes,jdbcType=VARCHAR}, 
+      #{monthsFreezingPointCodes,jdbcType=VARCHAR}, #{monthsFreezingStorageDate,jdbcType=TIMESTAMP}, 
+      #{p1,jdbcType=DECIMAL}, #{p2,jdbcType=DECIMAL}, #{p3,jdbcType=DECIMAL}, #{p4,jdbcType=DECIMAL}, 
+      #{p5,jdbcType=DECIMAL}, #{p6,jdbcType=DECIMAL}, #{p7,jdbcType=DECIMAL}, #{p8,jdbcType=DECIMAL}, 
+      #{p9,jdbcType=DECIMAL}, #{p10,jdbcType=DECIMAL}, #{p11,jdbcType=DECIMAL}, #{p12,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gs.domain.PreMonthsFreezing" >
+    insert into pre_months_freezing
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="monthsFreezingMsaCodes != null" >
+        months_freezing_msa_codes,
+      </if>
+      <if test="monthsFreezingEquipmentCodes != null" >
+        months_freezing_equipment_codes,
+      </if>
+      <if test="monthsFreezingPointCodes != null" >
+        months_freezing_point_codes,
+      </if>
+      <if test="monthsFreezingStorageDate != null" >
+        months_freezing_storage_date,
+      </if>
+      <if test="p1 != null" >
+        p1,
+      </if>
+      <if test="p2 != null" >
+        p2,
+      </if>
+      <if test="p3 != null" >
+        p3,
+      </if>
+      <if test="p4 != null" >
+        p4,
+      </if>
+      <if test="p5 != null" >
+        p5,
+      </if>
+      <if test="p6 != null" >
+        p6,
+      </if>
+      <if test="p7 != null" >
+        p7,
+      </if>
+      <if test="p8 != null" >
+        p8,
+      </if>
+      <if test="p9 != null" >
+        p9,
+      </if>
+      <if test="p10 != null" >
+        p10,
+      </if>
+      <if test="p11 != null" >
+        p11,
+      </if>
+      <if test="p12 != null" >
+        p12,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="monthsFreezingMsaCodes != null" >
+        #{monthsFreezingMsaCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="monthsFreezingEquipmentCodes != null" >
+        #{monthsFreezingEquipmentCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="monthsFreezingPointCodes != null" >
+        #{monthsFreezingPointCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="monthsFreezingStorageDate != null" >
+        #{monthsFreezingStorageDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="p1 != null" >
+        #{p1,jdbcType=DECIMAL},
+      </if>
+      <if test="p2 != null" >
+        #{p2,jdbcType=DECIMAL},
+      </if>
+      <if test="p3 != null" >
+        #{p3,jdbcType=DECIMAL},
+      </if>
+      <if test="p4 != null" >
+        #{p4,jdbcType=DECIMAL},
+      </if>
+      <if test="p5 != null" >
+        #{p5,jdbcType=DECIMAL},
+      </if>
+      <if test="p6 != null" >
+        #{p6,jdbcType=DECIMAL},
+      </if>
+      <if test="p7 != null" >
+        #{p7,jdbcType=DECIMAL},
+      </if>
+      <if test="p8 != null" >
+        #{p8,jdbcType=DECIMAL},
+      </if>
+      <if test="p9 != null" >
+        #{p9,jdbcType=DECIMAL},
+      </if>
+      <if test="p10 != null" >
+        #{p10,jdbcType=DECIMAL},
+      </if>
+      <if test="p11 != null" >
+        #{p11,jdbcType=DECIMAL},
+      </if>
+      <if test="p12 != null" >
+        #{p12,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gs.domain.PreMonthsFreezing" >
+    update pre_months_freezing
+    <set >
+      <if test="p1 != null" >
+        p1 = #{p1,jdbcType=DECIMAL},
+      </if>
+      <if test="p2 != null" >
+        p2 = #{p2,jdbcType=DECIMAL},
+      </if>
+      <if test="p3 != null" >
+        p3 = #{p3,jdbcType=DECIMAL},
+      </if>
+      <if test="p4 != null" >
+        p4 = #{p4,jdbcType=DECIMAL},
+      </if>
+      <if test="p5 != null" >
+        p5 = #{p5,jdbcType=DECIMAL},
+      </if>
+      <if test="p6 != null" >
+        p6 = #{p6,jdbcType=DECIMAL},
+      </if>
+      <if test="p7 != null" >
+        p7 = #{p7,jdbcType=DECIMAL},
+      </if>
+      <if test="p8 != null" >
+        p8 = #{p8,jdbcType=DECIMAL},
+      </if>
+      <if test="p9 != null" >
+        p9 = #{p9,jdbcType=DECIMAL},
+      </if>
+      <if test="p10 != null" >
+        p10 = #{p10,jdbcType=DECIMAL},
+      </if>
+      <if test="p11 != null" >
+        p11 = #{p11,jdbcType=DECIMAL},
+      </if>
+      <if test="p12 != null" >
+        p12 = #{p12,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where months_freezing_msa_codes = #{monthsFreezingMsaCodes,jdbcType=VARCHAR}
+      and months_freezing_equipment_codes = #{monthsFreezingEquipmentCodes,jdbcType=VARCHAR}
+      and months_freezing_point_codes = #{monthsFreezingPointCodes,jdbcType=VARCHAR}
+      and months_freezing_storage_date = #{monthsFreezingStorageDate,jdbcType=TIMESTAMP}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gs.domain.PreMonthsFreezing" >
+    update pre_months_freezing
+    set p1 = #{p1,jdbcType=DECIMAL},
+      p2 = #{p2,jdbcType=DECIMAL},
+      p3 = #{p3,jdbcType=DECIMAL},
+      p4 = #{p4,jdbcType=DECIMAL},
+      p5 = #{p5,jdbcType=DECIMAL},
+      p6 = #{p6,jdbcType=DECIMAL},
+      p7 = #{p7,jdbcType=DECIMAL},
+      p8 = #{p8,jdbcType=DECIMAL},
+      p9 = #{p9,jdbcType=DECIMAL},
+      p10 = #{p10,jdbcType=DECIMAL},
+      p11 = #{p11,jdbcType=DECIMAL},
+      p12 = #{p12,jdbcType=DECIMAL}
+    where months_freezing_msa_codes = #{monthsFreezingMsaCodes,jdbcType=VARCHAR}
+      and months_freezing_equipment_codes = #{monthsFreezingEquipmentCodes,jdbcType=VARCHAR}
+      and months_freezing_point_codes = #{monthsFreezingPointCodes,jdbcType=VARCHAR}
+      and months_freezing_storage_date = #{monthsFreezingStorageDate,jdbcType=TIMESTAMP}
+  </update>
+</mapper>

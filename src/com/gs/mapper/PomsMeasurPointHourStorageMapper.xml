@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gs.mapper.PomsMeasurPointHourStorageMapper" >
+  <resultMap id="BaseResultMap" type="com.gs.domain.PomsMeasurPointHourStorage" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="MPHS_DATE" property="mphsDate" jdbcType="VARCHAR" />
+    <result column="MPHS_ENTERPRISE_CODES" property="mphsEnterpriseCodes" jdbcType="VARCHAR" />
+    <result column="MPHS_EQUIPMENT_CODES" property="mphsEquipmentCodes" jdbcType="VARCHAR" />
+    <result column="MPHS_POINT_CODES" property="mphsPointCodes" jdbcType="VARCHAR" />
+    <result column="MPHS_CURVAL" property="mphsCurval" jdbcType="DECIMAL" />
+    <result column="MPHS_INCREVAL" property="mphsIncreval" jdbcType="DECIMAL" />
+    <result column="MPHS_MAXVAL" property="mphsMaxval" jdbcType="DECIMAL" />
+    <result column="MPHS_MAXVAL_TIME" property="mphsMaxvalTime" jdbcType="VARCHAR" />
+    <result column="MPHS_MINVAL_TIME" property="mphsMinvalTime" jdbcType="VARCHAR" />
+    <result column="MPHS_MINVAL" property="mphsMinval" jdbcType="DECIMAL" />
+    <result column="MPHS_AVGVAL" property="mphsAvgval" jdbcType="DECIMAL" />
+    <result column="MPHS_BACKUPS" property="mphsBackups" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, MPHS_DATE, MPHS_ENTERPRISE_CODES, MPHS_EQUIPMENT_CODES, MPHS_POINT_CODES, MPHS_CURVAL, 
+    MPHS_INCREVAL, MPHS_MAXVAL, MPHS_MAXVAL_TIME, MPHS_MINVAL_TIME, MPHS_MINVAL, MPHS_AVGVAL, 
+    MPHS_BACKUPS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_measur_point_hour_storage
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from poms_measur_point_hour_storage
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gs.domain.PomsMeasurPointHourStorage" >
+    insert into poms_measur_point_hour_storage (ID, MPHS_DATE, MPHS_ENTERPRISE_CODES, 
+      MPHS_EQUIPMENT_CODES, MPHS_POINT_CODES, MPHS_CURVAL, 
+      MPHS_INCREVAL, MPHS_MAXVAL, MPHS_MAXVAL_TIME, 
+      MPHS_MINVAL_TIME, MPHS_MINVAL, MPHS_AVGVAL, 
+      MPHS_BACKUPS)
+    values (#{id,jdbcType=VARCHAR}, #{mphsDate,jdbcType=VARCHAR}, #{mphsEnterpriseCodes,jdbcType=VARCHAR}, 
+      #{mphsEquipmentCodes,jdbcType=VARCHAR}, #{mphsPointCodes,jdbcType=VARCHAR}, #{mphsCurval,jdbcType=DECIMAL}, 
+      #{mphsIncreval,jdbcType=DECIMAL}, #{mphsMaxval,jdbcType=DECIMAL}, #{mphsMaxvalTime,jdbcType=VARCHAR}, 
+      #{mphsMinvalTime,jdbcType=VARCHAR}, #{mphsMinval,jdbcType=DECIMAL}, #{mphsAvgval,jdbcType=DECIMAL}, 
+      #{mphsBackups,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gs.domain.PomsMeasurPointHourStorage" >
+    insert into poms_measur_point_hour_storage
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="mphsDate != null" >
+        MPHS_DATE,
+      </if>
+      <if test="mphsEnterpriseCodes != null" >
+        MPHS_ENTERPRISE_CODES,
+      </if>
+      <if test="mphsEquipmentCodes != null" >
+        MPHS_EQUIPMENT_CODES,
+      </if>
+      <if test="mphsPointCodes != null" >
+        MPHS_POINT_CODES,
+      </if>
+      <if test="mphsCurval != null" >
+        MPHS_CURVAL,
+      </if>
+      <if test="mphsIncreval != null" >
+        MPHS_INCREVAL,
+      </if>
+      <if test="mphsMaxval != null" >
+        MPHS_MAXVAL,
+      </if>
+      <if test="mphsMaxvalTime != null" >
+        MPHS_MAXVAL_TIME,
+      </if>
+      <if test="mphsMinvalTime != null" >
+        MPHS_MINVAL_TIME,
+      </if>
+      <if test="mphsMinval != null" >
+        MPHS_MINVAL,
+      </if>
+      <if test="mphsAvgval != null" >
+        MPHS_AVGVAL,
+      </if>
+      <if test="mphsBackups != null" >
+        MPHS_BACKUPS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="mphsDate != null" >
+        #{mphsDate,jdbcType=VARCHAR},
+      </if>
+      <if test="mphsEnterpriseCodes != null" >
+        #{mphsEnterpriseCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="mphsEquipmentCodes != null" >
+        #{mphsEquipmentCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="mphsPointCodes != null" >
+        #{mphsPointCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="mphsCurval != null" >
+        #{mphsCurval,jdbcType=DECIMAL},
+      </if>
+      <if test="mphsIncreval != null" >
+        #{mphsIncreval,jdbcType=DECIMAL},
+      </if>
+      <if test="mphsMaxval != null" >
+        #{mphsMaxval,jdbcType=DECIMAL},
+      </if>
+      <if test="mphsMaxvalTime != null" >
+        #{mphsMaxvalTime,jdbcType=VARCHAR},
+      </if>
+      <if test="mphsMinvalTime != null" >
+        #{mphsMinvalTime,jdbcType=VARCHAR},
+      </if>
+      <if test="mphsMinval != null" >
+        #{mphsMinval,jdbcType=DECIMAL},
+      </if>
+      <if test="mphsAvgval != null" >
+        #{mphsAvgval,jdbcType=DECIMAL},
+      </if>
+      <if test="mphsBackups != null" >
+        #{mphsBackups,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gs.domain.PomsMeasurPointHourStorage" >
+    update poms_measur_point_hour_storage
+    <set >
+      <if test="mphsDate != null" >
+        MPHS_DATE = #{mphsDate,jdbcType=VARCHAR},
+      </if>
+      <if test="mphsEnterpriseCodes != null" >
+        MPHS_ENTERPRISE_CODES = #{mphsEnterpriseCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="mphsEquipmentCodes != null" >
+        MPHS_EQUIPMENT_CODES = #{mphsEquipmentCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="mphsPointCodes != null" >
+        MPHS_POINT_CODES = #{mphsPointCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="mphsCurval != null" >
+        MPHS_CURVAL = #{mphsCurval,jdbcType=DECIMAL},
+      </if>
+      <if test="mphsIncreval != null" >
+        MPHS_INCREVAL = #{mphsIncreval,jdbcType=DECIMAL},
+      </if>
+      <if test="mphsMaxval != null" >
+        MPHS_MAXVAL = #{mphsMaxval,jdbcType=DECIMAL},
+      </if>
+      <if test="mphsMaxvalTime != null" >
+        MPHS_MAXVAL_TIME = #{mphsMaxvalTime,jdbcType=VARCHAR},
+      </if>
+      <if test="mphsMinvalTime != null" >
+        MPHS_MINVAL_TIME = #{mphsMinvalTime,jdbcType=VARCHAR},
+      </if>
+      <if test="mphsMinval != null" >
+        MPHS_MINVAL = #{mphsMinval,jdbcType=DECIMAL},
+      </if>
+      <if test="mphsAvgval != null" >
+        MPHS_AVGVAL = #{mphsAvgval,jdbcType=DECIMAL},
+      </if>
+      <if test="mphsBackups != null" >
+        MPHS_BACKUPS = #{mphsBackups,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gs.domain.PomsMeasurPointHourStorage" >
+    update poms_measur_point_hour_storage
+    set MPHS_DATE = #{mphsDate,jdbcType=VARCHAR},
+      MPHS_ENTERPRISE_CODES = #{mphsEnterpriseCodes,jdbcType=VARCHAR},
+      MPHS_EQUIPMENT_CODES = #{mphsEquipmentCodes,jdbcType=VARCHAR},
+      MPHS_POINT_CODES = #{mphsPointCodes,jdbcType=VARCHAR},
+      MPHS_CURVAL = #{mphsCurval,jdbcType=DECIMAL},
+      MPHS_INCREVAL = #{mphsIncreval,jdbcType=DECIMAL},
+      MPHS_MAXVAL = #{mphsMaxval,jdbcType=DECIMAL},
+      MPHS_MAXVAL_TIME = #{mphsMaxvalTime,jdbcType=VARCHAR},
+      MPHS_MINVAL_TIME = #{mphsMinvalTime,jdbcType=VARCHAR},
+      MPHS_MINVAL = #{mphsMinval,jdbcType=DECIMAL},
+      MPHS_AVGVAL = #{mphsAvgval,jdbcType=DECIMAL},
+      MPHS_BACKUPS = #{mphsBackups,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

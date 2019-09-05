@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gs.mapper.PomsEnergyUsingSystemModelMapper" >
+  <resultMap id="BaseResultMap" type="com.gs.domain.PomsEnergyUsingSystemModel" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="SYSTEM_MODEL_NAME" property="systemModelName" jdbcType="VARCHAR" />
+    <result column="SYSTEM_MODEL_BACKUPS" property="systemModelBackups" jdbcType="VARCHAR" />
+    <result column="SYSTEM_MODEL_TYPE" property="systemModelType" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, SYSTEM_MODEL_NAME, SYSTEM_MODEL_BACKUPS, SYSTEM_MODEL_TYPE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_energy_using_system_model
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from poms_energy_using_system_model
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gs.domain.PomsEnergyUsingSystemModel" >
+    insert into poms_energy_using_system_model (ID, SYSTEM_MODEL_NAME, SYSTEM_MODEL_BACKUPS, 
+      SYSTEM_MODEL_TYPE)
+    values (#{id,jdbcType=VARCHAR}, #{systemModelName,jdbcType=VARCHAR}, #{systemModelBackups,jdbcType=VARCHAR}, 
+      #{systemModelType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gs.domain.PomsEnergyUsingSystemModel" >
+    insert into poms_energy_using_system_model
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="systemModelName != null" >
+        SYSTEM_MODEL_NAME,
+      </if>
+      <if test="systemModelBackups != null" >
+        SYSTEM_MODEL_BACKUPS,
+      </if>
+      <if test="systemModelType != null" >
+        SYSTEM_MODEL_TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="systemModelName != null" >
+        #{systemModelName,jdbcType=VARCHAR},
+      </if>
+      <if test="systemModelBackups != null" >
+        #{systemModelBackups,jdbcType=VARCHAR},
+      </if>
+      <if test="systemModelType != null" >
+        #{systemModelType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gs.domain.PomsEnergyUsingSystemModel" >
+    update poms_energy_using_system_model
+    <set >
+      <if test="systemModelName != null" >
+        SYSTEM_MODEL_NAME = #{systemModelName,jdbcType=VARCHAR},
+      </if>
+      <if test="systemModelBackups != null" >
+        SYSTEM_MODEL_BACKUPS = #{systemModelBackups,jdbcType=VARCHAR},
+      </if>
+      <if test="systemModelType != null" >
+        SYSTEM_MODEL_TYPE = #{systemModelType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gs.domain.PomsEnergyUsingSystemModel" >
+    update poms_energy_using_system_model
+    set SYSTEM_MODEL_NAME = #{systemModelName,jdbcType=VARCHAR},
+      SYSTEM_MODEL_BACKUPS = #{systemModelBackups,jdbcType=VARCHAR},
+      SYSTEM_MODEL_TYPE = #{systemModelType,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

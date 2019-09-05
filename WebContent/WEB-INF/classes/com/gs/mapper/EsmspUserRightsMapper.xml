@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gs.mapper.EsmspUserRightsMapper" >
+  <resultMap id="BaseResultMap" type="com.gs.domain.EsmspUserRights" >
+    <id column="rights_id" property="rightsId" jdbcType="VARCHAR" />
+    <result column="rights_name" property="rightsName" jdbcType="VARCHAR" />
+    <result column="rights_style" property="rightsStyle" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    rights_id, rights_name, rights_style
+  </sql>
+  
+   <!-- 根据 实体code 中的某个字段 条件查询所有 -->
+	<select id="findPageAll" resultMap="BaseResultMap"
+		parameterType="com.gs.domain.EsmspUserRights">
+		select
+		<include refid="Base_Column_List" />
+		from esmsp_user_rights
+		where 1=1
+		<if test="pageSize!=null and pageSize!=0 and pageBegin!=0">
+			 limit #{pageBegin},#{pageSize}
+		</if>
+	</select>
+	<!-- 查询总条数 -->
+	<select id="getCount" resultType="java.lang.Integer">
+		select count(*) from
+		esmsp_user_rights
+	</select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from esmsp_user_rights
+    where rights_id = #{rightsId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from esmsp_user_rights
+    where rights_id = #{rightsId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gs.domain.EsmspUserRights" >
+    insert into esmsp_user_rights (rights_id, rights_name, rights_style
+      )
+    values (#{rightsId,jdbcType=VARCHAR}, #{rightsName,jdbcType=VARCHAR}, #{rightsStyle,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gs.domain.EsmspUserRights" >
+    insert into esmsp_user_rights
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="rightsId != null" >
+        rights_id,
+      </if>
+      <if test="rightsName != null" >
+        rights_name,
+      </if>
+      <if test="rightsStyle != null" >
+        rights_style,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="rightsId != null" >
+        #{rightsId,jdbcType=VARCHAR},
+      </if>
+      <if test="rightsName != null" >
+        #{rightsName,jdbcType=VARCHAR},
+      </if>
+      <if test="rightsStyle != null" >
+        #{rightsStyle,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gs.domain.EsmspUserRights" >
+    update esmsp_user_rights
+    <set >
+      <if test="rightsName != null" >
+        rights_name = #{rightsName,jdbcType=VARCHAR},
+      </if>
+      <if test="rightsStyle != null" >
+        rights_style = #{rightsStyle,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where rights_id = #{rightsId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gs.domain.EsmspUserRights" >
+    update esmsp_user_rights
+    set rights_name = #{rightsName,jdbcType=VARCHAR},
+      rights_style = #{rightsStyle,jdbcType=VARCHAR}
+    where rights_id = #{rightsId,jdbcType=VARCHAR}
+  </update>
+</mapper>

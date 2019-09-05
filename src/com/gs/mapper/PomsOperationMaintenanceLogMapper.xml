@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gs.mapper.PomsOperationMaintenanceLogMapper" >
+  <resultMap id="BaseResultMap" type="com.gs.domain.PomsOperationMaintenanceLog" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="UM_ID" property="umId" jdbcType="VARCHAR" />
+    <result column="OML_OPERATE_TIME" property="omlOperateTime" jdbcType="VARCHAR" />
+    <result column="OML_OPERATE_CONTENT" property="omlOperateContent" jdbcType="VARCHAR" />
+    <result column="OML_BANKUPS" property="omlBankups" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, UM_ID, OML_OPERATE_TIME, OML_OPERATE_CONTENT, OML_BANKUPS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_operation_maintenance_log
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from poms_operation_maintenance_log
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gs.domain.PomsOperationMaintenanceLog" >
+    insert into poms_operation_maintenance_log (ID, UM_ID, OML_OPERATE_TIME, 
+      OML_OPERATE_CONTENT, OML_BANKUPS)
+    values (#{id,jdbcType=VARCHAR}, #{umId,jdbcType=VARCHAR}, #{omlOperateTime,jdbcType=VARCHAR}, 
+      #{omlOperateContent,jdbcType=VARCHAR}, #{omlBankups,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gs.domain.PomsOperationMaintenanceLog" >
+    insert into poms_operation_maintenance_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="umId != null" >
+        UM_ID,
+      </if>
+      <if test="omlOperateTime != null" >
+        OML_OPERATE_TIME,
+      </if>
+      <if test="omlOperateContent != null" >
+        OML_OPERATE_CONTENT,
+      </if>
+      <if test="omlBankups != null" >
+        OML_BANKUPS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="umId != null" >
+        #{umId,jdbcType=VARCHAR},
+      </if>
+      <if test="omlOperateTime != null" >
+        #{omlOperateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="omlOperateContent != null" >
+        #{omlOperateContent,jdbcType=VARCHAR},
+      </if>
+      <if test="omlBankups != null" >
+        #{omlBankups,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gs.domain.PomsOperationMaintenanceLog" >
+    update poms_operation_maintenance_log
+    <set >
+      <if test="umId != null" >
+        UM_ID = #{umId,jdbcType=VARCHAR},
+      </if>
+      <if test="omlOperateTime != null" >
+        OML_OPERATE_TIME = #{omlOperateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="omlOperateContent != null" >
+        OML_OPERATE_CONTENT = #{omlOperateContent,jdbcType=VARCHAR},
+      </if>
+      <if test="omlBankups != null" >
+        OML_BANKUPS = #{omlBankups,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gs.domain.PomsOperationMaintenanceLog" >
+    update poms_operation_maintenance_log
+    set UM_ID = #{umId,jdbcType=VARCHAR},
+      OML_OPERATE_TIME = #{omlOperateTime,jdbcType=VARCHAR},
+      OML_OPERATE_CONTENT = #{omlOperateContent,jdbcType=VARCHAR},
+      OML_BANKUPS = #{omlBankups,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

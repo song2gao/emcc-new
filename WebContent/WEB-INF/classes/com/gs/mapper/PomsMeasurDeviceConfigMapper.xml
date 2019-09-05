@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gs.mapper.PomsMeasurDeviceConfigMapper" >
+  <resultMap id="BaseResultMap" type="com.gs.domain.PomsMeasurDeviceConfig" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="MDC_UNITSID" property="mdcUnitsid" jdbcType="VARCHAR" />
+    <result column="MDC_ASSEMBLEID" property="mdcAssembleid" jdbcType="VARCHAR" />
+    <result column="MDC_TERMINAL_DEVICEID" property="mdcTerminalDeviceid" jdbcType="VARCHAR" />
+    <result column="MDC_MODULE_NAME" property="mdcModuleName" jdbcType="VARCHAR" />
+    <result column="CALCULATE_TERMINAL_SERIAL" property="calculateTerminalSerial" jdbcType="VARCHAR" />
+    <result column="COMMUNICATE_FUNCTION_CODE" property="communicateFunctionCode" jdbcType="VARCHAR" />
+    <result column="MDC_BACKUPS" property="mdcBackups" jdbcType="VARCHAR" />
+    <result column="COMMUNICATE_FUN_SEC_CODE" property="communicateFunSecCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, MDC_UNITSID, MDC_ASSEMBLEID, MDC_TERMINAL_DEVICEID, MDC_MODULE_NAME, CALCULATE_TERMINAL_SERIAL, 
+    COMMUNICATE_FUNCTION_CODE, MDC_BACKUPS, COMMUNICATE_FUN_SEC_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_measur_device_config
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from poms_measur_device_config
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gs.domain.PomsMeasurDeviceConfig" >
+    insert into poms_measur_device_config (ID, MDC_UNITSID, MDC_ASSEMBLEID, 
+      MDC_TERMINAL_DEVICEID, MDC_MODULE_NAME, CALCULATE_TERMINAL_SERIAL, 
+      COMMUNICATE_FUNCTION_CODE, MDC_BACKUPS, COMMUNICATE_FUN_SEC_CODE
+      )
+    values (#{id,jdbcType=VARCHAR}, #{mdcUnitsid,jdbcType=VARCHAR}, #{mdcAssembleid,jdbcType=VARCHAR}, 
+      #{mdcTerminalDeviceid,jdbcType=VARCHAR}, #{mdcModuleName,jdbcType=VARCHAR}, #{calculateTerminalSerial,jdbcType=VARCHAR}, 
+      #{communicateFunctionCode,jdbcType=VARCHAR}, #{mdcBackups,jdbcType=VARCHAR}, #{communicateFunSecCode,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gs.domain.PomsMeasurDeviceConfig" >
+    insert into poms_measur_device_config
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="mdcUnitsid != null" >
+        MDC_UNITSID,
+      </if>
+      <if test="mdcAssembleid != null" >
+        MDC_ASSEMBLEID,
+      </if>
+      <if test="mdcTerminalDeviceid != null" >
+        MDC_TERMINAL_DEVICEID,
+      </if>
+      <if test="mdcModuleName != null" >
+        MDC_MODULE_NAME,
+      </if>
+      <if test="calculateTerminalSerial != null" >
+        CALCULATE_TERMINAL_SERIAL,
+      </if>
+      <if test="communicateFunctionCode != null" >
+        COMMUNICATE_FUNCTION_CODE,
+      </if>
+      <if test="mdcBackups != null" >
+        MDC_BACKUPS,
+      </if>
+      <if test="communicateFunSecCode != null" >
+        COMMUNICATE_FUN_SEC_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="mdcUnitsid != null" >
+        #{mdcUnitsid,jdbcType=VARCHAR},
+      </if>
+      <if test="mdcAssembleid != null" >
+        #{mdcAssembleid,jdbcType=VARCHAR},
+      </if>
+      <if test="mdcTerminalDeviceid != null" >
+        #{mdcTerminalDeviceid,jdbcType=VARCHAR},
+      </if>
+      <if test="mdcModuleName != null" >
+        #{mdcModuleName,jdbcType=VARCHAR},
+      </if>
+      <if test="calculateTerminalSerial != null" >
+        #{calculateTerminalSerial,jdbcType=VARCHAR},
+      </if>
+      <if test="communicateFunctionCode != null" >
+        #{communicateFunctionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="mdcBackups != null" >
+        #{mdcBackups,jdbcType=VARCHAR},
+      </if>
+      <if test="communicateFunSecCode != null" >
+        #{communicateFunSecCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gs.domain.PomsMeasurDeviceConfig" >
+    update poms_measur_device_config
+    <set >
+      <if test="mdcUnitsid != null" >
+        MDC_UNITSID = #{mdcUnitsid,jdbcType=VARCHAR},
+      </if>
+      <if test="mdcAssembleid != null" >
+        MDC_ASSEMBLEID = #{mdcAssembleid,jdbcType=VARCHAR},
+      </if>
+      <if test="mdcTerminalDeviceid != null" >
+        MDC_TERMINAL_DEVICEID = #{mdcTerminalDeviceid,jdbcType=VARCHAR},
+      </if>
+      <if test="mdcModuleName != null" >
+        MDC_MODULE_NAME = #{mdcModuleName,jdbcType=VARCHAR},
+      </if>
+      <if test="calculateTerminalSerial != null" >
+        CALCULATE_TERMINAL_SERIAL = #{calculateTerminalSerial,jdbcType=VARCHAR},
+      </if>
+      <if test="communicateFunctionCode != null" >
+        COMMUNICATE_FUNCTION_CODE = #{communicateFunctionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="mdcBackups != null" >
+        MDC_BACKUPS = #{mdcBackups,jdbcType=VARCHAR},
+      </if>
+      <if test="communicateFunSecCode != null" >
+        COMMUNICATE_FUN_SEC_CODE = #{communicateFunSecCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gs.domain.PomsMeasurDeviceConfig" >
+    update poms_measur_device_config
+    set MDC_UNITSID = #{mdcUnitsid,jdbcType=VARCHAR},
+      MDC_ASSEMBLEID = #{mdcAssembleid,jdbcType=VARCHAR},
+      MDC_TERMINAL_DEVICEID = #{mdcTerminalDeviceid,jdbcType=VARCHAR},
+      MDC_MODULE_NAME = #{mdcModuleName,jdbcType=VARCHAR},
+      CALCULATE_TERMINAL_SERIAL = #{calculateTerminalSerial,jdbcType=VARCHAR},
+      COMMUNICATE_FUNCTION_CODE = #{communicateFunctionCode,jdbcType=VARCHAR},
+      MDC_BACKUPS = #{mdcBackups,jdbcType=VARCHAR},
+      COMMUNICATE_FUN_SEC_CODE = #{communicateFunSecCode,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

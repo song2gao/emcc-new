@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gs.mapper.EsmspIndexAssessMapper" >
+  <resultMap id="BaseResultMap" type="com.gs.domain.EsmspIndexAssess" >
+    <id column="ASSESS_ID" property="assessId" jdbcType="VARCHAR" />
+    <result column="APPLICATION_TYPE" property="applicationType" jdbcType="INTEGER" />
+    <result column="APPLICATION_CODE" property="applicationCode" jdbcType="VARCHAR" />
+    <result column="ASSESS_TIME" property="assessTime" jdbcType="VARCHAR" />
+    <result column="ASSESS_TIMESTART" property="assessTimestart" jdbcType="TIMESTAMP" />
+    <result column="ASSESS_TIMEEND" property="assessTimeend" jdbcType="TIMESTAMP" />
+    <result column="ASSESS_RESULT" property="assessResult" jdbcType="VARCHAR" />
+    <result column="ASSESS_MEMO" property="assessMemo" jdbcType="VARCHAR" />
+    <result column="INDEX_CREATIME" property="indexCreatime" jdbcType="TIMESTAMP" />
+    <result column="INDEX_CREATPERSON" property="indexCreatperson" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ASSESS_ID, APPLICATION_TYPE, APPLICATION_CODE, ASSESS_TIME, ASSESS_TIMESTART, ASSESS_TIMEEND, 
+    ASSESS_RESULT, ASSESS_MEMO, INDEX_CREATIME, INDEX_CREATPERSON
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from esmsp_index_assess
+    where ASSESS_ID = #{assessId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from esmsp_index_assess
+    where ASSESS_ID = #{assessId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gs.domain.EsmspIndexAssess" >
+    insert into esmsp_index_assess (ASSESS_ID, APPLICATION_TYPE, APPLICATION_CODE, 
+      ASSESS_TIME, ASSESS_TIMESTART, ASSESS_TIMEEND, 
+      ASSESS_RESULT, ASSESS_MEMO, INDEX_CREATIME, 
+      INDEX_CREATPERSON)
+    values (#{assessId,jdbcType=VARCHAR}, #{applicationType,jdbcType=INTEGER}, #{applicationCode,jdbcType=VARCHAR}, 
+      #{assessTime,jdbcType=VARCHAR}, #{assessTimestart,jdbcType=TIMESTAMP}, #{assessTimeend,jdbcType=TIMESTAMP}, 
+      #{assessResult,jdbcType=VARCHAR}, #{assessMemo,jdbcType=VARCHAR}, #{indexCreatime,jdbcType=TIMESTAMP}, 
+      #{indexCreatperson,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gs.domain.EsmspIndexAssess" >
+    insert into esmsp_index_assess
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="assessId != null" >
+        ASSESS_ID,
+      </if>
+      <if test="applicationType != null" >
+        APPLICATION_TYPE,
+      </if>
+      <if test="applicationCode != null" >
+        APPLICATION_CODE,
+      </if>
+      <if test="assessTime != null" >
+        ASSESS_TIME,
+      </if>
+      <if test="assessTimestart != null" >
+        ASSESS_TIMESTART,
+      </if>
+      <if test="assessTimeend != null" >
+        ASSESS_TIMEEND,
+      </if>
+      <if test="assessResult != null" >
+        ASSESS_RESULT,
+      </if>
+      <if test="assessMemo != null" >
+        ASSESS_MEMO,
+      </if>
+      <if test="indexCreatime != null" >
+        INDEX_CREATIME,
+      </if>
+      <if test="indexCreatperson != null" >
+        INDEX_CREATPERSON,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="assessId != null" >
+        #{assessId,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationType != null" >
+        #{applicationType,jdbcType=INTEGER},
+      </if>
+      <if test="applicationCode != null" >
+        #{applicationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="assessTime != null" >
+        #{assessTime,jdbcType=VARCHAR},
+      </if>
+      <if test="assessTimestart != null" >
+        #{assessTimestart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="assessTimeend != null" >
+        #{assessTimeend,jdbcType=TIMESTAMP},
+      </if>
+      <if test="assessResult != null" >
+        #{assessResult,jdbcType=VARCHAR},
+      </if>
+      <if test="assessMemo != null" >
+        #{assessMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="indexCreatime != null" >
+        #{indexCreatime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="indexCreatperson != null" >
+        #{indexCreatperson,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gs.domain.EsmspIndexAssess" >
+    update esmsp_index_assess
+    <set >
+      <if test="applicationType != null" >
+        APPLICATION_TYPE = #{applicationType,jdbcType=INTEGER},
+      </if>
+      <if test="applicationCode != null" >
+        APPLICATION_CODE = #{applicationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="assessTime != null" >
+        ASSESS_TIME = #{assessTime,jdbcType=VARCHAR},
+      </if>
+      <if test="assessTimestart != null" >
+        ASSESS_TIMESTART = #{assessTimestart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="assessTimeend != null" >
+        ASSESS_TIMEEND = #{assessTimeend,jdbcType=TIMESTAMP},
+      </if>
+      <if test="assessResult != null" >
+        ASSESS_RESULT = #{assessResult,jdbcType=VARCHAR},
+      </if>
+      <if test="assessMemo != null" >
+        ASSESS_MEMO = #{assessMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="indexCreatime != null" >
+        INDEX_CREATIME = #{indexCreatime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="indexCreatperson != null" >
+        INDEX_CREATPERSON = #{indexCreatperson,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ASSESS_ID = #{assessId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gs.domain.EsmspIndexAssess" >
+    update esmsp_index_assess
+    set APPLICATION_TYPE = #{applicationType,jdbcType=INTEGER},
+      APPLICATION_CODE = #{applicationCode,jdbcType=VARCHAR},
+      ASSESS_TIME = #{assessTime,jdbcType=VARCHAR},
+      ASSESS_TIMESTART = #{assessTimestart,jdbcType=TIMESTAMP},
+      ASSESS_TIMEEND = #{assessTimeend,jdbcType=TIMESTAMP},
+      ASSESS_RESULT = #{assessResult,jdbcType=VARCHAR},
+      ASSESS_MEMO = #{assessMemo,jdbcType=VARCHAR},
+      INDEX_CREATIME = #{indexCreatime,jdbcType=TIMESTAMP},
+      INDEX_CREATPERSON = #{indexCreatperson,jdbcType=VARCHAR}
+    where ASSESS_ID = #{assessId,jdbcType=VARCHAR}
+  </update>
+</mapper>

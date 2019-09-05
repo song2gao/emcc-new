@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gs.mapper.PomsModulesManagementMapper" >
+  <resultMap id="BaseResultMap" type="com.gs.domain.PomsModulesManagement" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="MM_MODULE_NAME" property="mmModuleName" jdbcType="VARCHAR" />
+    <result column="MM_MODULE_CODE" property="mmModuleCode" jdbcType="VARCHAR" />
+    <result column="PARENT_MM_ID" property="parentMmId" jdbcType="VARCHAR" />
+    <result column="MM_MODULE_PIC" property="mmModulePic" jdbcType="VARCHAR" />
+    <result column="MM_MODULE_URL" property="mmModuleUrl" jdbcType="VARCHAR" />
+    <result column="MM_MODULE_DESCRIPTION" property="mmModuleDescription" jdbcType="VARCHAR" />
+    <result column="MM_MODULE_BACKUPS" property="mmModuleBackups" jdbcType="VARCHAR" />
+    <result column="MM_MODULE_ORDERS" property="mmModuleOrders" jdbcType="VARCHAR" />
+    <result column="MM_MODULE_PROPERTY" property="mmModuleProperty" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, MM_MODULE_NAME, MM_MODULE_CODE, PARENT_MM_ID, MM_MODULE_PIC, MM_MODULE_URL, MM_MODULE_DESCRIPTION, 
+    MM_MODULE_BACKUPS, MM_MODULE_ORDERS, MM_MODULE_PROPERTY
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_modules_management 
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByRoleAction" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_modules_management m
+    
+    <if test="userId!='1'.toString()">
+    inner join poms_role_module_action rm on rm.MM_ID = m.ID
+    inner join poms_role_authorization r on r.ID = rm.RA_ID 
+    inner join poms_roles_users_rela ru on ru.ROLE_ID = r.ID 
+    inner join poms_users_management u on u.ID = ru.USER_ID 	
+    </if>
+    where m.MM_MODULE_PROPERTY =#{property}
+    and m.PARENT_MM_ID=#{parentCode}
+     <if test="userId!='1'.toString()">
+     and u.ID =#{userId} 
+     </if>
+     order by MM_MODULE_ORDERS
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from poms_modules_management
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gs.domain.PomsModulesManagement" >
+    insert into poms_modules_management (ID, MM_MODULE_NAME, MM_MODULE_CODE, 
+      PARENT_MM_ID, MM_MODULE_PIC, MM_MODULE_URL, 
+      MM_MODULE_DESCRIPTION, MM_MODULE_BACKUPS, MM_MODULE_ORDERS, 
+      MM_MODULE_PROPERTY)
+    values (#{id,jdbcType=VARCHAR}, #{mmModuleName,jdbcType=VARCHAR}, #{mmModuleCode,jdbcType=VARCHAR}, 
+      #{parentMmId,jdbcType=VARCHAR}, #{mmModulePic,jdbcType=VARCHAR}, #{mmModuleUrl,jdbcType=VARCHAR}, 
+      #{mmModuleDescription,jdbcType=VARCHAR}, #{mmModuleBackups,jdbcType=VARCHAR}, #{mmModuleOrders,jdbcType=VARCHAR}, 
+      #{mmModuleProperty,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gs.domain.PomsModulesManagement" >
+    insert into poms_modules_management
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="mmModuleName != null" >
+        MM_MODULE_NAME,
+      </if>
+      <if test="mmModuleCode != null" >
+        MM_MODULE_CODE,
+      </if>
+      <if test="parentMmId != null" >
+        PARENT_MM_ID,
+      </if>
+      <if test="mmModulePic != null" >
+        MM_MODULE_PIC,
+      </if>
+      <if test="mmModuleUrl != null" >
+        MM_MODULE_URL,
+      </if>
+      <if test="mmModuleDescription != null" >
+        MM_MODULE_DESCRIPTION,
+      </if>
+      <if test="mmModuleBackups != null" >
+        MM_MODULE_BACKUPS,
+      </if>
+      <if test="mmModuleOrders != null" >
+        MM_MODULE_ORDERS,
+      </if>
+      <if test="mmModuleProperty != null" >
+        MM_MODULE_PROPERTY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="mmModuleName != null" >
+        #{mmModuleName,jdbcType=VARCHAR},
+      </if>
+      <if test="mmModuleCode != null" >
+        #{mmModuleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="parentMmId != null" >
+        #{parentMmId,jdbcType=VARCHAR},
+      </if>
+      <if test="mmModulePic != null" >
+        #{mmModulePic,jdbcType=VARCHAR},
+      </if>
+      <if test="mmModuleUrl != null" >
+        #{mmModuleUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="mmModuleDescription != null" >
+        #{mmModuleDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="mmModuleBackups != null" >
+        #{mmModuleBackups,jdbcType=VARCHAR},
+      </if>
+      <if test="mmModuleOrders != null" >
+        #{mmModuleOrders,jdbcType=VARCHAR},
+      </if>
+      <if test="mmModuleProperty != null" >
+        #{mmModuleProperty,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gs.domain.PomsModulesManagement" >
+    update poms_modules_management
+    <set >
+      <if test="mmModuleName != null" >
+        MM_MODULE_NAME = #{mmModuleName,jdbcType=VARCHAR},
+      </if>
+      <if test="mmModuleCode != null" >
+        MM_MODULE_CODE = #{mmModuleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="parentMmId != null" >
+        PARENT_MM_ID = #{parentMmId,jdbcType=VARCHAR},
+      </if>
+      <if test="mmModulePic != null" >
+        MM_MODULE_PIC = #{mmModulePic,jdbcType=VARCHAR},
+      </if>
+      <if test="mmModuleUrl != null" >
+        MM_MODULE_URL = #{mmModuleUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="mmModuleDescription != null" >
+        MM_MODULE_DESCRIPTION = #{mmModuleDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="mmModuleBackups != null" >
+        MM_MODULE_BACKUPS = #{mmModuleBackups,jdbcType=VARCHAR},
+      </if>
+      <if test="mmModuleOrders != null" >
+        MM_MODULE_ORDERS = #{mmModuleOrders,jdbcType=VARCHAR},
+      </if>
+      <if test="mmModuleProperty != null" >
+        MM_MODULE_PROPERTY = #{mmModuleProperty,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gs.domain.PomsModulesManagement" >
+    update poms_modules_management
+    set MM_MODULE_NAME = #{mmModuleName,jdbcType=VARCHAR},
+      MM_MODULE_CODE = #{mmModuleCode,jdbcType=VARCHAR},
+      PARENT_MM_ID = #{parentMmId,jdbcType=VARCHAR},
+      MM_MODULE_PIC = #{mmModulePic,jdbcType=VARCHAR},
+      MM_MODULE_URL = #{mmModuleUrl,jdbcType=VARCHAR},
+      MM_MODULE_DESCRIPTION = #{mmModuleDescription,jdbcType=VARCHAR},
+      MM_MODULE_BACKUPS = #{mmModuleBackups,jdbcType=VARCHAR},
+      MM_MODULE_ORDERS = #{mmModuleOrders,jdbcType=VARCHAR},
+      MM_MODULE_PROPERTY = #{mmModuleProperty,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

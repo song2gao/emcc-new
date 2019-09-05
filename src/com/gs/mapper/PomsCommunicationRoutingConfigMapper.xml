@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gs.mapper.PomsCommunicationRoutingConfigMapper" >
+  <resultMap id="BaseResultMap" type="com.gs.domain.PomsCommunicationRoutingConfig" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="FRO_id" property="froId" jdbcType="VARCHAR" />
+    <result column="CRC_ENTERPRISE_ID" property="crcEnterpriseId" jdbcType="VARCHAR" />
+    <result column="CRC_ASSEMBLE_ID" property="crcAssembleId" jdbcType="VARCHAR" />
+    <result column="CRC_ASSEMBLE_IP" property="crcAssembleIp" jdbcType="VARCHAR" />
+    <result column="CRC_COMMUNICATE_TYPE" property="crcCommunicateType" jdbcType="VARCHAR" />
+    <result column="CRC_COMMUNICATE_SERIAL" property="crcCommunicateSerial" jdbcType="VARCHAR" />
+    <result column="CRC_BACKUPS" property="crcBackups" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, FRO_id, CRC_ENTERPRISE_ID, CRC_ASSEMBLE_ID, CRC_ASSEMBLE_IP, CRC_COMMUNICATE_TYPE, 
+    CRC_COMMUNICATE_SERIAL, CRC_BACKUPS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_communication_routing_config
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from poms_communication_routing_config
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gs.domain.PomsCommunicationRoutingConfig" >
+    insert into poms_communication_routing_config (ID, FRO_id, CRC_ENTERPRISE_ID, 
+      CRC_ASSEMBLE_ID, CRC_ASSEMBLE_IP, CRC_COMMUNICATE_TYPE, 
+      CRC_COMMUNICATE_SERIAL, CRC_BACKUPS)
+    values (#{id,jdbcType=VARCHAR}, #{froId,jdbcType=VARCHAR}, #{crcEnterpriseId,jdbcType=VARCHAR}, 
+      #{crcAssembleId,jdbcType=VARCHAR}, #{crcAssembleIp,jdbcType=VARCHAR}, #{crcCommunicateType,jdbcType=VARCHAR}, 
+      #{crcCommunicateSerial,jdbcType=VARCHAR}, #{crcBackups,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gs.domain.PomsCommunicationRoutingConfig" >
+    insert into poms_communication_routing_config
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="froId != null" >
+        FRO_id,
+      </if>
+      <if test="crcEnterpriseId != null" >
+        CRC_ENTERPRISE_ID,
+      </if>
+      <if test="crcAssembleId != null" >
+        CRC_ASSEMBLE_ID,
+      </if>
+      <if test="crcAssembleIp != null" >
+        CRC_ASSEMBLE_IP,
+      </if>
+      <if test="crcCommunicateType != null" >
+        CRC_COMMUNICATE_TYPE,
+      </if>
+      <if test="crcCommunicateSerial != null" >
+        CRC_COMMUNICATE_SERIAL,
+      </if>
+      <if test="crcBackups != null" >
+        CRC_BACKUPS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="froId != null" >
+        #{froId,jdbcType=VARCHAR},
+      </if>
+      <if test="crcEnterpriseId != null" >
+        #{crcEnterpriseId,jdbcType=VARCHAR},
+      </if>
+      <if test="crcAssembleId != null" >
+        #{crcAssembleId,jdbcType=VARCHAR},
+      </if>
+      <if test="crcAssembleIp != null" >
+        #{crcAssembleIp,jdbcType=VARCHAR},
+      </if>
+      <if test="crcCommunicateType != null" >
+        #{crcCommunicateType,jdbcType=VARCHAR},
+      </if>
+      <if test="crcCommunicateSerial != null" >
+        #{crcCommunicateSerial,jdbcType=VARCHAR},
+      </if>
+      <if test="crcBackups != null" >
+        #{crcBackups,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gs.domain.PomsCommunicationRoutingConfig" >
+    update poms_communication_routing_config
+    <set >
+      <if test="froId != null" >
+        FRO_id = #{froId,jdbcType=VARCHAR},
+      </if>
+      <if test="crcEnterpriseId != null" >
+        CRC_ENTERPRISE_ID = #{crcEnterpriseId,jdbcType=VARCHAR},
+      </if>
+      <if test="crcAssembleId != null" >
+        CRC_ASSEMBLE_ID = #{crcAssembleId,jdbcType=VARCHAR},
+      </if>
+      <if test="crcAssembleIp != null" >
+        CRC_ASSEMBLE_IP = #{crcAssembleIp,jdbcType=VARCHAR},
+      </if>
+      <if test="crcCommunicateType != null" >
+        CRC_COMMUNICATE_TYPE = #{crcCommunicateType,jdbcType=VARCHAR},
+      </if>
+      <if test="crcCommunicateSerial != null" >
+        CRC_COMMUNICATE_SERIAL = #{crcCommunicateSerial,jdbcType=VARCHAR},
+      </if>
+      <if test="crcBackups != null" >
+        CRC_BACKUPS = #{crcBackups,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gs.domain.PomsCommunicationRoutingConfig" >
+    update poms_communication_routing_config
+    set FRO_id = #{froId,jdbcType=VARCHAR},
+      CRC_ENTERPRISE_ID = #{crcEnterpriseId,jdbcType=VARCHAR},
+      CRC_ASSEMBLE_ID = #{crcAssembleId,jdbcType=VARCHAR},
+      CRC_ASSEMBLE_IP = #{crcAssembleIp,jdbcType=VARCHAR},
+      CRC_COMMUNICATE_TYPE = #{crcCommunicateType,jdbcType=VARCHAR},
+      CRC_COMMUNICATE_SERIAL = #{crcCommunicateSerial,jdbcType=VARCHAR},
+      CRC_BACKUPS = #{crcBackups,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

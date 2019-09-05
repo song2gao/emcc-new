@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gs.mapper.EsmspIndexDataMapper" >
+  <resultMap id="BaseResultMap" type="com.gs.domain.EsmspIndexData" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="INDEX_CODE" property="indexCode" jdbcType="INTEGER" />
+    <result column="INDEX_NAME" property="indexName" jdbcType="VARCHAR" />
+    <result column="INDEX_UNIT_CODE" property="indexUnitCode" jdbcType="VARCHAR" />
+    <result column="APPLICATION_TYPE" property="applicationType" jdbcType="INTEGER" />
+    <result column="APPLICATION_CODE" property="applicationCode" jdbcType="VARCHAR" />
+    <result column="INDEX_DATE" property="indexDate" jdbcType="VARCHAR" />
+    <result column="TARGET_VALUE2" property="targetValue2" jdbcType="DECIMAL" />
+    <result column="TARGET_VALUE" property="targetValue" jdbcType="DECIMAL" />
+    <result column="SUM_VALUE2" property="sumValue2" jdbcType="DECIMAL" />
+    <result column="SUM_VALUE" property="sumValue" jdbcType="DECIMAL" />
+    <result column="FORECAST_VALUE" property="forecastValue" jdbcType="DECIMAL" />
+    <result column="HIGH_VALUE" property="highValue" jdbcType="DECIMAL" />
+    <result column="LOWER_VALUE" property="lowerValue" jdbcType="DECIMAL" />
+    <result column="WARNING_VALUE" property="warningValue" jdbcType="DECIMAL" />
+    <result column="UP_HIGH_VALUE" property="upHighValue" jdbcType="DECIMAL" />
+    <result column="DOWN_LOWER_VALUE" property="downLowerValue" jdbcType="DECIMAL" />
+    <result column="STANDARD_VALUE" property="standardValue" jdbcType="DECIMAL" />
+    <result column="EVG_VALUE" property="evgValue" jdbcType="DECIMAL" />
+    <result column="CAL_METHOD" property="calMethod" jdbcType="VARCHAR" />
+    <result column="INDEX_PUBLISHTIME" property="indexPublishtime" jdbcType="TIMESTAMP" />
+    <result column="INDEX_PUBLISHPERSON" property="indexPublishperson" jdbcType="VARCHAR" />
+    <result column="INDEX_PUBLISHTAG" property="indexPublishtag" jdbcType="INTEGER" />
+    <result column="Key_BACKUPS" property="keyBackups" jdbcType="VARCHAR" />
+    <result column="INDEX_CATION" property="indexCation" jdbcType="INTEGER" />
+    <result column="INDEX_CREATIME" property="indexCreatime" jdbcType="TIMESTAMP" />
+    <result column="INDEX_CREATPERSON" property="indexCreatperson" jdbcType="VARCHAR" />
+    <result column="GETVALUE_SQL" property="getvalueSql" jdbcType="VARCHAR" />
+    <result column="ASSESS_ID" property="assessId" jdbcType="VARCHAR" />
+    <result column="DATE_FLAG" property="dateFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, INDEX_CODE, INDEX_NAME, INDEX_UNIT_CODE, APPLICATION_TYPE, APPLICATION_CODE, 
+    INDEX_DATE, TARGET_VALUE2, TARGET_VALUE, SUM_VALUE2, SUM_VALUE, FORECAST_VALUE, HIGH_VALUE, 
+    LOWER_VALUE, WARNING_VALUE, UP_HIGH_VALUE, DOWN_LOWER_VALUE, STANDARD_VALUE, EVG_VALUE, 
+    CAL_METHOD, INDEX_PUBLISHTIME, INDEX_PUBLISHPERSON, INDEX_PUBLISHTAG, Key_BACKUPS, 
+    INDEX_CATION, INDEX_CREATIME, INDEX_CREATPERSON, GETVALUE_SQL, ASSESS_ID, DATE_FLAG
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from esmsp_index_data
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+    <select id="selectByParam" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from esmsp_index_data
+    where APPLICATION_TYPE=#{type} and APPLICATION_CODE=#{code} 
+    and DATE_FLAG=#{flag} and POSITION(#{date} IN INDEX_DATE)>0
+     order by INDEX_DATE
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from esmsp_index_data
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gs.domain.EsmspIndexData" >
+    insert into esmsp_index_data (ID, INDEX_CODE, INDEX_NAME, 
+      INDEX_UNIT_CODE, APPLICATION_TYPE, APPLICATION_CODE, 
+      INDEX_DATE, TARGET_VALUE2, TARGET_VALUE, 
+      SUM_VALUE2, SUM_VALUE, FORECAST_VALUE, 
+      HIGH_VALUE, LOWER_VALUE, WARNING_VALUE, 
+      UP_HIGH_VALUE, DOWN_LOWER_VALUE, STANDARD_VALUE, 
+      EVG_VALUE, CAL_METHOD, INDEX_PUBLISHTIME, 
+      INDEX_PUBLISHPERSON, INDEX_PUBLISHTAG, Key_BACKUPS, 
+      INDEX_CATION, INDEX_CREATIME, INDEX_CREATPERSON, 
+      GETVALUE_SQL, ASSESS_ID, DATE_FLAG
+      )
+    values (#{id,jdbcType=VARCHAR}, #{indexCode,jdbcType=INTEGER}, #{indexName,jdbcType=VARCHAR}, 
+      #{indexUnitCode,jdbcType=VARCHAR}, #{applicationType,jdbcType=INTEGER}, #{applicationCode,jdbcType=VARCHAR}, 
+      #{indexDate,jdbcType=VARCHAR}, #{targetValue2,jdbcType=DECIMAL}, #{targetValue,jdbcType=DECIMAL}, 
+      #{sumValue2,jdbcType=DECIMAL}, #{sumValue,jdbcType=DECIMAL}, #{forecastValue,jdbcType=DECIMAL}, 
+      #{highValue,jdbcType=DECIMAL}, #{lowerValue,jdbcType=DECIMAL}, #{warningValue,jdbcType=DECIMAL}, 
+      #{upHighValue,jdbcType=DECIMAL}, #{downLowerValue,jdbcType=DECIMAL}, #{standardValue,jdbcType=DECIMAL}, 
+      #{evgValue,jdbcType=DECIMAL}, #{calMethod,jdbcType=VARCHAR}, #{indexPublishtime,jdbcType=TIMESTAMP}, 
+      #{indexPublishperson,jdbcType=VARCHAR}, #{indexPublishtag,jdbcType=INTEGER}, #{keyBackups,jdbcType=VARCHAR}, 
+      #{indexCation,jdbcType=INTEGER}, #{indexCreatime,jdbcType=TIMESTAMP}, #{indexCreatperson,jdbcType=VARCHAR}, 
+      #{getvalueSql,jdbcType=VARCHAR}, #{assessId,jdbcType=VARCHAR}, #{dateFlag,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gs.domain.EsmspIndexData" >
+    insert into esmsp_index_data
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="indexCode != null" >
+        INDEX_CODE,
+      </if>
+      <if test="indexName != null" >
+        INDEX_NAME,
+      </if>
+      <if test="indexUnitCode != null" >
+        INDEX_UNIT_CODE,
+      </if>
+      <if test="applicationType != null" >
+        APPLICATION_TYPE,
+      </if>
+      <if test="applicationCode != null" >
+        APPLICATION_CODE,
+      </if>
+      <if test="indexDate != null" >
+        INDEX_DATE,
+      </if>
+      <if test="targetValue2 != null" >
+        TARGET_VALUE2,
+      </if>
+      <if test="targetValue != null" >
+        TARGET_VALUE,
+      </if>
+      <if test="sumValue2 != null" >
+        SUM_VALUE2,
+      </if>
+      <if test="sumValue != null" >
+        SUM_VALUE,
+      </if>
+      <if test="forecastValue != null" >
+        FORECAST_VALUE,
+      </if>
+      <if test="highValue != null" >
+        HIGH_VALUE,
+      </if>
+      <if test="lowerValue != null" >
+        LOWER_VALUE,
+      </if>
+      <if test="warningValue != null" >
+        WARNING_VALUE,
+      </if>
+      <if test="upHighValue != null" >
+        UP_HIGH_VALUE,
+      </if>
+      <if test="downLowerValue != null" >
+        DOWN_LOWER_VALUE,
+      </if>
+      <if test="standardValue != null" >
+        STANDARD_VALUE,
+      </if>
+      <if test="evgValue != null" >
+        EVG_VALUE,
+      </if>
+      <if test="calMethod != null" >
+        CAL_METHOD,
+      </if>
+      <if test="indexPublishtime != null" >
+        INDEX_PUBLISHTIME,
+      </if>
+      <if test="indexPublishperson != null" >
+        INDEX_PUBLISHPERSON,
+      </if>
+      <if test="indexPublishtag != null" >
+        INDEX_PUBLISHTAG,
+      </if>
+      <if test="keyBackups != null" >
+        Key_BACKUPS,
+      </if>
+      <if test="indexCation != null" >
+        INDEX_CATION,
+      </if>
+      <if test="indexCreatime != null" >
+        INDEX_CREATIME,
+      </if>
+      <if test="indexCreatperson != null" >
+        INDEX_CREATPERSON,
+      </if>
+      <if test="getvalueSql != null" >
+        GETVALUE_SQL,
+      </if>
+      <if test="assessId != null" >
+        ASSESS_ID,
+      </if>
+      <if test="dateFlag != null" >
+        DATE_FLAG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="indexCode != null" >
+        #{indexCode,jdbcType=INTEGER},
+      </if>
+      <if test="indexName != null" >
+        #{indexName,jdbcType=VARCHAR},
+      </if>
+      <if test="indexUnitCode != null" >
+        #{indexUnitCode,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationType != null" >
+        #{applicationType,jdbcType=INTEGER},
+      </if>
+      <if test="applicationCode != null" >
+        #{applicationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="indexDate != null" >
+        #{indexDate,jdbcType=VARCHAR},
+      </if>
+      <if test="targetValue2 != null" >
+        #{targetValue2,jdbcType=DECIMAL},
+      </if>
+      <if test="targetValue != null" >
+        #{targetValue,jdbcType=DECIMAL},
+      </if>
+      <if test="sumValue2 != null" >
+        #{sumValue2,jdbcType=DECIMAL},
+      </if>
+      <if test="sumValue != null" >
+        #{sumValue,jdbcType=DECIMAL},
+      </if>
+      <if test="forecastValue != null" >
+        #{forecastValue,jdbcType=DECIMAL},
+      </if>
+      <if test="highValue != null" >
+        #{highValue,jdbcType=DECIMAL},
+      </if>
+      <if test="lowerValue != null" >
+        #{lowerValue,jdbcType=DECIMAL},
+      </if>
+      <if test="warningValue != null" >
+        #{warningValue,jdbcType=DECIMAL},
+      </if>
+      <if test="upHighValue != null" >
+        #{upHighValue,jdbcType=DECIMAL},
+      </if>
+      <if test="downLowerValue != null" >
+        #{downLowerValue,jdbcType=DECIMAL},
+      </if>
+      <if test="standardValue != null" >
+        #{standardValue,jdbcType=DECIMAL},
+      </if>
+      <if test="evgValue != null" >
+        #{evgValue,jdbcType=DECIMAL},
+      </if>
+      <if test="calMethod != null" >
+        #{calMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="indexPublishtime != null" >
+        #{indexPublishtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="indexPublishperson != null" >
+        #{indexPublishperson,jdbcType=VARCHAR},
+      </if>
+      <if test="indexPublishtag != null" >
+        #{indexPublishtag,jdbcType=INTEGER},
+      </if>
+      <if test="keyBackups != null" >
+        #{keyBackups,jdbcType=VARCHAR},
+      </if>
+      <if test="indexCation != null" >
+        #{indexCation,jdbcType=INTEGER},
+      </if>
+      <if test="indexCreatime != null" >
+        #{indexCreatime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="indexCreatperson != null" >
+        #{indexCreatperson,jdbcType=VARCHAR},
+      </if>
+      <if test="getvalueSql != null" >
+        #{getvalueSql,jdbcType=VARCHAR},
+      </if>
+      <if test="assessId != null" >
+        #{assessId,jdbcType=VARCHAR},
+      </if>
+      <if test="dateFlag != null" >
+        #{dateFlag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gs.domain.EsmspIndexData" >
+    update esmsp_index_data
+    <set >
+      <if test="indexCode != null" >
+        INDEX_CODE = #{indexCode,jdbcType=INTEGER},
+      </if>
+      <if test="indexName != null" >
+        INDEX_NAME = #{indexName,jdbcType=VARCHAR},
+      </if>
+      <if test="indexUnitCode != null" >
+        INDEX_UNIT_CODE = #{indexUnitCode,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationType != null" >
+        APPLICATION_TYPE = #{applicationType,jdbcType=INTEGER},
+      </if>
+      <if test="applicationCode != null" >
+        APPLICATION_CODE = #{applicationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="indexDate != null" >
+        INDEX_DATE = #{indexDate,jdbcType=VARCHAR},
+      </if>
+      <if test="targetValue2 != null" >
+        TARGET_VALUE2 = #{targetValue2,jdbcType=DECIMAL},
+      </if>
+      <if test="targetValue != null" >
+        TARGET_VALUE = #{targetValue,jdbcType=DECIMAL},
+      </if>
+      <if test="sumValue2 != null" >
+        SUM_VALUE2 = #{sumValue2,jdbcType=DECIMAL},
+      </if>
+      <if test="sumValue != null" >
+        SUM_VALUE = #{sumValue,jdbcType=DECIMAL},
+      </if>
+      <if test="forecastValue != null" >
+        FORECAST_VALUE = #{forecastValue,jdbcType=DECIMAL},
+      </if>
+      <if test="highValue != null" >
+        HIGH_VALUE = #{highValue,jdbcType=DECIMAL},
+      </if>
+      <if test="lowerValue != null" >
+        LOWER_VALUE = #{lowerValue,jdbcType=DECIMAL},
+      </if>
+      <if test="warningValue != null" >
+        WARNING_VALUE = #{warningValue,jdbcType=DECIMAL},
+      </if>
+      <if test="upHighValue != null" >
+        UP_HIGH_VALUE = #{upHighValue,jdbcType=DECIMAL},
+      </if>
+      <if test="downLowerValue != null" >
+        DOWN_LOWER_VALUE = #{downLowerValue,jdbcType=DECIMAL},
+      </if>
+      <if test="standardValue != null" >
+        STANDARD_VALUE = #{standardValue,jdbcType=DECIMAL},
+      </if>
+      <if test="evgValue != null" >
+        EVG_VALUE = #{evgValue,jdbcType=DECIMAL},
+      </if>
+      <if test="calMethod != null" >
+        CAL_METHOD = #{calMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="indexPublishtime != null" >
+        INDEX_PUBLISHTIME = #{indexPublishtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="indexPublishperson != null" >
+        INDEX_PUBLISHPERSON = #{indexPublishperson,jdbcType=VARCHAR},
+      </if>
+      <if test="indexPublishtag != null" >
+        INDEX_PUBLISHTAG = #{indexPublishtag,jdbcType=INTEGER},
+      </if>
+      <if test="keyBackups != null" >
+        Key_BACKUPS = #{keyBackups,jdbcType=VARCHAR},
+      </if>
+      <if test="indexCation != null" >
+        INDEX_CATION = #{indexCation,jdbcType=INTEGER},
+      </if>
+      <if test="indexCreatime != null" >
+        INDEX_CREATIME = #{indexCreatime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="indexCreatperson != null" >
+        INDEX_CREATPERSON = #{indexCreatperson,jdbcType=VARCHAR},
+      </if>
+      <if test="getvalueSql != null" >
+        GETVALUE_SQL = #{getvalueSql,jdbcType=VARCHAR},
+      </if>
+      <if test="assessId != null" >
+        ASSESS_ID = #{assessId,jdbcType=VARCHAR},
+      </if>
+      <if test="dateFlag != null" >
+        DATE_FLAG = #{dateFlag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gs.domain.EsmspIndexData" >
+    update esmsp_index_data
+    set INDEX_CODE = #{indexCode,jdbcType=INTEGER},
+      INDEX_NAME = #{indexName,jdbcType=VARCHAR},
+      INDEX_UNIT_CODE = #{indexUnitCode,jdbcType=VARCHAR},
+      APPLICATION_TYPE = #{applicationType,jdbcType=INTEGER},
+      APPLICATION_CODE = #{applicationCode,jdbcType=VARCHAR},
+      INDEX_DATE = #{indexDate,jdbcType=VARCHAR},
+      TARGET_VALUE2 = #{targetValue2,jdbcType=DECIMAL},
+      TARGET_VALUE = #{targetValue,jdbcType=DECIMAL},
+      SUM_VALUE2 = #{sumValue2,jdbcType=DECIMAL},
+      SUM_VALUE = #{sumValue,jdbcType=DECIMAL},
+      FORECAST_VALUE = #{forecastValue,jdbcType=DECIMAL},
+      HIGH_VALUE = #{highValue,jdbcType=DECIMAL},
+      LOWER_VALUE = #{lowerValue,jdbcType=DECIMAL},
+      WARNING_VALUE = #{warningValue,jdbcType=DECIMAL},
+      UP_HIGH_VALUE = #{upHighValue,jdbcType=DECIMAL},
+      DOWN_LOWER_VALUE = #{downLowerValue,jdbcType=DECIMAL},
+      STANDARD_VALUE = #{standardValue,jdbcType=DECIMAL},
+      EVG_VALUE = #{evgValue,jdbcType=DECIMAL},
+      CAL_METHOD = #{calMethod,jdbcType=VARCHAR},
+      INDEX_PUBLISHTIME = #{indexPublishtime,jdbcType=TIMESTAMP},
+      INDEX_PUBLISHPERSON = #{indexPublishperson,jdbcType=VARCHAR},
+      INDEX_PUBLISHTAG = #{indexPublishtag,jdbcType=INTEGER},
+      Key_BACKUPS = #{keyBackups,jdbcType=VARCHAR},
+      INDEX_CATION = #{indexCation,jdbcType=INTEGER},
+      INDEX_CREATIME = #{indexCreatime,jdbcType=TIMESTAMP},
+      INDEX_CREATPERSON = #{indexCreatperson,jdbcType=VARCHAR},
+      GETVALUE_SQL = #{getvalueSql,jdbcType=VARCHAR},
+      ASSESS_ID = #{assessId,jdbcType=VARCHAR},
+      DATE_FLAG = #{dateFlag,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

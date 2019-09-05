@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gs.mapper.EsmspIndexPublishMapper" >
+  <resultMap id="BaseResultMap" type="com.gs.domain.EsmspIndexPublish" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="GOVERNMENT_DISTRICT_CODE" property="governmentDistrictCode" jdbcType="VARCHAR" />
+    <result column="EUI_BELONG_INDUSTRY" property="euiBelongIndustry" jdbcType="VARCHAR" />
+    <result column="EUI_CODE" property="euiCode" jdbcType="VARCHAR" />
+    <result column="INDEX_DATE" property="indexDate" jdbcType="VARCHAR" />
+    <result column="INDEX_CODE" property="indexCode" jdbcType="INTEGER" />
+    <result column="INDEX_NAME" property="indexName" jdbcType="VARCHAR" />
+    <result column="INDEX_UNIT_CODE" property="indexUnitCode" jdbcType="VARCHAR" />
+    <result column="PUBLISH_VALUE" property="publishValue" jdbcType="DECIMAL" />
+    <result column="INDEX_SORT" property="indexSort" jdbcType="INTEGER" />
+    <result column="STANDARD_VALUE1" property="standardValue1" jdbcType="DECIMAL" />
+    <result column="STANDARD_VALUE2" property="standardValue2" jdbcType="DECIMAL" />
+    <result column="STANDARD_VALUE3" property="standardValue3" jdbcType="DECIMAL" />
+    <result column="STANDARD_VALUE4" property="standardValue4" jdbcType="DECIMAL" />
+    <result column="STANDARD_VALUE5" property="standardValue5" jdbcType="DECIMAL" />
+    <result column="INDEX_PUBLISHTIME" property="indexPublishtime" jdbcType="TIMESTAMP" />
+    <result column="INDEX_PUBLISHPERSON" property="indexPublishperson" jdbcType="VARCHAR" />
+    <result column="INDEX_PUBLISHTAG" property="indexPublishtag" jdbcType="INTEGER" />
+    <result column="Key_BACKUPS" property="keyBackups" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, GOVERNMENT_DISTRICT_CODE, EUI_BELONG_INDUSTRY, EUI_CODE, INDEX_DATE, INDEX_CODE, 
+    INDEX_NAME, INDEX_UNIT_CODE, PUBLISH_VALUE, INDEX_SORT, STANDARD_VALUE1, STANDARD_VALUE2, 
+    STANDARD_VALUE3, STANDARD_VALUE4, STANDARD_VALUE5, INDEX_PUBLISHTIME, INDEX_PUBLISHPERSON, 
+    INDEX_PUBLISHTAG, Key_BACKUPS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from esmsp_index_publish
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from esmsp_index_publish
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gs.domain.EsmspIndexPublish" >
+    insert into esmsp_index_publish (ID, GOVERNMENT_DISTRICT_CODE, EUI_BELONG_INDUSTRY, 
+      EUI_CODE, INDEX_DATE, INDEX_CODE, 
+      INDEX_NAME, INDEX_UNIT_CODE, PUBLISH_VALUE, 
+      INDEX_SORT, STANDARD_VALUE1, STANDARD_VALUE2, 
+      STANDARD_VALUE3, STANDARD_VALUE4, STANDARD_VALUE5, 
+      INDEX_PUBLISHTIME, INDEX_PUBLISHPERSON, 
+      INDEX_PUBLISHTAG, Key_BACKUPS)
+    values (#{id,jdbcType=VARCHAR}, #{governmentDistrictCode,jdbcType=VARCHAR}, #{euiBelongIndustry,jdbcType=VARCHAR}, 
+      #{euiCode,jdbcType=VARCHAR}, #{indexDate,jdbcType=VARCHAR}, #{indexCode,jdbcType=INTEGER}, 
+      #{indexName,jdbcType=VARCHAR}, #{indexUnitCode,jdbcType=VARCHAR}, #{publishValue,jdbcType=DECIMAL}, 
+      #{indexSort,jdbcType=INTEGER}, #{standardValue1,jdbcType=DECIMAL}, #{standardValue2,jdbcType=DECIMAL}, 
+      #{standardValue3,jdbcType=DECIMAL}, #{standardValue4,jdbcType=DECIMAL}, #{standardValue5,jdbcType=DECIMAL}, 
+      #{indexPublishtime,jdbcType=TIMESTAMP}, #{indexPublishperson,jdbcType=VARCHAR}, 
+      #{indexPublishtag,jdbcType=INTEGER}, #{keyBackups,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gs.domain.EsmspIndexPublish" >
+    insert into esmsp_index_publish
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="governmentDistrictCode != null" >
+        GOVERNMENT_DISTRICT_CODE,
+      </if>
+      <if test="euiBelongIndustry != null" >
+        EUI_BELONG_INDUSTRY,
+      </if>
+      <if test="euiCode != null" >
+        EUI_CODE,
+      </if>
+      <if test="indexDate != null" >
+        INDEX_DATE,
+      </if>
+      <if test="indexCode != null" >
+        INDEX_CODE,
+      </if>
+      <if test="indexName != null" >
+        INDEX_NAME,
+      </if>
+      <if test="indexUnitCode != null" >
+        INDEX_UNIT_CODE,
+      </if>
+      <if test="publishValue != null" >
+        PUBLISH_VALUE,
+      </if>
+      <if test="indexSort != null" >
+        INDEX_SORT,
+      </if>
+      <if test="standardValue1 != null" >
+        STANDARD_VALUE1,
+      </if>
+      <if test="standardValue2 != null" >
+        STANDARD_VALUE2,
+      </if>
+      <if test="standardValue3 != null" >
+        STANDARD_VALUE3,
+      </if>
+      <if test="standardValue4 != null" >
+        STANDARD_VALUE4,
+      </if>
+      <if test="standardValue5 != null" >
+        STANDARD_VALUE5,
+      </if>
+      <if test="indexPublishtime != null" >
+        INDEX_PUBLISHTIME,
+      </if>
+      <if test="indexPublishperson != null" >
+        INDEX_PUBLISHPERSON,
+      </if>
+      <if test="indexPublishtag != null" >
+        INDEX_PUBLISHTAG,
+      </if>
+      <if test="keyBackups != null" >
+        Key_BACKUPS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="governmentDistrictCode != null" >
+        #{governmentDistrictCode,jdbcType=VARCHAR},
+      </if>
+      <if test="euiBelongIndustry != null" >
+        #{euiBelongIndustry,jdbcType=VARCHAR},
+      </if>
+      <if test="euiCode != null" >
+        #{euiCode,jdbcType=VARCHAR},
+      </if>
+      <if test="indexDate != null" >
+        #{indexDate,jdbcType=VARCHAR},
+      </if>
+      <if test="indexCode != null" >
+        #{indexCode,jdbcType=INTEGER},
+      </if>
+      <if test="indexName != null" >
+        #{indexName,jdbcType=VARCHAR},
+      </if>
+      <if test="indexUnitCode != null" >
+        #{indexUnitCode,jdbcType=VARCHAR},
+      </if>
+      <if test="publishValue != null" >
+        #{publishValue,jdbcType=DECIMAL},
+      </if>
+      <if test="indexSort != null" >
+        #{indexSort,jdbcType=INTEGER},
+      </if>
+      <if test="standardValue1 != null" >
+        #{standardValue1,jdbcType=DECIMAL},
+      </if>
+      <if test="standardValue2 != null" >
+        #{standardValue2,jdbcType=DECIMAL},
+      </if>
+      <if test="standardValue3 != null" >
+        #{standardValue3,jdbcType=DECIMAL},
+      </if>
+      <if test="standardValue4 != null" >
+        #{standardValue4,jdbcType=DECIMAL},
+      </if>
+      <if test="standardValue5 != null" >
+        #{standardValue5,jdbcType=DECIMAL},
+      </if>
+      <if test="indexPublishtime != null" >
+        #{indexPublishtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="indexPublishperson != null" >
+        #{indexPublishperson,jdbcType=VARCHAR},
+      </if>
+      <if test="indexPublishtag != null" >
+        #{indexPublishtag,jdbcType=INTEGER},
+      </if>
+      <if test="keyBackups != null" >
+        #{keyBackups,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gs.domain.EsmspIndexPublish" >
+    update esmsp_index_publish
+    <set >
+      <if test="governmentDistrictCode != null" >
+        GOVERNMENT_DISTRICT_CODE = #{governmentDistrictCode,jdbcType=VARCHAR},
+      </if>
+      <if test="euiBelongIndustry != null" >
+        EUI_BELONG_INDUSTRY = #{euiBelongIndustry,jdbcType=VARCHAR},
+      </if>
+      <if test="euiCode != null" >
+        EUI_CODE = #{euiCode,jdbcType=VARCHAR},
+      </if>
+      <if test="indexDate != null" >
+        INDEX_DATE = #{indexDate,jdbcType=VARCHAR},
+      </if>
+      <if test="indexCode != null" >
+        INDEX_CODE = #{indexCode,jdbcType=INTEGER},
+      </if>
+      <if test="indexName != null" >
+        INDEX_NAME = #{indexName,jdbcType=VARCHAR},
+      </if>
+      <if test="indexUnitCode != null" >
+        INDEX_UNIT_CODE = #{indexUnitCode,jdbcType=VARCHAR},
+      </if>
+      <if test="publishValue != null" >
+        PUBLISH_VALUE = #{publishValue,jdbcType=DECIMAL},
+      </if>
+      <if test="indexSort != null" >
+        INDEX_SORT = #{indexSort,jdbcType=INTEGER},
+      </if>
+      <if test="standardValue1 != null" >
+        STANDARD_VALUE1 = #{standardValue1,jdbcType=DECIMAL},
+      </if>
+      <if test="standardValue2 != null" >
+        STANDARD_VALUE2 = #{standardValue2,jdbcType=DECIMAL},
+      </if>
+      <if test="standardValue3 != null" >
+        STANDARD_VALUE3 = #{standardValue3,jdbcType=DECIMAL},
+      </if>
+      <if test="standardValue4 != null" >
+        STANDARD_VALUE4 = #{standardValue4,jdbcType=DECIMAL},
+      </if>
+      <if test="standardValue5 != null" >
+        STANDARD_VALUE5 = #{standardValue5,jdbcType=DECIMAL},
+      </if>
+      <if test="indexPublishtime != null" >
+        INDEX_PUBLISHTIME = #{indexPublishtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="indexPublishperson != null" >
+        INDEX_PUBLISHPERSON = #{indexPublishperson,jdbcType=VARCHAR},
+      </if>
+      <if test="indexPublishtag != null" >
+        INDEX_PUBLISHTAG = #{indexPublishtag,jdbcType=INTEGER},
+      </if>
+      <if test="keyBackups != null" >
+        Key_BACKUPS = #{keyBackups,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gs.domain.EsmspIndexPublish" >
+    update esmsp_index_publish
+    set GOVERNMENT_DISTRICT_CODE = #{governmentDistrictCode,jdbcType=VARCHAR},
+      EUI_BELONG_INDUSTRY = #{euiBelongIndustry,jdbcType=VARCHAR},
+      EUI_CODE = #{euiCode,jdbcType=VARCHAR},
+      INDEX_DATE = #{indexDate,jdbcType=VARCHAR},
+      INDEX_CODE = #{indexCode,jdbcType=INTEGER},
+      INDEX_NAME = #{indexName,jdbcType=VARCHAR},
+      INDEX_UNIT_CODE = #{indexUnitCode,jdbcType=VARCHAR},
+      PUBLISH_VALUE = #{publishValue,jdbcType=DECIMAL},
+      INDEX_SORT = #{indexSort,jdbcType=INTEGER},
+      STANDARD_VALUE1 = #{standardValue1,jdbcType=DECIMAL},
+      STANDARD_VALUE2 = #{standardValue2,jdbcType=DECIMAL},
+      STANDARD_VALUE3 = #{standardValue3,jdbcType=DECIMAL},
+      STANDARD_VALUE4 = #{standardValue4,jdbcType=DECIMAL},
+      STANDARD_VALUE5 = #{standardValue5,jdbcType=DECIMAL},
+      INDEX_PUBLISHTIME = #{indexPublishtime,jdbcType=TIMESTAMP},
+      INDEX_PUBLISHPERSON = #{indexPublishperson,jdbcType=VARCHAR},
+      INDEX_PUBLISHTAG = #{indexPublishtag,jdbcType=INTEGER},
+      Key_BACKUPS = #{keyBackups,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

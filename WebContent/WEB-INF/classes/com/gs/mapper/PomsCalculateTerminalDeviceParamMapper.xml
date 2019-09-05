@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gs.mapper.PomsCalculateTerminalDeviceParamMapper" >
+  <resultMap id="BaseResultMap" type="com.gs.domain.PomsCalculateTerminalDeviceParam" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="CTDP_DEVICE_ID" property="ctdpDeviceId" jdbcType="VARCHAR" />
+    <result column="CTDP_CODES" property="ctdpCodes" jdbcType="VARCHAR" />
+    <result column="CTDP_NAMES" property="ctdpNames" jdbcType="VARCHAR" />
+    <result column="CTDP_SYMBOLS" property="ctdpSymbols" jdbcType="VARCHAR" />
+    <result column="CTDP_UNITS" property="ctdpUnits" jdbcType="VARCHAR" />
+    <result column="CTDP_FORMULAR" property="ctdpFormular" jdbcType="VARCHAR" />
+    <result column="CTDP_ISSAVE" property="ctdpIssave" jdbcType="VARCHAR" />
+    <result column="CTDP_TYPE" property="ctdpType" jdbcType="VARCHAR" />
+    <result column="CTDP_ADDRESS" property="ctdpAddress" jdbcType="VARCHAR" />
+    <result column="CTDP_DATALEN" property="ctdpDatalen" jdbcType="INTEGER" />
+    <result column="CTDP_DATAPOINT" property="ctdpDatapoint" jdbcType="INTEGER" />
+    <result column="CTDP_SAVE_INTERVAL" property="ctdpSaveInterval" jdbcType="VARCHAR" />
+    <result column="CTDP_SAVE_STYLE" property="ctdpSaveStyle" jdbcType="VARCHAR" />
+    <result column="CTDP_STATISTIC_TYPE" property="ctdpStatisticType" jdbcType="VARCHAR" />
+    <result column="CTDP_UP_LINE" property="ctdpUpLine" jdbcType="DECIMAL" />
+    <result column="CTDP_UPER_LINE" property="ctdpUperLine" jdbcType="DECIMAL" />
+    <result column="CTDP_DOWN_LINE" property="ctdpDownLine" jdbcType="DECIMAL" />
+    <result column="CTDP_DOWNER_LINE" property="ctdpDownerLine" jdbcType="DECIMAL" />
+    <result column="CTDP_STANDARD_VAL" property="ctdpStandardVal" jdbcType="DECIMAL" />
+    <result column="CTDP_ORDERS" property="ctdpOrders" jdbcType="INTEGER" />
+    <result column="CTDP_BACKUPS" property="ctdpBackups" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, CTDP_DEVICE_ID, CTDP_CODES, CTDP_NAMES, CTDP_SYMBOLS, CTDP_UNITS, CTDP_FORMULAR, 
+    CTDP_ISSAVE, CTDP_TYPE, CTDP_ADDRESS, CTDP_DATALEN, CTDP_DATAPOINT, CTDP_SAVE_INTERVAL, 
+    CTDP_SAVE_STYLE, CTDP_STATISTIC_TYPE, CTDP_UP_LINE, CTDP_UPER_LINE, CTDP_DOWN_LINE, 
+    CTDP_DOWNER_LINE, CTDP_STANDARD_VAL, CTDP_ORDERS, CTDP_BACKUPS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_calculate_terminal_device_param
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from poms_calculate_terminal_device_param
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gs.domain.PomsCalculateTerminalDeviceParam" >
+    insert into poms_calculate_terminal_device_param (ID, CTDP_DEVICE_ID, CTDP_CODES, 
+      CTDP_NAMES, CTDP_SYMBOLS, CTDP_UNITS, 
+      CTDP_FORMULAR, CTDP_ISSAVE, CTDP_TYPE, 
+      CTDP_ADDRESS, CTDP_DATALEN, CTDP_DATAPOINT, 
+      CTDP_SAVE_INTERVAL, CTDP_SAVE_STYLE, CTDP_STATISTIC_TYPE, 
+      CTDP_UP_LINE, CTDP_UPER_LINE, CTDP_DOWN_LINE, 
+      CTDP_DOWNER_LINE, CTDP_STANDARD_VAL, CTDP_ORDERS, 
+      CTDP_BACKUPS)
+    values (#{id,jdbcType=VARCHAR}, #{ctdpDeviceId,jdbcType=VARCHAR}, #{ctdpCodes,jdbcType=VARCHAR}, 
+      #{ctdpNames,jdbcType=VARCHAR}, #{ctdpSymbols,jdbcType=VARCHAR}, #{ctdpUnits,jdbcType=VARCHAR}, 
+      #{ctdpFormular,jdbcType=VARCHAR}, #{ctdpIssave,jdbcType=VARCHAR}, #{ctdpType,jdbcType=VARCHAR}, 
+      #{ctdpAddress,jdbcType=VARCHAR}, #{ctdpDatalen,jdbcType=INTEGER}, #{ctdpDatapoint,jdbcType=INTEGER}, 
+      #{ctdpSaveInterval,jdbcType=VARCHAR}, #{ctdpSaveStyle,jdbcType=VARCHAR}, #{ctdpStatisticType,jdbcType=VARCHAR}, 
+      #{ctdpUpLine,jdbcType=DECIMAL}, #{ctdpUperLine,jdbcType=DECIMAL}, #{ctdpDownLine,jdbcType=DECIMAL}, 
+      #{ctdpDownerLine,jdbcType=DECIMAL}, #{ctdpStandardVal,jdbcType=DECIMAL}, #{ctdpOrders,jdbcType=INTEGER}, 
+      #{ctdpBackups,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gs.domain.PomsCalculateTerminalDeviceParam" >
+    insert into poms_calculate_terminal_device_param
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="ctdpDeviceId != null" >
+        CTDP_DEVICE_ID,
+      </if>
+      <if test="ctdpCodes != null" >
+        CTDP_CODES,
+      </if>
+      <if test="ctdpNames != null" >
+        CTDP_NAMES,
+      </if>
+      <if test="ctdpSymbols != null" >
+        CTDP_SYMBOLS,
+      </if>
+      <if test="ctdpUnits != null" >
+        CTDP_UNITS,
+      </if>
+      <if test="ctdpFormular != null" >
+        CTDP_FORMULAR,
+      </if>
+      <if test="ctdpIssave != null" >
+        CTDP_ISSAVE,
+      </if>
+      <if test="ctdpType != null" >
+        CTDP_TYPE,
+      </if>
+      <if test="ctdpAddress != null" >
+        CTDP_ADDRESS,
+      </if>
+      <if test="ctdpDatalen != null" >
+        CTDP_DATALEN,
+      </if>
+      <if test="ctdpDatapoint != null" >
+        CTDP_DATAPOINT,
+      </if>
+      <if test="ctdpSaveInterval != null" >
+        CTDP_SAVE_INTERVAL,
+      </if>
+      <if test="ctdpSaveStyle != null" >
+        CTDP_SAVE_STYLE,
+      </if>
+      <if test="ctdpStatisticType != null" >
+        CTDP_STATISTIC_TYPE,
+      </if>
+      <if test="ctdpUpLine != null" >
+        CTDP_UP_LINE,
+      </if>
+      <if test="ctdpUperLine != null" >
+        CTDP_UPER_LINE,
+      </if>
+      <if test="ctdpDownLine != null" >
+        CTDP_DOWN_LINE,
+      </if>
+      <if test="ctdpDownerLine != null" >
+        CTDP_DOWNER_LINE,
+      </if>
+      <if test="ctdpStandardVal != null" >
+        CTDP_STANDARD_VAL,
+      </if>
+      <if test="ctdpOrders != null" >
+        CTDP_ORDERS,
+      </if>
+      <if test="ctdpBackups != null" >
+        CTDP_BACKUPS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="ctdpDeviceId != null" >
+        #{ctdpDeviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="ctdpCodes != null" >
+        #{ctdpCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="ctdpNames != null" >
+        #{ctdpNames,jdbcType=VARCHAR},
+      </if>
+      <if test="ctdpSymbols != null" >
+        #{ctdpSymbols,jdbcType=VARCHAR},
+      </if>
+      <if test="ctdpUnits != null" >
+        #{ctdpUnits,jdbcType=VARCHAR},
+      </if>
+      <if test="ctdpFormular != null" >
+        #{ctdpFormular,jdbcType=VARCHAR},
+      </if>
+      <if test="ctdpIssave != null" >
+        #{ctdpIssave,jdbcType=VARCHAR},
+      </if>
+      <if test="ctdpType != null" >
+        #{ctdpType,jdbcType=VARCHAR},
+      </if>
+      <if test="ctdpAddress != null" >
+        #{ctdpAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="ctdpDatalen != null" >
+        #{ctdpDatalen,jdbcType=INTEGER},
+      </if>
+      <if test="ctdpDatapoint != null" >
+        #{ctdpDatapoint,jdbcType=INTEGER},
+      </if>
+      <if test="ctdpSaveInterval != null" >
+        #{ctdpSaveInterval,jdbcType=VARCHAR},
+      </if>
+      <if test="ctdpSaveStyle != null" >
+        #{ctdpSaveStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="ctdpStatisticType != null" >
+        #{ctdpStatisticType,jdbcType=VARCHAR},
+      </if>
+      <if test="ctdpUpLine != null" >
+        #{ctdpUpLine,jdbcType=DECIMAL},
+      </if>
+      <if test="ctdpUperLine != null" >
+        #{ctdpUperLine,jdbcType=DECIMAL},
+      </if>
+      <if test="ctdpDownLine != null" >
+        #{ctdpDownLine,jdbcType=DECIMAL},
+      </if>
+      <if test="ctdpDownerLine != null" >
+        #{ctdpDownerLine,jdbcType=DECIMAL},
+      </if>
+      <if test="ctdpStandardVal != null" >
+        #{ctdpStandardVal,jdbcType=DECIMAL},
+      </if>
+      <if test="ctdpOrders != null" >
+        #{ctdpOrders,jdbcType=INTEGER},
+      </if>
+      <if test="ctdpBackups != null" >
+        #{ctdpBackups,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gs.domain.PomsCalculateTerminalDeviceParam" >
+    update poms_calculate_terminal_device_param
+    <set >
+      <if test="ctdpDeviceId != null" >
+        CTDP_DEVICE_ID = #{ctdpDeviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="ctdpCodes != null" >
+        CTDP_CODES = #{ctdpCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="ctdpNames != null" >
+        CTDP_NAMES = #{ctdpNames,jdbcType=VARCHAR},
+      </if>
+      <if test="ctdpSymbols != null" >
+        CTDP_SYMBOLS = #{ctdpSymbols,jdbcType=VARCHAR},
+      </if>
+      <if test="ctdpUnits != null" >
+        CTDP_UNITS = #{ctdpUnits,jdbcType=VARCHAR},
+      </if>
+      <if test="ctdpFormular != null" >
+        CTDP_FORMULAR = #{ctdpFormular,jdbcType=VARCHAR},
+      </if>
+      <if test="ctdpIssave != null" >
+        CTDP_ISSAVE = #{ctdpIssave,jdbcType=VARCHAR},
+      </if>
+      <if test="ctdpType != null" >
+        CTDP_TYPE = #{ctdpType,jdbcType=VARCHAR},
+      </if>
+      <if test="ctdpAddress != null" >
+        CTDP_ADDRESS = #{ctdpAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="ctdpDatalen != null" >
+        CTDP_DATALEN = #{ctdpDatalen,jdbcType=INTEGER},
+      </if>
+      <if test="ctdpDatapoint != null" >
+        CTDP_DATAPOINT = #{ctdpDatapoint,jdbcType=INTEGER},
+      </if>
+      <if test="ctdpSaveInterval != null" >
+        CTDP_SAVE_INTERVAL = #{ctdpSaveInterval,jdbcType=VARCHAR},
+      </if>
+      <if test="ctdpSaveStyle != null" >
+        CTDP_SAVE_STYLE = #{ctdpSaveStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="ctdpStatisticType != null" >
+        CTDP_STATISTIC_TYPE = #{ctdpStatisticType,jdbcType=VARCHAR},
+      </if>
+      <if test="ctdpUpLine != null" >
+        CTDP_UP_LINE = #{ctdpUpLine,jdbcType=DECIMAL},
+      </if>
+      <if test="ctdpUperLine != null" >
+        CTDP_UPER_LINE = #{ctdpUperLine,jdbcType=DECIMAL},
+      </if>
+      <if test="ctdpDownLine != null" >
+        CTDP_DOWN_LINE = #{ctdpDownLine,jdbcType=DECIMAL},
+      </if>
+      <if test="ctdpDownerLine != null" >
+        CTDP_DOWNER_LINE = #{ctdpDownerLine,jdbcType=DECIMAL},
+      </if>
+      <if test="ctdpStandardVal != null" >
+        CTDP_STANDARD_VAL = #{ctdpStandardVal,jdbcType=DECIMAL},
+      </if>
+      <if test="ctdpOrders != null" >
+        CTDP_ORDERS = #{ctdpOrders,jdbcType=INTEGER},
+      </if>
+      <if test="ctdpBackups != null" >
+        CTDP_BACKUPS = #{ctdpBackups,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gs.domain.PomsCalculateTerminalDeviceParam" >
+    update poms_calculate_terminal_device_param
+    set CTDP_DEVICE_ID = #{ctdpDeviceId,jdbcType=VARCHAR},
+      CTDP_CODES = #{ctdpCodes,jdbcType=VARCHAR},
+      CTDP_NAMES = #{ctdpNames,jdbcType=VARCHAR},
+      CTDP_SYMBOLS = #{ctdpSymbols,jdbcType=VARCHAR},
+      CTDP_UNITS = #{ctdpUnits,jdbcType=VARCHAR},
+      CTDP_FORMULAR = #{ctdpFormular,jdbcType=VARCHAR},
+      CTDP_ISSAVE = #{ctdpIssave,jdbcType=VARCHAR},
+      CTDP_TYPE = #{ctdpType,jdbcType=VARCHAR},
+      CTDP_ADDRESS = #{ctdpAddress,jdbcType=VARCHAR},
+      CTDP_DATALEN = #{ctdpDatalen,jdbcType=INTEGER},
+      CTDP_DATAPOINT = #{ctdpDatapoint,jdbcType=INTEGER},
+      CTDP_SAVE_INTERVAL = #{ctdpSaveInterval,jdbcType=VARCHAR},
+      CTDP_SAVE_STYLE = #{ctdpSaveStyle,jdbcType=VARCHAR},
+      CTDP_STATISTIC_TYPE = #{ctdpStatisticType,jdbcType=VARCHAR},
+      CTDP_UP_LINE = #{ctdpUpLine,jdbcType=DECIMAL},
+      CTDP_UPER_LINE = #{ctdpUperLine,jdbcType=DECIMAL},
+      CTDP_DOWN_LINE = #{ctdpDownLine,jdbcType=DECIMAL},
+      CTDP_DOWNER_LINE = #{ctdpDownerLine,jdbcType=DECIMAL},
+      CTDP_STANDARD_VAL = #{ctdpStandardVal,jdbcType=DECIMAL},
+      CTDP_ORDERS = #{ctdpOrders,jdbcType=INTEGER},
+      CTDP_BACKUPS = #{ctdpBackups,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

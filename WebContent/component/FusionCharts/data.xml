@@ -1,0 +1,37 @@
+<chart manageResize="1" origW="350" origH="200"  palette="2" bgAlpha="0" bgColor="FFFFFF" lowerLimit="0" upperLimit="100" numberSuffix="%" showBorder="0" basefontColor="000000" chartTopMargin="5" chartBottomMargin="5"  caption="utf-8" subCaption="xxxxd" toolTipBgColor="009999" gaugeFillMix="{dark-10},{light-70},{dark-10}" gaugeFillRatio="3" pivotRadius="8" gaugeOuterRadius="120" gaugeInnerRadius="70%"  gaugeOriginX="175" gaugeOriginY="170" trendValueDistance="5" tickValueDistance="3" manageValueOverlapping="1" autoAlignTickValues="1"><#rt>
+   <colorRange><#rt>
+      <color minValue="0" maxValue="45" code="FF654F"/><#rt>
+      <color minValue="45" maxValue="80" code="F6BD0F"/><#rt>
+      <color minValue="80" maxValue="100" code="8BBA00"/><#rt>
+   </colorRange><#rt>
+   <dials><#rt>
+      <dial value="72" rearExtension="10" baseWidth="10"/><#rt>
+   </dials><#rt>
+   <annotations><#rt>
+      <annotationGroup xPos="270" yPos="300" ><#rt>
+         <annotation type="text" x="0" y="0" label="���ռ��" align="center" bold="1" color="666666" size="11"/> <#rt>
+      </annotationGroup> <#rt>
+      <annotationGroup Id="GRPRED" xPos="175" yPos="125" visible="0" > <#rt>
+         <annotation type="circle" x="0" y="0" radius="10" fillPattern="radial" color="FFBFBF,FF0000" showBorder="0"/><#rt>
+      </annotationGroup> <#rt>
+      <annotationGroup Id="GRPYELLOW" xPos="175" yPos="125" visible="0"><#rt>
+         <annotation type="circle" x="0" y="0" radius="10" fillPattern="radial" color="FFFF00,BBBB00"showBorder="0"/><#rt>
+      </annotationGroup> <#rt>
+      <annotationGroup Id="GRPGREEN" xPos="175" yPos="125" visible="0"><#rt>
+         <annotation type="circle" x="0" y="0" radius="10" fillPattern="radial" color="00FF00,339933" showBorder="0"/><#rt>
+      </annotationGroup><#rt>
+   </annotations><#rt>
+   <trendpoints><#rt>
+      <point startValue="62" displayValue="ƽ��ֵ" useMarker="1" markerRadius="8" dashed="1" dashLen="2" dashGap="2"  /><#rt>
+   </trendpoints><#rt>
+   <styles><#rt>
+      <definition><#rt>
+         <style name="RectShadow" type="shadow" strength="3"/><#rt>
+         <style name="trendvaluefont" type="font" bold="1" borderColor="#00cccc"/><#rt>
+      </definition><#rt>
+      <application><#rt>
+         <apply toObject="Grp1" styles="RectShadow" /><#rt>
+         <apply toObject="Trendvalues" styles="trendvaluefont" /><#rt>
+      </application><#rt>
+   </styles><#rt>
+</chart><#rt>

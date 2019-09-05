@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gs.mapper.EsmspSumMeasurSystemYearMapper">
+	<resultMap id="BaseResultMap" type="com.gs.domain.EsmspSumMeasurSystemYear">
+		<id column="ID" jdbcType="VARCHAR" property="id" />
+		<result column="EUI_CODE" jdbcType="VARCHAR" property="euiCode" />
+		<result column="SYSTEM_CODE" jdbcType="VARCHAR" property="systemCode" />
+		<result column="MMP_CODE" jdbcType="VARCHAR" property="mmpCode" />
+		<result column="DATE_CODE2" jdbcType="VARCHAR" property="dateCode2" />
+		<result column="point1" jdbcType="DECIMAL" property="point1" />
+		<result column="point2" jdbcType="DECIMAL" property="point2" />
+		<result column="point3" jdbcType="DECIMAL" property="point3" />
+		<result column="point4" jdbcType="DECIMAL" property="point4" />
+		<result column="point5" jdbcType="DECIMAL" property="point5" />
+		<result column="point6" jdbcType="DECIMAL" property="point6" />
+		<result column="point7" jdbcType="DECIMAL" property="point7" />
+		<result column="point8" jdbcType="DECIMAL" property="point8" />
+		<result column="point9" jdbcType="DECIMAL" property="point9" />
+		<result column="point10" jdbcType="DECIMAL" property="point10" />
+		<result column="point11" jdbcType="DECIMAL" property="point11" />
+		<result column="point12" jdbcType="DECIMAL" property="point12" />
+		<result column="flag" jdbcType="VARCHAR" property="flag" />
+		<result column="MAX_VALUE" jdbcType="DECIMAL" property="maxValue" />
+		<result column="MAX_DATE" jdbcType="VARCHAR" property="maxDate" />
+		<result column="MIN_VALUE" jdbcType="DECIMAL" property="minValue" />
+		<result column="MIN_DATE" jdbcType="VARCHAR" property="minDate" />
+		<result column="AVG_VALUE" jdbcType="DECIMAL" property="avgValue" />
+		<result column="SUM_VALUE" jdbcType="DECIMAL" property="sumValue" />
+		<result column="J_VALUE" jdbcType="DECIMAL" property="jValue" />
+		<result column="F_VALUE" jdbcType="DECIMAL" property="fValue" />
+		<result column="P_VALUE" jdbcType="DECIMAL" property="pValue" />
+		<result column="G_VALUE" jdbcType="DECIMAL" property="gValue" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, EUI_CODE, SYSTEM_CODE, MMP_CODE, DATE_CODE2, point1, point2, point3,
+		point4,
+		point5, point6, point7, point8, point9, point10, point11, point12, flag,
+		MAX_VALUE,
+		MAX_DATE, MIN_VALUE, MIN_DATE, AVG_VALUE, SUM_VALUE, J_VALUE, F_VALUE, P_VALUE,
+		G_VALUE
+  </sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from esmsp_sum_measur_system_year
+		where ID = #{id,jdbcType=VARCHAR}
+	</select>
+	<select id="selectTop5" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from esmsp_sum_measur_system_year
+		order by sum_value LIMIT 10
+	</select>
+	<select id="selectByCode" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from esmsp_sum_measur_system_year
+		where system_code=#{systemCode} and eui_code=#{euoCode}
+	</select>
+</mapper>

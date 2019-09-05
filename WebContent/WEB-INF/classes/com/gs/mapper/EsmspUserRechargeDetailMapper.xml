@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gs.mapper.EsmspUserRechargeDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.gs.domain.EsmspUserRechargeDetail" >
+    <id column="detail_id" property="detailId" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="month" property="month" jdbcType="VARCHAR" />
+    <result column="energy_type" property="energyType" jdbcType="VARCHAR" />
+    <result column="module_amount" property="moduleAmount" jdbcType="REAL" />
+    <result column="all_amount" property="allAmount" jdbcType="REAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    detail_id, user_id, month, energy_type, module_amount, all_amount
+  </sql>
+   <!-- 查询消费记录 通过外键ID -->
+ <select id="selectByPK" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from esmsp_user_recharge_detail
+    where user_id = #{parseInt}
+  </select>
+  <!-- 根据 实体code 中的某个字段 条件查询所有 -->
+	<select id="findPageAll" resultMap="BaseResultMap"
+		parameterType="com.gs.domain.EsmspUserRechargeDetail">
+		select
+		<include refid="Base_Column_List" />
+		from esmsp_user_recharge_detail
+		where 1=1
+		<if test="pageSize!=null and pageSize!=0 and pageBegin!=0">
+			 limit #{pageBegin},#{pageSize}
+		</if>
+	</select>
+	<!-- 条件模糊查询 -->
+	<select id="searchAll" resultMap="BaseResultMap"
+		parameterType="com.gs.domain.EsmspUserRechargeDetail">
+		select
+		<include refid="Base_Column_List" />
+		from esmsp_user_recharge_detail
+		where 1=1
+		<if test="search!=null">
+			and user_id in (select user_id from esmsp_user_info where user_name like #{search})
+		</if>
+		<if test="beforeDate!=null">
+			and month=#{beforeDate}
+		</if>
+	</select>
+	<!-- 查询总条数 -->
+	<select id="getCount" resultType="java.lang.Integer">
+		select count(*) from
+		esmsp_user_recharge_detail
+	</select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from esmsp_user_recharge_detail
+    where detail_id = #{detailId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from esmsp_user_recharge_detail
+    where detail_id = #{detailId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gs.domain.EsmspUserRechargeDetail" >
+    insert into esmsp_user_recharge_detail (detail_id, user_id, month, 
+      energy_type, module_amount, all_amount
+      )
+    values (#{detailId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{month,jdbcType=VARCHAR}, 
+      #{energyType,jdbcType=VARCHAR}, #{moduleAmount,jdbcType=REAL}, #{allAmount,jdbcType=REAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gs.domain.EsmspUserRechargeDetail" >
+    insert into esmsp_user_recharge_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="detailId != null" >
+        detail_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="month != null" >
+        month,
+      </if>
+      <if test="energyType != null" >
+        energy_type,
+      </if>
+      <if test="moduleAmount != null" >
+        module_amount,
+      </if>
+      <if test="allAmount != null" >
+        all_amount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="detailId != null" >
+        #{detailId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="month != null" >
+        #{month,jdbcType=VARCHAR},
+      </if>
+      <if test="energyType != null" >
+        #{energyType,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleAmount != null" >
+        #{moduleAmount,jdbcType=REAL},
+      </if>
+      <if test="allAmount != null" >
+        #{allAmount,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gs.domain.EsmspUserRechargeDetail" >
+    update esmsp_user_recharge_detail
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="month != null" >
+        month = #{month,jdbcType=VARCHAR},
+      </if>
+      <if test="energyType != null" >
+        energy_type = #{energyType,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleAmount != null" >
+        module_amount = #{moduleAmount,jdbcType=REAL},
+      </if>
+      <if test="allAmount != null" >
+        all_amount = #{allAmount,jdbcType=REAL},
+      </if>
+    </set>
+    where detail_id = #{detailId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gs.domain.EsmspUserRechargeDetail" >
+    update esmsp_user_recharge_detail
+    set user_id = #{userId,jdbcType=VARCHAR},
+      month = #{month,jdbcType=VARCHAR},
+      energy_type = #{energyType,jdbcType=VARCHAR},
+      module_amount = #{moduleAmount,jdbcType=REAL},
+      all_amount = #{allAmount,jdbcType=REAL}
+    where detail_id = #{detailId,jdbcType=VARCHAR}
+  </update>
+</mapper>

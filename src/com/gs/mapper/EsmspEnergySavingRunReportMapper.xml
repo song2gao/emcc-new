@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gs.mapper.EsmspEnergySavingRunReportMapper" >
+  <resultMap id="BaseResultMap" type="com.gs.domain.EsmspEnergySavingRunReport" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="ESRR_DISTRICT_CODE" property="esrrDistrictCode" jdbcType="VARCHAR" />
+    <result column="ESRR_INDUSTRY_CODE" property="esrrIndustryCode" jdbcType="VARCHAR" />
+    <result column="ESRR_ENERGY_UNIT_CODE" property="esrrEnergyUnitCode" jdbcType="VARCHAR" />
+    <result column="ESRR_SAVING_REPORT" property="esrrSavingReport" jdbcType="VARCHAR" />
+    <result column="ESRR_EDIT_TIME" property="esrrEditTime" jdbcType="VARCHAR" />
+    <result column="ESRR_REPORT_START_TIME" property="esrrReportStartTime" jdbcType="VARCHAR" />
+    <result column="ESRR_REPORT_END_TIME" property="esrrReportEndTime" jdbcType="VARCHAR" />
+    <result column="ESRR_EDITING_UNIT" property="esrrEditingUnit" jdbcType="VARCHAR" />
+    <result column="ESRR_DEVICE_ID" property="esrrDeviceId" jdbcType="VARCHAR" />
+    <result column="ESRR_DEVICE_NAME" property="esrrDeviceName" jdbcType="VARCHAR" />
+    <result column="ESRR_SAVING_RATE" property="esrrSavingRate" jdbcType="DECIMAL" />
+    <result column="ESRR_SAVING_QUANTITY" property="esrrSavingQuantity" jdbcType="DECIMAL" />
+    <result column="ESRR_PREDIC_SAVING_POWER" property="esrrPredicSavingPower" jdbcType="DECIMAL" />
+    <result column="ESRR_PREDIC_SAVING_FEE" property="esrrPredicSavingFee" jdbcType="DECIMAL" />
+    <result column="ESRR_PREDIC_START_TIME" property="esrrPredicStartTime" jdbcType="VARCHAR" />
+    <result column="ESRR_PROJECT_TYPE" property="esrrProjectType" jdbcType="VARCHAR" />
+    <result column="ESRR_PROJECT_VEST_ESTIMATE" property="esrrProjectVestEstimate" jdbcType="DECIMAL" />
+    <result column="ESRR_SAVING_TECHNOLOGY" property="esrrSavingTechnology" jdbcType="VARCHAR" />
+    <result column="ESRR_SAVING_QUANTITY_REAL" property="esrrSavingQuantityReal" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, ESRR_DISTRICT_CODE, ESRR_INDUSTRY_CODE, ESRR_ENERGY_UNIT_CODE, ESRR_SAVING_REPORT, 
+    ESRR_EDIT_TIME, ESRR_REPORT_START_TIME, ESRR_REPORT_END_TIME, ESRR_EDITING_UNIT, 
+    ESRR_DEVICE_ID, ESRR_DEVICE_NAME, ESRR_SAVING_RATE, ESRR_SAVING_QUANTITY, ESRR_PREDIC_SAVING_POWER, 
+    ESRR_PREDIC_SAVING_FEE, ESRR_PREDIC_START_TIME, ESRR_PROJECT_TYPE, ESRR_PROJECT_VEST_ESTIMATE, 
+    ESRR_SAVING_TECHNOLOGY, ESRR_SAVING_QUANTITY_REAL
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from esmsp_energy_saving_run_report
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from esmsp_energy_saving_run_report
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gs.domain.EsmspEnergySavingRunReport" >
+    insert into esmsp_energy_saving_run_report (ID, ESRR_DISTRICT_CODE, ESRR_INDUSTRY_CODE, 
+      ESRR_ENERGY_UNIT_CODE, ESRR_SAVING_REPORT, ESRR_EDIT_TIME, 
+      ESRR_REPORT_START_TIME, ESRR_REPORT_END_TIME, 
+      ESRR_EDITING_UNIT, ESRR_DEVICE_ID, ESRR_DEVICE_NAME, 
+      ESRR_SAVING_RATE, ESRR_SAVING_QUANTITY, ESRR_PREDIC_SAVING_POWER, 
+      ESRR_PREDIC_SAVING_FEE, ESRR_PREDIC_START_TIME, 
+      ESRR_PROJECT_TYPE, ESRR_PROJECT_VEST_ESTIMATE, 
+      ESRR_SAVING_TECHNOLOGY, ESRR_SAVING_QUANTITY_REAL
+      )
+    values (#{id,jdbcType=VARCHAR}, #{esrrDistrictCode,jdbcType=VARCHAR}, #{esrrIndustryCode,jdbcType=VARCHAR}, 
+      #{esrrEnergyUnitCode,jdbcType=VARCHAR}, #{esrrSavingReport,jdbcType=VARCHAR}, #{esrrEditTime,jdbcType=VARCHAR}, 
+      #{esrrReportStartTime,jdbcType=VARCHAR}, #{esrrReportEndTime,jdbcType=VARCHAR}, 
+      #{esrrEditingUnit,jdbcType=VARCHAR}, #{esrrDeviceId,jdbcType=VARCHAR}, #{esrrDeviceName,jdbcType=VARCHAR}, 
+      #{esrrSavingRate,jdbcType=DECIMAL}, #{esrrSavingQuantity,jdbcType=DECIMAL}, #{esrrPredicSavingPower,jdbcType=DECIMAL}, 
+      #{esrrPredicSavingFee,jdbcType=DECIMAL}, #{esrrPredicStartTime,jdbcType=VARCHAR}, 
+      #{esrrProjectType,jdbcType=VARCHAR}, #{esrrProjectVestEstimate,jdbcType=DECIMAL}, 
+      #{esrrSavingTechnology,jdbcType=VARCHAR}, #{esrrSavingQuantityReal,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gs.domain.EsmspEnergySavingRunReport" >
+    insert into esmsp_energy_saving_run_report
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="esrrDistrictCode != null" >
+        ESRR_DISTRICT_CODE,
+      </if>
+      <if test="esrrIndustryCode != null" >
+        ESRR_INDUSTRY_CODE,
+      </if>
+      <if test="esrrEnergyUnitCode != null" >
+        ESRR_ENERGY_UNIT_CODE,
+      </if>
+      <if test="esrrSavingReport != null" >
+        ESRR_SAVING_REPORT,
+      </if>
+      <if test="esrrEditTime != null" >
+        ESRR_EDIT_TIME,
+      </if>
+      <if test="esrrReportStartTime != null" >
+        ESRR_REPORT_START_TIME,
+      </if>
+      <if test="esrrReportEndTime != null" >
+        ESRR_REPORT_END_TIME,
+      </if>
+      <if test="esrrEditingUnit != null" >
+        ESRR_EDITING_UNIT,
+      </if>
+      <if test="esrrDeviceId != null" >
+        ESRR_DEVICE_ID,
+      </if>
+      <if test="esrrDeviceName != null" >
+        ESRR_DEVICE_NAME,
+      </if>
+      <if test="esrrSavingRate != null" >
+        ESRR_SAVING_RATE,
+      </if>
+      <if test="esrrSavingQuantity != null" >
+        ESRR_SAVING_QUANTITY,
+      </if>
+      <if test="esrrPredicSavingPower != null" >
+        ESRR_PREDIC_SAVING_POWER,
+      </if>
+      <if test="esrrPredicSavingFee != null" >
+        ESRR_PREDIC_SAVING_FEE,
+      </if>
+      <if test="esrrPredicStartTime != null" >
+        ESRR_PREDIC_START_TIME,
+      </if>
+      <if test="esrrProjectType != null" >
+        ESRR_PROJECT_TYPE,
+      </if>
+      <if test="esrrProjectVestEstimate != null" >
+        ESRR_PROJECT_VEST_ESTIMATE,
+      </if>
+      <if test="esrrSavingTechnology != null" >
+        ESRR_SAVING_TECHNOLOGY,
+      </if>
+      <if test="esrrSavingQuantityReal != null" >
+        ESRR_SAVING_QUANTITY_REAL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="esrrDistrictCode != null" >
+        #{esrrDistrictCode,jdbcType=VARCHAR},
+      </if>
+      <if test="esrrIndustryCode != null" >
+        #{esrrIndustryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="esrrEnergyUnitCode != null" >
+        #{esrrEnergyUnitCode,jdbcType=VARCHAR},
+      </if>
+      <if test="esrrSavingReport != null" >
+        #{esrrSavingReport,jdbcType=VARCHAR},
+      </if>
+      <if test="esrrEditTime != null" >
+        #{esrrEditTime,jdbcType=VARCHAR},
+      </if>
+      <if test="esrrReportStartTime != null" >
+        #{esrrReportStartTime,jdbcType=VARCHAR},
+      </if>
+      <if test="esrrReportEndTime != null" >
+        #{esrrReportEndTime,jdbcType=VARCHAR},
+      </if>
+      <if test="esrrEditingUnit != null" >
+        #{esrrEditingUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="esrrDeviceId != null" >
+        #{esrrDeviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="esrrDeviceName != null" >
+        #{esrrDeviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="esrrSavingRate != null" >
+        #{esrrSavingRate,jdbcType=DECIMAL},
+      </if>
+      <if test="esrrSavingQuantity != null" >
+        #{esrrSavingQuantity,jdbcType=DECIMAL},
+      </if>
+      <if test="esrrPredicSavingPower != null" >
+        #{esrrPredicSavingPower,jdbcType=DECIMAL},
+      </if>
+      <if test="esrrPredicSavingFee != null" >
+        #{esrrPredicSavingFee,jdbcType=DECIMAL},
+      </if>
+      <if test="esrrPredicStartTime != null" >
+        #{esrrPredicStartTime,jdbcType=VARCHAR},
+      </if>
+      <if test="esrrProjectType != null" >
+        #{esrrProjectType,jdbcType=VARCHAR},
+      </if>
+      <if test="esrrProjectVestEstimate != null" >
+        #{esrrProjectVestEstimate,jdbcType=DECIMAL},
+      </if>
+      <if test="esrrSavingTechnology != null" >
+        #{esrrSavingTechnology,jdbcType=VARCHAR},
+      </if>
+      <if test="esrrSavingQuantityReal != null" >
+        #{esrrSavingQuantityReal,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gs.domain.EsmspEnergySavingRunReport" >
+    update esmsp_energy_saving_run_report
+    <set >
+      <if test="esrrDistrictCode != null" >
+        ESRR_DISTRICT_CODE = #{esrrDistrictCode,jdbcType=VARCHAR},
+      </if>
+      <if test="esrrIndustryCode != null" >
+        ESRR_INDUSTRY_CODE = #{esrrIndustryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="esrrEnergyUnitCode != null" >
+        ESRR_ENERGY_UNIT_CODE = #{esrrEnergyUnitCode,jdbcType=VARCHAR},
+      </if>
+      <if test="esrrSavingReport != null" >
+        ESRR_SAVING_REPORT = #{esrrSavingReport,jdbcType=VARCHAR},
+      </if>
+      <if test="esrrEditTime != null" >
+        ESRR_EDIT_TIME = #{esrrEditTime,jdbcType=VARCHAR},
+      </if>
+      <if test="esrrReportStartTime != null" >
+        ESRR_REPORT_START_TIME = #{esrrReportStartTime,jdbcType=VARCHAR},
+      </if>
+      <if test="esrrReportEndTime != null" >
+        ESRR_REPORT_END_TIME = #{esrrReportEndTime,jdbcType=VARCHAR},
+      </if>
+      <if test="esrrEditingUnit != null" >
+        ESRR_EDITING_UNIT = #{esrrEditingUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="esrrDeviceId != null" >
+        ESRR_DEVICE_ID = #{esrrDeviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="esrrDeviceName != null" >
+        ESRR_DEVICE_NAME = #{esrrDeviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="esrrSavingRate != null" >
+        ESRR_SAVING_RATE = #{esrrSavingRate,jdbcType=DECIMAL},
+      </if>
+      <if test="esrrSavingQuantity != null" >
+        ESRR_SAVING_QUANTITY = #{esrrSavingQuantity,jdbcType=DECIMAL},
+      </if>
+      <if test="esrrPredicSavingPower != null" >
+        ESRR_PREDIC_SAVING_POWER = #{esrrPredicSavingPower,jdbcType=DECIMAL},
+      </if>
+      <if test="esrrPredicSavingFee != null" >
+        ESRR_PREDIC_SAVING_FEE = #{esrrPredicSavingFee,jdbcType=DECIMAL},
+      </if>
+      <if test="esrrPredicStartTime != null" >
+        ESRR_PREDIC_START_TIME = #{esrrPredicStartTime,jdbcType=VARCHAR},
+      </if>
+      <if test="esrrProjectType != null" >
+        ESRR_PROJECT_TYPE = #{esrrProjectType,jdbcType=VARCHAR},
+      </if>
+      <if test="esrrProjectVestEstimate != null" >
+        ESRR_PROJECT_VEST_ESTIMATE = #{esrrProjectVestEstimate,jdbcType=DECIMAL},
+      </if>
+      <if test="esrrSavingTechnology != null" >
+        ESRR_SAVING_TECHNOLOGY = #{esrrSavingTechnology,jdbcType=VARCHAR},
+      </if>
+      <if test="esrrSavingQuantityReal != null" >
+        ESRR_SAVING_QUANTITY_REAL = #{esrrSavingQuantityReal,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gs.domain.EsmspEnergySavingRunReport" >
+    update esmsp_energy_saving_run_report
+    set ESRR_DISTRICT_CODE = #{esrrDistrictCode,jdbcType=VARCHAR},
+      ESRR_INDUSTRY_CODE = #{esrrIndustryCode,jdbcType=VARCHAR},
+      ESRR_ENERGY_UNIT_CODE = #{esrrEnergyUnitCode,jdbcType=VARCHAR},
+      ESRR_SAVING_REPORT = #{esrrSavingReport,jdbcType=VARCHAR},
+      ESRR_EDIT_TIME = #{esrrEditTime,jdbcType=VARCHAR},
+      ESRR_REPORT_START_TIME = #{esrrReportStartTime,jdbcType=VARCHAR},
+      ESRR_REPORT_END_TIME = #{esrrReportEndTime,jdbcType=VARCHAR},
+      ESRR_EDITING_UNIT = #{esrrEditingUnit,jdbcType=VARCHAR},
+      ESRR_DEVICE_ID = #{esrrDeviceId,jdbcType=VARCHAR},
+      ESRR_DEVICE_NAME = #{esrrDeviceName,jdbcType=VARCHAR},
+      ESRR_SAVING_RATE = #{esrrSavingRate,jdbcType=DECIMAL},
+      ESRR_SAVING_QUANTITY = #{esrrSavingQuantity,jdbcType=DECIMAL},
+      ESRR_PREDIC_SAVING_POWER = #{esrrPredicSavingPower,jdbcType=DECIMAL},
+      ESRR_PREDIC_SAVING_FEE = #{esrrPredicSavingFee,jdbcType=DECIMAL},
+      ESRR_PREDIC_START_TIME = #{esrrPredicStartTime,jdbcType=VARCHAR},
+      ESRR_PROJECT_TYPE = #{esrrProjectType,jdbcType=VARCHAR},
+      ESRR_PROJECT_VEST_ESTIMATE = #{esrrProjectVestEstimate,jdbcType=DECIMAL},
+      ESRR_SAVING_TECHNOLOGY = #{esrrSavingTechnology,jdbcType=VARCHAR},
+      ESRR_SAVING_QUANTITY_REAL = #{esrrSavingQuantityReal,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

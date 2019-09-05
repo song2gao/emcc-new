@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gs.mapper.PomsCodeManagementMapper" >
+  <resultMap id="BaseResultMap" type="com.gs.domain.PomsCodeManagement" >
+    <id column="CM_ID" property="cmId" jdbcType="VARCHAR" />
+    <result column="CM_PARENT_ID" property="cmParentId" jdbcType="VARCHAR" />
+    <result column="CM_NAME" property="cmName" jdbcType="VARCHAR" />
+    <result column="CM_CODE" property="cmCode" jdbcType="VARCHAR" />
+    <result column="CM_DESCRIPTION" property="cmDescription" jdbcType="VARCHAR" />
+    <result column="CM_CODE_TYPE" property="cmCodeType" jdbcType="VARCHAR" />
+    <result column="CM_BACKUPONE" property="cmBackupone" jdbcType="VARCHAR" />
+    <result column="CM_BACKUPTWO" property="cmBackuptwo" jdbcType="VARCHAR" />
+    <result column="CM_BACKUPTHREE" property="cmBackupthree" jdbcType="VARCHAR" />
+    <result column="CM_BACKUPS" property="cmBackups" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <!-- 根据 实体code 中的某个字段 条件查询所有  -->
+  <select id="selectByCodes" resultMap="BaseResultMap" parameterType="com.gs.domain.PomsCodeManagement" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_code_management
+    where 
+    <if	test="code.cmCodeType!=null and code.cmCodeType!=''">
+        CM_CODE_TYPE=#{code.cmCodeType}
+    </if>
+    <if	test="code.cmName!=null and code.cmName!=''">
+        and CM_NAME like #{code.cmName}
+    </if>
+  </select>
+  
+  
+  
+  <!-- 根据  cmName 查询 CM_CODE_TYPE为 HYFLBZGF  -->
+  <select id="selectByCmName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_code_management
+    where CM_NAME=#{cmName} and CM_CODE_TYPE = 'HYFLBZGF'
+  </select>
+  <!-- 根据  codeType  查询所有  -->
+  <select id="selectByCodeType" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_code_management
+    where CM_CODE_TYPE = #{cmCode}
+  </select>
+  <!-- 根据  code查询所有 -->
+  <select id="selectByCmCode" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_code_management
+    where CM_CODE = #{cmCode}
+  </select>
+  
+  <sql id="Base_Column_List" >
+    CM_ID, CM_PARENT_ID, CM_NAME, CM_CODE, CM_DESCRIPTION, CM_CODE_TYPE, CM_BACKUPONE, 
+    CM_BACKUPTWO, CM_BACKUPTHREE, CM_BACKUPS
+  </sql>
+  <!-- 根据  CM_PARENT_ID 查询所有 -->
+  <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_code_management
+    where CM_PARENT_ID = #{cmParentId}
+  </select>
+  <select id="selectByCode" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_code_management
+    where CM_CODE = #{code}
+    and CM_CODE_TYPE=#{type}
+  </select>
+   <select id="selectByLikeName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_code_management
+    where CM_NAME like #{name}
+    and CM_CODE_TYPE=#{type}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from poms_code_management
+    where CM_ID = #{cmId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gs.domain.PomsCodeManagement" >
+    insert into poms_code_management (CM_ID, CM_PARENT_ID, CM_NAME, 
+      CM_CODE, CM_DESCRIPTION, CM_CODE_TYPE, 
+      CM_BACKUPONE, CM_BACKUPTWO, CM_BACKUPTHREE, 
+      CM_BACKUPS)
+    values (#{cmId,jdbcType=VARCHAR}, #{cmParentId,jdbcType=VARCHAR}, #{cmName,jdbcType=VARCHAR}, 
+      #{cmCode,jdbcType=VARCHAR}, #{cmDescription,jdbcType=VARCHAR}, #{cmCodeType,jdbcType=VARCHAR}, 
+      #{cmBackupone,jdbcType=VARCHAR}, #{cmBackuptwo,jdbcType=VARCHAR}, #{cmBackupthree,jdbcType=VARCHAR}, 
+      #{cmBackups,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gs.domain.PomsCodeManagement" >
+    insert into poms_code_management
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cmId != null" >
+        CM_ID,
+      </if>
+      <if test="cmParentId != null" >
+        CM_PARENT_ID,
+      </if>
+      <if test="cmName != null" >
+        CM_NAME,
+      </if>
+      <if test="cmCode != null" >
+        CM_CODE,
+      </if>
+      <if test="cmDescription != null" >
+        CM_DESCRIPTION,
+      </if>
+      <if test="cmCodeType != null" >
+        CM_CODE_TYPE,
+      </if>
+      <if test="cmBackupone != null" >
+        CM_BACKUPONE,
+      </if>
+      <if test="cmBackuptwo != null" >
+        CM_BACKUPTWO,
+      </if>
+      <if test="cmBackupthree != null" >
+        CM_BACKUPTHREE,
+      </if>
+      <if test="cmBackups != null" >
+        CM_BACKUPS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cmId != null" >
+        #{cmId,jdbcType=VARCHAR},
+      </if>
+      <if test="cmParentId != null" >
+        #{cmParentId,jdbcType=VARCHAR},
+      </if>
+      <if test="cmName != null" >
+        #{cmName,jdbcType=VARCHAR},
+      </if>
+      <if test="cmCode != null" >
+        #{cmCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cmDescription != null" >
+        #{cmDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="cmCodeType != null" >
+        #{cmCodeType,jdbcType=VARCHAR},
+      </if>
+      <if test="cmBackupone != null" >
+        #{cmBackupone,jdbcType=VARCHAR},
+      </if>
+      <if test="cmBackuptwo != null" >
+        #{cmBackuptwo,jdbcType=VARCHAR},
+      </if>
+      <if test="cmBackupthree != null" >
+        #{cmBackupthree,jdbcType=VARCHAR},
+      </if>
+      <if test="cmBackups != null" >
+        #{cmBackups,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gs.domain.PomsCodeManagement" >
+    update poms_code_management
+    <set >
+      <if test="cmParentId != null" >
+        CM_PARENT_ID = #{cmParentId,jdbcType=VARCHAR},
+      </if>
+      <if test="cmName != null" >
+        CM_NAME = #{cmName,jdbcType=VARCHAR},
+      </if>
+      <if test="cmCode != null" >
+        CM_CODE = #{cmCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cmDescription != null" >
+        CM_DESCRIPTION = #{cmDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="cmCodeType != null" >
+        CM_CODE_TYPE = #{cmCodeType,jdbcType=VARCHAR},
+      </if>
+      <if test="cmBackupone != null" >
+        CM_BACKUPONE = #{cmBackupone,jdbcType=VARCHAR},
+      </if>
+      <if test="cmBackuptwo != null" >
+        CM_BACKUPTWO = #{cmBackuptwo,jdbcType=VARCHAR},
+      </if>
+      <if test="cmBackupthree != null" >
+        CM_BACKUPTHREE = #{cmBackupthree,jdbcType=VARCHAR},
+      </if>
+      <if test="cmBackups != null" >
+        CM_BACKUPS = #{cmBackups,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CM_ID = #{cmId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gs.domain.PomsCodeManagement" >
+    update poms_code_management
+    set CM_PARENT_ID = #{cmParentId,jdbcType=VARCHAR},
+      CM_NAME = #{cmName,jdbcType=VARCHAR},
+      CM_CODE = #{cmCode,jdbcType=VARCHAR},
+      CM_DESCRIPTION = #{cmDescription,jdbcType=VARCHAR},
+      CM_CODE_TYPE = #{cmCodeType,jdbcType=VARCHAR},
+      CM_BACKUPONE = #{cmBackupone,jdbcType=VARCHAR},
+      CM_BACKUPTWO = #{cmBackuptwo,jdbcType=VARCHAR},
+      CM_BACKUPTHREE = #{cmBackupthree,jdbcType=VARCHAR},
+      CM_BACKUPS = #{cmBackups,jdbcType=VARCHAR}
+    where CM_ID = #{cmId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gs.mapper.PomsEnergySystemParamMapper">
+  <resultMap id="BaseResultMap" type="com.gs.domain.PomsEnergySystemParam">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="ENERGY_SYSTEM_ID" jdbcType="VARCHAR" property="energySystemId" />
+    <result column="ESP_PARAM_CODE" jdbcType="VARCHAR" property="espParamCode" />
+    <result column="ESP_PARAM_NAME" jdbcType="VARCHAR" property="espParamName" />
+    <result column="ESP_CTD_CODE" jdbcType="VARCHAR" property="espCtdCode" />
+    <result column="ESP_MMP_CODE" jdbcType="VARCHAR" property="espMmpCode" />
+    <result column="ESP_MMP_UNIT" jdbcType="VARCHAR" property="espMmpUnit" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, ENERGY_SYSTEM_ID, ESP_PARAM_NAME, ESP_CTD_CODE, ESP_MMP_CODE, ESP_MMP_UNIT
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from poms_energy_system_param
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectBySystemCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from poms_energy_system_param
+    where ENERGY_SYSTEM_ID = #{systemCode,jdbcType=VARCHAR}
+    order by cast(ESP_PARAM_CODE as signed integer)
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from poms_energy_system_param
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gs.domain.PomsEnergySystemParam">
+    insert into poms_energy_system_param (ID, ENERGY_SYSTEM_ID, ESP_PARAM_NAME, 
+      ESP_CTD_CODE, ESP_MMP_CODE, ESP_MMP_UNIT
+      )
+    values (#{id,jdbcType=VARCHAR}, #{energySystemId,jdbcType=VARCHAR}, #{espParamName,jdbcType=VARCHAR}, 
+      #{espCtdCode,jdbcType=VARCHAR}, #{espMmpCode,jdbcType=VARCHAR}, #{espMmpUnit,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gs.domain.PomsEnergySystemParam">
+    insert into poms_energy_system_param
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="energySystemId != null">
+        ENERGY_SYSTEM_ID,
+      </if>
+      <if test="espParamName != null">
+        ESP_PARAM_NAME,
+      </if>
+      <if test="espCtdCode != null">
+        ESP_CTD_CODE,
+      </if>
+      <if test="espMmpCode != null">
+        ESP_MMP_CODE,
+      </if>
+      <if test="espMmpUnit != null">
+        ESP_MMP_UNIT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="energySystemId != null">
+        #{energySystemId,jdbcType=VARCHAR},
+      </if>
+      <if test="espParamName != null">
+        #{espParamName,jdbcType=VARCHAR},
+      </if>
+      <if test="espCtdCode != null">
+        #{espCtdCode,jdbcType=VARCHAR},
+      </if>
+      <if test="espMmpCode != null">
+        #{espMmpCode,jdbcType=VARCHAR},
+      </if>
+      <if test="espMmpUnit != null">
+        #{espMmpUnit,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gs.domain.PomsEnergySystemParam">
+    update poms_energy_system_param
+    <set>
+      <if test="energySystemId != null">
+        ENERGY_SYSTEM_ID = #{energySystemId,jdbcType=VARCHAR},
+      </if>
+      <if test="espParamName != null">
+        ESP_PARAM_NAME = #{espParamName,jdbcType=VARCHAR},
+      </if>
+      <if test="espCtdCode != null">
+        ESP_CTD_CODE = #{espCtdCode,jdbcType=VARCHAR},
+      </if>
+      <if test="espMmpCode != null">
+        ESP_MMP_CODE = #{espMmpCode,jdbcType=VARCHAR},
+      </if>
+      <if test="espMmpUnit != null">
+        ESP_MMP_UNIT = #{espMmpUnit,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gs.domain.PomsEnergySystemParam">
+    update poms_energy_system_param
+    set ENERGY_SYSTEM_ID = #{energySystemId,jdbcType=VARCHAR},
+      ESP_PARAM_NAME = #{espParamName,jdbcType=VARCHAR},
+      ESP_CTD_CODE = #{espCtdCode,jdbcType=VARCHAR},
+      ESP_MMP_CODE = #{espMmpCode,jdbcType=VARCHAR},
+      ESP_MMP_UNIT = #{espMmpUnit,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

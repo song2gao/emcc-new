@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gs.mapper.PomsConsumptionLoadConfigMapper" >
+  <resultMap id="BaseResultMap" type="com.gs.domain.PomsConsumptionLoadConfig" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="PCLC_EUI_ID" property="pclcEuiId" jdbcType="VARCHAR" />
+    <result column="PCLC_TERMINAL_NAME" property="pclcTerminalName" jdbcType="VARCHAR" />
+    <result column="PCLC_LOOP_NAME" property="pclcLoopName" jdbcType="VARCHAR" />
+    <result column="PCLC_INIT_VALUE" property="pclcInitValue" jdbcType="DECIMAL" />
+    <result column="PCLC_PRODUCT_INDUSTRY" property="pclcProductIndustry" jdbcType="VARCHAR" />
+    <result column="PCLC_PRODUCTION_CODE" property="pclcProductionCode" jdbcType="VARCHAR" />
+    <result column="PCLC_CHECK_PERIOD" property="pclcCheckPeriod" jdbcType="VARCHAR" />
+    <result column="PCLC_NEXT_CHECK_TIME" property="pclcNextCheckTime" jdbcType="VARCHAR" />
+    <result column="PCLC_CALCULATE_BAND" property="pclcCalculateBand" jdbcType="INTEGER" />
+    <result column="PCLC_MODEL" property="pclcModel" jdbcType="VARCHAR" />
+    <result column="PCLC_IFHAS" property="pclcIfhas" jdbcType="INTEGER" />
+    <result column="PCLC_ENERGY_TYPE" property="pclcEnergyType" jdbcType="VARCHAR" />
+    <result column="PCLC_PARENT_ID" property="pclcParentId" jdbcType="VARCHAR" />
+    <result column="PCLC_BACKUPS" property="pclcBackups" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, PCLC_EUI_ID, PCLC_TERMINAL_NAME, PCLC_LOOP_NAME, PCLC_INIT_VALUE, PCLC_PRODUCT_INDUSTRY, 
+    PCLC_PRODUCTION_CODE, PCLC_CHECK_PERIOD, PCLC_NEXT_CHECK_TIME, PCLC_CALCULATE_BAND, 
+    PCLC_MODEL, PCLC_IFHAS, PCLC_ENERGY_TYPE, PCLC_PARENT_ID, PCLC_BACKUPS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_consumption_load_config
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from poms_consumption_load_config
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gs.domain.PomsConsumptionLoadConfig" >
+    insert into poms_consumption_load_config (ID, PCLC_EUI_ID, PCLC_TERMINAL_NAME, 
+      PCLC_LOOP_NAME, PCLC_INIT_VALUE, PCLC_PRODUCT_INDUSTRY, 
+      PCLC_PRODUCTION_CODE, PCLC_CHECK_PERIOD, PCLC_NEXT_CHECK_TIME, 
+      PCLC_CALCULATE_BAND, PCLC_MODEL, PCLC_IFHAS, 
+      PCLC_ENERGY_TYPE, PCLC_PARENT_ID, PCLC_BACKUPS
+      )
+    values (#{id,jdbcType=VARCHAR}, #{pclcEuiId,jdbcType=VARCHAR}, #{pclcTerminalName,jdbcType=VARCHAR}, 
+      #{pclcLoopName,jdbcType=VARCHAR}, #{pclcInitValue,jdbcType=DECIMAL}, #{pclcProductIndustry,jdbcType=VARCHAR}, 
+      #{pclcProductionCode,jdbcType=VARCHAR}, #{pclcCheckPeriod,jdbcType=VARCHAR}, #{pclcNextCheckTime,jdbcType=VARCHAR}, 
+      #{pclcCalculateBand,jdbcType=INTEGER}, #{pclcModel,jdbcType=VARCHAR}, #{pclcIfhas,jdbcType=INTEGER}, 
+      #{pclcEnergyType,jdbcType=VARCHAR}, #{pclcParentId,jdbcType=VARCHAR}, #{pclcBackups,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gs.domain.PomsConsumptionLoadConfig" >
+    insert into poms_consumption_load_config
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="pclcEuiId != null" >
+        PCLC_EUI_ID,
+      </if>
+      <if test="pclcTerminalName != null" >
+        PCLC_TERMINAL_NAME,
+      </if>
+      <if test="pclcLoopName != null" >
+        PCLC_LOOP_NAME,
+      </if>
+      <if test="pclcInitValue != null" >
+        PCLC_INIT_VALUE,
+      </if>
+      <if test="pclcProductIndustry != null" >
+        PCLC_PRODUCT_INDUSTRY,
+      </if>
+      <if test="pclcProductionCode != null" >
+        PCLC_PRODUCTION_CODE,
+      </if>
+      <if test="pclcCheckPeriod != null" >
+        PCLC_CHECK_PERIOD,
+      </if>
+      <if test="pclcNextCheckTime != null" >
+        PCLC_NEXT_CHECK_TIME,
+      </if>
+      <if test="pclcCalculateBand != null" >
+        PCLC_CALCULATE_BAND,
+      </if>
+      <if test="pclcModel != null" >
+        PCLC_MODEL,
+      </if>
+      <if test="pclcIfhas != null" >
+        PCLC_IFHAS,
+      </if>
+      <if test="pclcEnergyType != null" >
+        PCLC_ENERGY_TYPE,
+      </if>
+      <if test="pclcParentId != null" >
+        PCLC_PARENT_ID,
+      </if>
+      <if test="pclcBackups != null" >
+        PCLC_BACKUPS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="pclcEuiId != null" >
+        #{pclcEuiId,jdbcType=VARCHAR},
+      </if>
+      <if test="pclcTerminalName != null" >
+        #{pclcTerminalName,jdbcType=VARCHAR},
+      </if>
+      <if test="pclcLoopName != null" >
+        #{pclcLoopName,jdbcType=VARCHAR},
+      </if>
+      <if test="pclcInitValue != null" >
+        #{pclcInitValue,jdbcType=DECIMAL},
+      </if>
+      <if test="pclcProductIndustry != null" >
+        #{pclcProductIndustry,jdbcType=VARCHAR},
+      </if>
+      <if test="pclcProductionCode != null" >
+        #{pclcProductionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="pclcCheckPeriod != null" >
+        #{pclcCheckPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="pclcNextCheckTime != null" >
+        #{pclcNextCheckTime,jdbcType=VARCHAR},
+      </if>
+      <if test="pclcCalculateBand != null" >
+        #{pclcCalculateBand,jdbcType=INTEGER},
+      </if>
+      <if test="pclcModel != null" >
+        #{pclcModel,jdbcType=VARCHAR},
+      </if>
+      <if test="pclcIfhas != null" >
+        #{pclcIfhas,jdbcType=INTEGER},
+      </if>
+      <if test="pclcEnergyType != null" >
+        #{pclcEnergyType,jdbcType=VARCHAR},
+      </if>
+      <if test="pclcParentId != null" >
+        #{pclcParentId,jdbcType=VARCHAR},
+      </if>
+      <if test="pclcBackups != null" >
+        #{pclcBackups,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gs.domain.PomsConsumptionLoadConfig" >
+    update poms_consumption_load_config
+    <set >
+      <if test="pclcEuiId != null" >
+        PCLC_EUI_ID = #{pclcEuiId,jdbcType=VARCHAR},
+      </if>
+      <if test="pclcTerminalName != null" >
+        PCLC_TERMINAL_NAME = #{pclcTerminalName,jdbcType=VARCHAR},
+      </if>
+      <if test="pclcLoopName != null" >
+        PCLC_LOOP_NAME = #{pclcLoopName,jdbcType=VARCHAR},
+      </if>
+      <if test="pclcInitValue != null" >
+        PCLC_INIT_VALUE = #{pclcInitValue,jdbcType=DECIMAL},
+      </if>
+      <if test="pclcProductIndustry != null" >
+        PCLC_PRODUCT_INDUSTRY = #{pclcProductIndustry,jdbcType=VARCHAR},
+      </if>
+      <if test="pclcProductionCode != null" >
+        PCLC_PRODUCTION_CODE = #{pclcProductionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="pclcCheckPeriod != null" >
+        PCLC_CHECK_PERIOD = #{pclcCheckPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="pclcNextCheckTime != null" >
+        PCLC_NEXT_CHECK_TIME = #{pclcNextCheckTime,jdbcType=VARCHAR},
+      </if>
+      <if test="pclcCalculateBand != null" >
+        PCLC_CALCULATE_BAND = #{pclcCalculateBand,jdbcType=INTEGER},
+      </if>
+      <if test="pclcModel != null" >
+        PCLC_MODEL = #{pclcModel,jdbcType=VARCHAR},
+      </if>
+      <if test="pclcIfhas != null" >
+        PCLC_IFHAS = #{pclcIfhas,jdbcType=INTEGER},
+      </if>
+      <if test="pclcEnergyType != null" >
+        PCLC_ENERGY_TYPE = #{pclcEnergyType,jdbcType=VARCHAR},
+      </if>
+      <if test="pclcParentId != null" >
+        PCLC_PARENT_ID = #{pclcParentId,jdbcType=VARCHAR},
+      </if>
+      <if test="pclcBackups != null" >
+        PCLC_BACKUPS = #{pclcBackups,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gs.domain.PomsConsumptionLoadConfig" >
+    update poms_consumption_load_config
+    set PCLC_EUI_ID = #{pclcEuiId,jdbcType=VARCHAR},
+      PCLC_TERMINAL_NAME = #{pclcTerminalName,jdbcType=VARCHAR},
+      PCLC_LOOP_NAME = #{pclcLoopName,jdbcType=VARCHAR},
+      PCLC_INIT_VALUE = #{pclcInitValue,jdbcType=DECIMAL},
+      PCLC_PRODUCT_INDUSTRY = #{pclcProductIndustry,jdbcType=VARCHAR},
+      PCLC_PRODUCTION_CODE = #{pclcProductionCode,jdbcType=VARCHAR},
+      PCLC_CHECK_PERIOD = #{pclcCheckPeriod,jdbcType=VARCHAR},
+      PCLC_NEXT_CHECK_TIME = #{pclcNextCheckTime,jdbcType=VARCHAR},
+      PCLC_CALCULATE_BAND = #{pclcCalculateBand,jdbcType=INTEGER},
+      PCLC_MODEL = #{pclcModel,jdbcType=VARCHAR},
+      PCLC_IFHAS = #{pclcIfhas,jdbcType=INTEGER},
+      PCLC_ENERGY_TYPE = #{pclcEnergyType,jdbcType=VARCHAR},
+      PCLC_PARENT_ID = #{pclcParentId,jdbcType=VARCHAR},
+      PCLC_BACKUPS = #{pclcBackups,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

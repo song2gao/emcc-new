@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gs.mapper.EsmspEnterpriseDataAnalyseMonthMapper" >
+  <resultMap id="BaseResultMap" type="com.gs.domain.EsmspEnterpriseDataAnalyseMonth" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="EUI_CODE" property="euiCode" jdbcType="VARCHAR" />
+    <result column="INDUSTRY_CODE" property="industryCode" jdbcType="VARCHAR" />
+    <result column="GOVERNMENT_DISTRICT_CODE" property="governmentDistrictCode" jdbcType="VARCHAR" />
+    <result column="ENERGY_CODE" property="energyCode" jdbcType="VARCHAR" />
+    <result column="DATE_CODE" property="dateCode" jdbcType="VARCHAR" />
+    <result column="MMP_CODE" property="mmpCode" jdbcType="VARCHAR" />
+    <result column="STATISTIC_VALUE" property="statisticValue" jdbcType="DECIMAL" />
+    <result column="TONGBI_VARRIABLR_VALUE" property="tongbiVarriablrValue" jdbcType="DECIMAL" />
+    <result column="TONGBI_VARRIABLR_RATE" property="tongbiVarriablrRate" jdbcType="DECIMAL" />
+    <result column="HUANBI_VARRIABLE_VALUE" property="huanbiVarriableValue" jdbcType="DECIMAL" />
+    <result column="HUANBI_VARRIABLE_RATE" property="huanbiVarriableRate" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, EUI_CODE, INDUSTRY_CODE, GOVERNMENT_DISTRICT_CODE, ENERGY_CODE, DATE_CODE, MMP_CODE, 
+    STATISTIC_VALUE, TONGBI_VARRIABLR_VALUE, TONGBI_VARRIABLR_RATE, HUANBI_VARRIABLE_VALUE, 
+    HUANBI_VARRIABLE_RATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from esmsp_enterprise_data_analyse_month
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from esmsp_enterprise_data_analyse_month
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gs.domain.EsmspEnterpriseDataAnalyseMonth" >
+    insert into esmsp_enterprise_data_analyse_month (ID, EUI_CODE, INDUSTRY_CODE, 
+      GOVERNMENT_DISTRICT_CODE, ENERGY_CODE, DATE_CODE, 
+      MMP_CODE, STATISTIC_VALUE, TONGBI_VARRIABLR_VALUE, 
+      TONGBI_VARRIABLR_RATE, HUANBI_VARRIABLE_VALUE, 
+      HUANBI_VARRIABLE_RATE)
+    values (#{id,jdbcType=VARCHAR}, #{euiCode,jdbcType=VARCHAR}, #{industryCode,jdbcType=VARCHAR}, 
+      #{governmentDistrictCode,jdbcType=VARCHAR}, #{energyCode,jdbcType=VARCHAR}, #{dateCode,jdbcType=VARCHAR}, 
+      #{mmpCode,jdbcType=VARCHAR}, #{statisticValue,jdbcType=DECIMAL}, #{tongbiVarriablrValue,jdbcType=DECIMAL}, 
+      #{tongbiVarriablrRate,jdbcType=DECIMAL}, #{huanbiVarriableValue,jdbcType=DECIMAL}, 
+      #{huanbiVarriableRate,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gs.domain.EsmspEnterpriseDataAnalyseMonth" >
+    insert into esmsp_enterprise_data_analyse_month
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="euiCode != null" >
+        EUI_CODE,
+      </if>
+      <if test="industryCode != null" >
+        INDUSTRY_CODE,
+      </if>
+      <if test="governmentDistrictCode != null" >
+        GOVERNMENT_DISTRICT_CODE,
+      </if>
+      <if test="energyCode != null" >
+        ENERGY_CODE,
+      </if>
+      <if test="dateCode != null" >
+        DATE_CODE,
+      </if>
+      <if test="mmpCode != null" >
+        MMP_CODE,
+      </if>
+      <if test="statisticValue != null" >
+        STATISTIC_VALUE,
+      </if>
+      <if test="tongbiVarriablrValue != null" >
+        TONGBI_VARRIABLR_VALUE,
+      </if>
+      <if test="tongbiVarriablrRate != null" >
+        TONGBI_VARRIABLR_RATE,
+      </if>
+      <if test="huanbiVarriableValue != null" >
+        HUANBI_VARRIABLE_VALUE,
+      </if>
+      <if test="huanbiVarriableRate != null" >
+        HUANBI_VARRIABLE_RATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="euiCode != null" >
+        #{euiCode,jdbcType=VARCHAR},
+      </if>
+      <if test="industryCode != null" >
+        #{industryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="governmentDistrictCode != null" >
+        #{governmentDistrictCode,jdbcType=VARCHAR},
+      </if>
+      <if test="energyCode != null" >
+        #{energyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dateCode != null" >
+        #{dateCode,jdbcType=VARCHAR},
+      </if>
+      <if test="mmpCode != null" >
+        #{mmpCode,jdbcType=VARCHAR},
+      </if>
+      <if test="statisticValue != null" >
+        #{statisticValue,jdbcType=DECIMAL},
+      </if>
+      <if test="tongbiVarriablrValue != null" >
+        #{tongbiVarriablrValue,jdbcType=DECIMAL},
+      </if>
+      <if test="tongbiVarriablrRate != null" >
+        #{tongbiVarriablrRate,jdbcType=DECIMAL},
+      </if>
+      <if test="huanbiVarriableValue != null" >
+        #{huanbiVarriableValue,jdbcType=DECIMAL},
+      </if>
+      <if test="huanbiVarriableRate != null" >
+        #{huanbiVarriableRate,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gs.domain.EsmspEnterpriseDataAnalyseMonth" >
+    update esmsp_enterprise_data_analyse_month
+    <set >
+      <if test="euiCode != null" >
+        EUI_CODE = #{euiCode,jdbcType=VARCHAR},
+      </if>
+      <if test="industryCode != null" >
+        INDUSTRY_CODE = #{industryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="governmentDistrictCode != null" >
+        GOVERNMENT_DISTRICT_CODE = #{governmentDistrictCode,jdbcType=VARCHAR},
+      </if>
+      <if test="energyCode != null" >
+        ENERGY_CODE = #{energyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dateCode != null" >
+        DATE_CODE = #{dateCode,jdbcType=VARCHAR},
+      </if>
+      <if test="mmpCode != null" >
+        MMP_CODE = #{mmpCode,jdbcType=VARCHAR},
+      </if>
+      <if test="statisticValue != null" >
+        STATISTIC_VALUE = #{statisticValue,jdbcType=DECIMAL},
+      </if>
+      <if test="tongbiVarriablrValue != null" >
+        TONGBI_VARRIABLR_VALUE = #{tongbiVarriablrValue,jdbcType=DECIMAL},
+      </if>
+      <if test="tongbiVarriablrRate != null" >
+        TONGBI_VARRIABLR_RATE = #{tongbiVarriablrRate,jdbcType=DECIMAL},
+      </if>
+      <if test="huanbiVarriableValue != null" >
+        HUANBI_VARRIABLE_VALUE = #{huanbiVarriableValue,jdbcType=DECIMAL},
+      </if>
+      <if test="huanbiVarriableRate != null" >
+        HUANBI_VARRIABLE_RATE = #{huanbiVarriableRate,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gs.domain.EsmspEnterpriseDataAnalyseMonth" >
+    update esmsp_enterprise_data_analyse_month
+    set EUI_CODE = #{euiCode,jdbcType=VARCHAR},
+      INDUSTRY_CODE = #{industryCode,jdbcType=VARCHAR},
+      GOVERNMENT_DISTRICT_CODE = #{governmentDistrictCode,jdbcType=VARCHAR},
+      ENERGY_CODE = #{energyCode,jdbcType=VARCHAR},
+      DATE_CODE = #{dateCode,jdbcType=VARCHAR},
+      MMP_CODE = #{mmpCode,jdbcType=VARCHAR},
+      STATISTIC_VALUE = #{statisticValue,jdbcType=DECIMAL},
+      TONGBI_VARRIABLR_VALUE = #{tongbiVarriablrValue,jdbcType=DECIMAL},
+      TONGBI_VARRIABLR_RATE = #{tongbiVarriablrRate,jdbcType=DECIMAL},
+      HUANBI_VARRIABLE_VALUE = #{huanbiVarriableValue,jdbcType=DECIMAL},
+      HUANBI_VARRIABLE_RATE = #{huanbiVarriableRate,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gs.mapper.PomsEnergyUsingFacilitiesMapper" >
+  <resultMap id="BaseResultMap" type="com.gs.domain.PomsEnergyUsingFacilities" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="ENERGY_SYSTEM_ID" property="energySystemId" jdbcType="VARCHAR" />
+    <result column="FACILITIES_NAME" property="facilitiesName" jdbcType="VARCHAR" />
+    <result column="SYSTEM_MODEL_ID" property="systemModelId" jdbcType="VARCHAR" />
+    <result column="FUF_BACKUPS" property="fufBackups" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, ENERGY_SYSTEM_ID, FACILITIES_NAME, SYSTEM_MODEL_ID, FUF_BACKUPS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_energy_using_facilities
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from poms_energy_using_facilities
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gs.domain.PomsEnergyUsingFacilities" >
+    insert into poms_energy_using_facilities (ID, ENERGY_SYSTEM_ID, FACILITIES_NAME, 
+      SYSTEM_MODEL_ID, FUF_BACKUPS)
+    values (#{id,jdbcType=VARCHAR}, #{energySystemId,jdbcType=VARCHAR}, #{facilitiesName,jdbcType=VARCHAR}, 
+      #{systemModelId,jdbcType=VARCHAR}, #{fufBackups,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gs.domain.PomsEnergyUsingFacilities" >
+    insert into poms_energy_using_facilities
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="energySystemId != null" >
+        ENERGY_SYSTEM_ID,
+      </if>
+      <if test="facilitiesName != null" >
+        FACILITIES_NAME,
+      </if>
+      <if test="systemModelId != null" >
+        SYSTEM_MODEL_ID,
+      </if>
+      <if test="fufBackups != null" >
+        FUF_BACKUPS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="energySystemId != null" >
+        #{energySystemId,jdbcType=VARCHAR},
+      </if>
+      <if test="facilitiesName != null" >
+        #{facilitiesName,jdbcType=VARCHAR},
+      </if>
+      <if test="systemModelId != null" >
+        #{systemModelId,jdbcType=VARCHAR},
+      </if>
+      <if test="fufBackups != null" >
+        #{fufBackups,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gs.domain.PomsEnergyUsingFacilities" >
+    update poms_energy_using_facilities
+    <set >
+      <if test="energySystemId != null" >
+        ENERGY_SYSTEM_ID = #{energySystemId,jdbcType=VARCHAR},
+      </if>
+      <if test="facilitiesName != null" >
+        FACILITIES_NAME = #{facilitiesName,jdbcType=VARCHAR},
+      </if>
+      <if test="systemModelId != null" >
+        SYSTEM_MODEL_ID = #{systemModelId,jdbcType=VARCHAR},
+      </if>
+      <if test="fufBackups != null" >
+        FUF_BACKUPS = #{fufBackups,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gs.domain.PomsEnergyUsingFacilities" >
+    update poms_energy_using_facilities
+    set ENERGY_SYSTEM_ID = #{energySystemId,jdbcType=VARCHAR},
+      FACILITIES_NAME = #{facilitiesName,jdbcType=VARCHAR},
+      SYSTEM_MODEL_ID = #{systemModelId,jdbcType=VARCHAR},
+      FUF_BACKUPS = #{fufBackups,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

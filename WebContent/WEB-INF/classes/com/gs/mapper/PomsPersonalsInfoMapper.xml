@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gs.mapper.PomsPersonalsInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.gs.domain.PomsPersonalsInfo" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="EUI_ID" property="euiId" jdbcType="VARCHAR" />
+    <result column="PI_CODES" property="piCodes" jdbcType="VARCHAR" />
+    <result column="PI_NAME" property="piName" jdbcType="VARCHAR" />
+    <result column="PI_SEX" property="piSex" jdbcType="VARCHAR" />
+    <result column="PI_AGE" property="piAge" jdbcType="BIGINT" />
+    <result column="PI_IDCARDS" property="piIdcards" jdbcType="VARCHAR" />
+    <result column="PI_EMAIL" property="piEmail" jdbcType="VARCHAR" />
+    <result column="PI_MOBILE" property="piMobile" jdbcType="VARCHAR" />
+    <result column="PL_LOCATION" property="plLocation" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, EUI_ID, PI_CODES, PI_NAME, PI_SEX, PI_AGE, PI_IDCARDS, PI_EMAIL, PI_MOBILE, PL_LOCATION
+  </sql>
+  
+  <!-- 根据 实体code 中的某个字段 条件查询所有  -->
+  <select id="selectCodesPage" resultMap="BaseResultMap" parameterType="com.gs.domain.PomsPersonalsInfo" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_personals_info
+    where 1=1
+    <if	test="person.piName!=null and person.piName!=''">
+        and PI_NAME like '%${person.piName}%'
+    </if>
+    <if	test="person.piCodes!=null and person.piCodes!=''">
+        and PI_CODES like '%${person.piCodes}%'
+    </if>
+    <if	test="pageSize!=null and pageSize!=0 and pageBegin!=null">
+      	and EUI_ID=#{person.euiId} limit #{pageBegin},#{pageSize}
+     </if>
+  </select>
+  
+  <!-- 查询总条数 -->
+  <select id="getCount" parameterType="java.lang.String" resultType="java.lang.Integer">
+	select count(*) from poms_personals_info where EUI_ID=#{unitid}
+  </select>
+  
+  
+  <select id="selectByAllPage" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_personals_info where EUI_ID=#{unitid}  limit #{i},#{pageSize}
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_personals_info
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from poms_personals_info
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gs.domain.PomsPersonalsInfo" >
+    insert into poms_personals_info (ID, EUI_ID, PI_CODES, 
+      PI_NAME, PI_SEX, PI_AGE, 
+      PI_IDCARDS, PI_EMAIL, PI_MOBILE, 
+      PL_LOCATION)
+    values (#{id,jdbcType=VARCHAR}, #{euiId,jdbcType=VARCHAR}, #{piCodes,jdbcType=VARCHAR}, 
+      #{piName,jdbcType=VARCHAR}, #{piSex,jdbcType=VARCHAR}, #{piAge,jdbcType=BIGINT}, 
+      #{piIdcards,jdbcType=VARCHAR}, #{piEmail,jdbcType=VARCHAR}, #{piMobile,jdbcType=VARCHAR}, 
+      #{plLocation,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gs.domain.PomsPersonalsInfo" >
+    insert into poms_personals_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="euiId != null" >
+        EUI_ID,
+      </if>
+      <if test="piCodes != null" >
+        PI_CODES,
+      </if>
+      <if test="piName != null" >
+        PI_NAME,
+      </if>
+      <if test="piSex != null" >
+        PI_SEX,
+      </if>
+      <if test="piAge != null" >
+        PI_AGE,
+      </if>
+      <if test="piIdcards != null" >
+        PI_IDCARDS,
+      </if>
+      <if test="piEmail != null" >
+        PI_EMAIL,
+      </if>
+      <if test="piMobile != null" >
+        PI_MOBILE,
+      </if>
+      <if test="plLocation != null" >
+        PL_LOCATION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="euiId != null" >
+        #{euiId,jdbcType=VARCHAR},
+      </if>
+      <if test="piCodes != null" >
+        #{piCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="piName != null" >
+        #{piName,jdbcType=VARCHAR},
+      </if>
+      <if test="piSex != null" >
+        #{piSex,jdbcType=VARCHAR},
+      </if>
+      <if test="piAge != null" >
+        #{piAge,jdbcType=BIGINT},
+      </if>
+      <if test="piIdcards != null" >
+        #{piIdcards,jdbcType=VARCHAR},
+      </if>
+      <if test="piEmail != null" >
+        #{piEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="piMobile != null" >
+        #{piMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="plLocation != null" >
+        #{plLocation,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gs.domain.PomsPersonalsInfo" >
+    update poms_personals_info
+    <set >
+      <if test="euiId != null" >
+        EUI_ID = #{euiId,jdbcType=VARCHAR},
+      </if>
+      <if test="piCodes != null" >
+        PI_CODES = #{piCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="piName != null" >
+        PI_NAME = #{piName,jdbcType=VARCHAR},
+      </if>
+      <if test="piSex != null" >
+        PI_SEX = #{piSex,jdbcType=VARCHAR},
+      </if>
+      <if test="piAge != null" >
+        PI_AGE = #{piAge,jdbcType=BIGINT},
+      </if>
+      <if test="piIdcards != null" >
+        PI_IDCARDS = #{piIdcards,jdbcType=VARCHAR},
+      </if>
+      <if test="piEmail != null" >
+        PI_EMAIL = #{piEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="piMobile != null" >
+        PI_MOBILE = #{piMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="plLocation != null" >
+        PL_LOCATION = #{plLocation,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gs.domain.PomsPersonalsInfo" >
+    update poms_personals_info
+    set EUI_ID = #{euiId,jdbcType=VARCHAR},
+      PI_CODES = #{piCodes,jdbcType=VARCHAR},
+      PI_NAME = #{piName,jdbcType=VARCHAR},
+      PI_SEX = #{piSex,jdbcType=VARCHAR},
+      PI_AGE = #{piAge,jdbcType=BIGINT},
+      PI_IDCARDS = #{piIdcards,jdbcType=VARCHAR},
+      PI_EMAIL = #{piEmail,jdbcType=VARCHAR},
+      PI_MOBILE = #{piMobile,jdbcType=VARCHAR},
+      PL_LOCATION = #{plLocation,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

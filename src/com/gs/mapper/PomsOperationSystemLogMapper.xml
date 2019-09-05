@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gs.mapper.PomsOperationSystemLogMapper" >
+  <resultMap id="BaseResultMap" type="com.gs.domain.PomsOperationSystemLog" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="OSL_BUG_TIME" property="oslBugTime" jdbcType="VARCHAR" />
+    <result column="OSL_BUG_CONTENT" property="oslBugContent" jdbcType="VARCHAR" />
+    <result column="OSL_BUG_CODES" property="oslBugCodes" jdbcType="VARCHAR" />
+    <result column="OSL_BUG_BAND" property="oslBugBand" jdbcType="VARCHAR" />
+    <result column="OSL_ISSURE" property="oslIssure" jdbcType="VARCHAR" />
+    <result column="OSL_BACKUPS" property="oslBackups" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, OSL_BUG_TIME, OSL_BUG_CONTENT, OSL_BUG_CODES, OSL_BUG_BAND, OSL_ISSURE, OSL_BACKUPS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_operation_system_log
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from poms_operation_system_log
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gs.domain.PomsOperationSystemLog" >
+    insert into poms_operation_system_log (ID, OSL_BUG_TIME, OSL_BUG_CONTENT, 
+      OSL_BUG_CODES, OSL_BUG_BAND, OSL_ISSURE, 
+      OSL_BACKUPS)
+    values (#{id,jdbcType=VARCHAR}, #{oslBugTime,jdbcType=VARCHAR}, #{oslBugContent,jdbcType=VARCHAR}, 
+      #{oslBugCodes,jdbcType=VARCHAR}, #{oslBugBand,jdbcType=VARCHAR}, #{oslIssure,jdbcType=VARCHAR}, 
+      #{oslBackups,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gs.domain.PomsOperationSystemLog" >
+    insert into poms_operation_system_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="oslBugTime != null" >
+        OSL_BUG_TIME,
+      </if>
+      <if test="oslBugContent != null" >
+        OSL_BUG_CONTENT,
+      </if>
+      <if test="oslBugCodes != null" >
+        OSL_BUG_CODES,
+      </if>
+      <if test="oslBugBand != null" >
+        OSL_BUG_BAND,
+      </if>
+      <if test="oslIssure != null" >
+        OSL_ISSURE,
+      </if>
+      <if test="oslBackups != null" >
+        OSL_BACKUPS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="oslBugTime != null" >
+        #{oslBugTime,jdbcType=VARCHAR},
+      </if>
+      <if test="oslBugContent != null" >
+        #{oslBugContent,jdbcType=VARCHAR},
+      </if>
+      <if test="oslBugCodes != null" >
+        #{oslBugCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="oslBugBand != null" >
+        #{oslBugBand,jdbcType=VARCHAR},
+      </if>
+      <if test="oslIssure != null" >
+        #{oslIssure,jdbcType=VARCHAR},
+      </if>
+      <if test="oslBackups != null" >
+        #{oslBackups,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gs.domain.PomsOperationSystemLog" >
+    update poms_operation_system_log
+    <set >
+      <if test="oslBugTime != null" >
+        OSL_BUG_TIME = #{oslBugTime,jdbcType=VARCHAR},
+      </if>
+      <if test="oslBugContent != null" >
+        OSL_BUG_CONTENT = #{oslBugContent,jdbcType=VARCHAR},
+      </if>
+      <if test="oslBugCodes != null" >
+        OSL_BUG_CODES = #{oslBugCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="oslBugBand != null" >
+        OSL_BUG_BAND = #{oslBugBand,jdbcType=VARCHAR},
+      </if>
+      <if test="oslIssure != null" >
+        OSL_ISSURE = #{oslIssure,jdbcType=VARCHAR},
+      </if>
+      <if test="oslBackups != null" >
+        OSL_BACKUPS = #{oslBackups,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gs.domain.PomsOperationSystemLog" >
+    update poms_operation_system_log
+    set OSL_BUG_TIME = #{oslBugTime,jdbcType=VARCHAR},
+      OSL_BUG_CONTENT = #{oslBugContent,jdbcType=VARCHAR},
+      OSL_BUG_CODES = #{oslBugCodes,jdbcType=VARCHAR},
+      OSL_BUG_BAND = #{oslBugBand,jdbcType=VARCHAR},
+      OSL_ISSURE = #{oslIssure,jdbcType=VARCHAR},
+      OSL_BACKUPS = #{oslBackups,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

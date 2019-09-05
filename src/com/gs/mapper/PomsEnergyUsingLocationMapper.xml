@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gs.mapper.PomsEnergyUsingLocationMapper" >
+  <resultMap id="BaseResultMap" type="com.gs.domain.PomsEnergyUsingLocation" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="EUI_ID" property="euiId" jdbcType="VARCHAR" />
+    <result column="EUL_NAMES" property="eulNames" jdbcType="VARCHAR" />
+    <result column="EUL_ORDERS" property="eulOrders" jdbcType="VARCHAR" />
+    <result column="EUL_BACKUPS" property="eulBackups" jdbcType="VARCHAR" />
+    <result column="EUL_PARENT_ID" property="eulParentId" jdbcType="VARCHAR" />
+    <result column="EUL_HOLD_PERSONS" property="eulHoldPersons" jdbcType="INTEGER" />
+    <result column="EUL_HOLD_AREA" property="eulHoldArea" jdbcType="VARCHAR" />
+    <result column="EUL_HEIGHT" property="eulHeight" jdbcType="VARCHAR" />
+    <result column="EUL_FLOOR" property="eulFloor" jdbcType="VARCHAR" />
+    <result column="EUL_FLOOR_HEIGHT" property="eulFloorHeight" jdbcType="VARCHAR" />
+    <result column="EUL_FACILITY" property="eulFacility" jdbcType="VARCHAR" />
+    <result column="EUL_SITE_AREA" property="eulSiteArea" jdbcType="VARCHAR" />
+    <result column="EUL_IMG" property="eulImg" jdbcType="VARCHAR" />
+    <result column="EUI_CODE" property="euiCode" jdbcType="VARCHAR" />
+    <result column="EUL_longitude" property="eulLongitude" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, EUI_ID,EUL_longitude,EUL_IMG, EUL_NAMES, EUL_ORDERS, EUL_BACKUPS, EUL_PARENT_ID, EUL_HOLD_PERSONS,
+    EUL_HOLD_AREA, EUI_CODE,EUL_HEIGHT,EUL_FLOOR,EUL_FLOOR_HEIGHT,EUL_FACILITY,EUL_SITE_AREA
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_energy_using_location
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByPId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from poms_energy_using_location
+    where 1=1
+    <if test="pid != null" >
+      and EUL_PARENT_ID = #{pid}
+    </if>
+      order by EUL_ORDERS
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from poms_energy_using_location
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gs.domain.PomsEnergyUsingLocation" >
+    insert into poms_energy_using_location (ID, EUI_ID, EUL_NAMES, 
+      EUL_ORDERS, EUL_BACKUPS, EUL_PARENT_ID, 
+      EUL_HOLD_PERSONS, EUL_HOLD_AREA, EUI_CODE
+      )
+    values (#{id,jdbcType=VARCHAR}, #{euiId,jdbcType=VARCHAR}, #{eulNames,jdbcType=VARCHAR}, 
+      #{eulOrders,jdbcType=VARCHAR}, #{eulBackups,jdbcType=VARCHAR}, #{eulParentId,jdbcType=VARCHAR}, 
+      #{eulHoldPersons,jdbcType=INTEGER}, #{eulHoldArea,jdbcType=DECIMAL}, #{euiCode,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gs.domain.PomsEnergyUsingLocation" >
+    insert into poms_energy_using_location
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="euiId != null" >
+        EUI_ID,
+      </if>
+      <if test="eulNames != null" >
+        EUL_NAMES,
+      </if>
+      <if test="eulOrders != null" >
+        EUL_ORDERS,
+      </if>
+      <if test="eulBackups != null" >
+        EUL_BACKUPS,
+      </if>
+      <if test="eulParentId != null" >
+        EUL_PARENT_ID,
+      </if>
+      <if test="eulHoldPersons != null" >
+        EUL_HOLD_PERSONS,
+      </if>
+      <if test="eulHoldArea != null" >
+        EUL_HOLD_AREA,
+      </if>
+      <if test="euiCode != null" >
+        EUI_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="euiId != null" >
+        #{euiId,jdbcType=VARCHAR},
+      </if>
+      <if test="eulNames != null" >
+        #{eulNames,jdbcType=VARCHAR},
+      </if>
+      <if test="eulOrders != null" >
+        #{eulOrders,jdbcType=VARCHAR},
+      </if>
+      <if test="eulBackups != null" >
+        #{eulBackups,jdbcType=VARCHAR},
+      </if>
+      <if test="eulParentId != null" >
+        #{eulParentId,jdbcType=VARCHAR},
+      </if>
+      <if test="eulHoldPersons != null" >
+        #{eulHoldPersons,jdbcType=INTEGER},
+      </if>
+      <if test="eulHoldArea != null" >
+        #{eulHoldArea,jdbcType=DECIMAL},
+      </if>
+      <if test="euiCode != null" >
+        #{euiCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gs.domain.PomsEnergyUsingLocation" >
+    update poms_energy_using_location
+    <set >
+      <if test="euiId != null" >
+        EUI_ID = #{euiId,jdbcType=VARCHAR},
+      </if>
+      <if test="eulNames != null" >
+        EUL_NAMES = #{eulNames,jdbcType=VARCHAR},
+      </if>
+      <if test="eulOrders != null" >
+        EUL_ORDERS = #{eulOrders,jdbcType=VARCHAR},
+      </if>
+      <if test="eulBackups != null" >
+        EUL_BACKUPS = #{eulBackups,jdbcType=VARCHAR},
+      </if>
+      <if test="eulParentId != null" >
+        EUL_PARENT_ID = #{eulParentId,jdbcType=VARCHAR},
+      </if>
+      <if test="eulHoldPersons != null" >
+        EUL_HOLD_PERSONS = #{eulHoldPersons,jdbcType=INTEGER},
+      </if>
+      <if test="eulHoldArea != null" >
+        EUL_HOLD_AREA = #{eulHoldArea,jdbcType=DECIMAL},
+      </if>
+      <if test="euiCode != null" >
+        EUI_CODE = #{euiCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gs.domain.PomsEnergyUsingLocation" >
+    update poms_energy_using_location
+    set EUI_ID = #{euiId,jdbcType=VARCHAR},
+      EUL_NAMES = #{eulNames,jdbcType=VARCHAR},
+      EUL_ORDERS = #{eulOrders,jdbcType=VARCHAR},
+      EUL_BACKUPS = #{eulBackups,jdbcType=VARCHAR},
+      EUL_PARENT_ID = #{eulParentId,jdbcType=VARCHAR},
+      EUL_HOLD_PERSONS = #{eulHoldPersons,jdbcType=INTEGER},
+      EUL_HOLD_AREA = #{eulHoldArea,jdbcType=DECIMAL},
+      EUI_CODE = #{euiCode,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

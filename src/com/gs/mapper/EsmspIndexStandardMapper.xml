@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gs.mapper.EsmspIndexStandardMapper" >
+  <resultMap id="BaseResultMap" type="com.gs.domain.EsmspIndexStandard" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="INDEX_CODE" property="indexCode" jdbcType="INTEGER" />
+    <result column="INDEX_NAME" property="indexName" jdbcType="VARCHAR" />
+    <result column="INDEX_UNIT_CODE" property="indexUnitCode" jdbcType="VARCHAR" />
+    <result column="APPLICATION_TYPE" property="applicationType" jdbcType="INTEGER" />
+    <result column="APPLICATION_CODE" property="applicationCode" jdbcType="VARCHAR" />
+    <result column="STANDARD_VALUE1" property="standardValue1" jdbcType="DECIMAL" />
+    <result column="STANDARD_VALUE2" property="standardValue2" jdbcType="DECIMAL" />
+    <result column="STANDARD_VALUE3" property="standardValue3" jdbcType="DECIMAL" />
+    <result column="STANDARD_VALUE4" property="standardValue4" jdbcType="DECIMAL" />
+    <result column="STANDARD_VALUE5" property="standardValue5" jdbcType="DECIMAL" />
+    <result column="INDEX_PUBLISHTIME" property="indexPublishtime" jdbcType="VARCHAR" />
+    <result column="INDEX_PUBLISHPERSON" property="indexPublishperson" jdbcType="VARCHAR" />
+    <result column="INDEX_PUBLISHTAG" property="indexPublishtag" jdbcType="INTEGER" />
+    <result column="Key_BACKUPS" property="keyBackups" jdbcType="VARCHAR" />
+    <result column="INDEX_CREATIME" property="indexCreatime" jdbcType="VARCHAR" />
+    <result column="INDEX_CREATPERSON" property="indexCreatperson" jdbcType="VARCHAR" />
+    <result column="GETVALUE_SQL" property="getvalueSql" jdbcType="VARCHAR" />
+    <result column="STANDARD_LEVEL" property="standardLevel" jdbcType="INTEGER" />
+    <result column="ASSESS_ID" property="assessId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, INDEX_CODE, INDEX_NAME, INDEX_UNIT_CODE, APPLICATION_TYPE, APPLICATION_CODE, 
+    STANDARD_VALUE1, STANDARD_VALUE2, STANDARD_VALUE3, STANDARD_VALUE4, STANDARD_VALUE5, 
+    INDEX_PUBLISHTIME, INDEX_PUBLISHPERSON, INDEX_PUBLISHTAG, Key_BACKUPS, INDEX_CREATIME, 
+    INDEX_CREATPERSON, GETVALUE_SQL, STANDARD_LEVEL, ASSESS_ID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from esmsp_index_standard
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from esmsp_index_standard
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gs.domain.EsmspIndexStandard" >
+    insert into esmsp_index_standard (ID, INDEX_CODE, INDEX_NAME, 
+      INDEX_UNIT_CODE, APPLICATION_TYPE, APPLICATION_CODE, 
+      STANDARD_VALUE1, STANDARD_VALUE2, STANDARD_VALUE3, 
+      STANDARD_VALUE4, STANDARD_VALUE5, INDEX_PUBLISHTIME, 
+      INDEX_PUBLISHPERSON, INDEX_PUBLISHTAG, Key_BACKUPS, 
+      INDEX_CREATIME, INDEX_CREATPERSON, GETVALUE_SQL, 
+      STANDARD_LEVEL, ASSESS_ID)
+    values (#{id,jdbcType=VARCHAR}, #{indexCode,jdbcType=INTEGER}, #{indexName,jdbcType=VARCHAR}, 
+      #{indexUnitCode,jdbcType=VARCHAR}, #{applicationType,jdbcType=INTEGER}, #{applicationCode,jdbcType=VARCHAR}, 
+      #{standardValue1,jdbcType=DECIMAL}, #{standardValue2,jdbcType=DECIMAL}, #{standardValue3,jdbcType=DECIMAL}, 
+      #{standardValue4,jdbcType=DECIMAL}, #{standardValue5,jdbcType=DECIMAL}, #{indexPublishtime,jdbcType=VARCHAR}, 
+      #{indexPublishperson,jdbcType=VARCHAR}, #{indexPublishtag,jdbcType=INTEGER}, #{keyBackups,jdbcType=VARCHAR}, 
+      #{indexCreatime,jdbcType=VARCHAR}, #{indexCreatperson,jdbcType=VARCHAR}, #{getvalueSql,jdbcType=VARCHAR}, 
+      #{standardLevel,jdbcType=INTEGER}, #{assessId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gs.domain.EsmspIndexStandard" >
+    insert into esmsp_index_standard
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="indexCode != null" >
+        INDEX_CODE,
+      </if>
+      <if test="indexName != null" >
+        INDEX_NAME,
+      </if>
+      <if test="indexUnitCode != null" >
+        INDEX_UNIT_CODE,
+      </if>
+      <if test="applicationType != null" >
+        APPLICATION_TYPE,
+      </if>
+      <if test="applicationCode != null" >
+        APPLICATION_CODE,
+      </if>
+      <if test="standardValue1 != null" >
+        STANDARD_VALUE1,
+      </if>
+      <if test="standardValue2 != null" >
+        STANDARD_VALUE2,
+      </if>
+      <if test="standardValue3 != null" >
+        STANDARD_VALUE3,
+      </if>
+      <if test="standardValue4 != null" >
+        STANDARD_VALUE4,
+      </if>
+      <if test="standardValue5 != null" >
+        STANDARD_VALUE5,
+      </if>
+      <if test="indexPublishtime != null" >
+        INDEX_PUBLISHTIME,
+      </if>
+      <if test="indexPublishperson != null" >
+        INDEX_PUBLISHPERSON,
+      </if>
+      <if test="indexPublishtag != null" >
+        INDEX_PUBLISHTAG,
+      </if>
+      <if test="keyBackups != null" >
+        Key_BACKUPS,
+      </if>
+      <if test="indexCreatime != null" >
+        INDEX_CREATIME,
+      </if>
+      <if test="indexCreatperson != null" >
+        INDEX_CREATPERSON,
+      </if>
+      <if test="getvalueSql != null" >
+        GETVALUE_SQL,
+      </if>
+      <if test="standardLevel != null" >
+        STANDARD_LEVEL,
+      </if>
+      <if test="assessId != null" >
+        ASSESS_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="indexCode != null" >
+        #{indexCode,jdbcType=INTEGER},
+      </if>
+      <if test="indexName != null" >
+        #{indexName,jdbcType=VARCHAR},
+      </if>
+      <if test="indexUnitCode != null" >
+        #{indexUnitCode,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationType != null" >
+        #{applicationType,jdbcType=INTEGER},
+      </if>
+      <if test="applicationCode != null" >
+        #{applicationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="standardValue1 != null" >
+        #{standardValue1,jdbcType=DECIMAL},
+      </if>
+      <if test="standardValue2 != null" >
+        #{standardValue2,jdbcType=DECIMAL},
+      </if>
+      <if test="standardValue3 != null" >
+        #{standardValue3,jdbcType=DECIMAL},
+      </if>
+      <if test="standardValue4 != null" >
+        #{standardValue4,jdbcType=DECIMAL},
+      </if>
+      <if test="standardValue5 != null" >
+        #{standardValue5,jdbcType=DECIMAL},
+      </if>
+      <if test="indexPublishtime != null" >
+        #{indexPublishtime,jdbcType=VARCHAR},
+      </if>
+      <if test="indexPublishperson != null" >
+        #{indexPublishperson,jdbcType=VARCHAR},
+      </if>
+      <if test="indexPublishtag != null" >
+        #{indexPublishtag,jdbcType=INTEGER},
+      </if>
+      <if test="keyBackups != null" >
+        #{keyBackups,jdbcType=VARCHAR},
+      </if>
+      <if test="indexCreatime != null" >
+        #{indexCreatime,jdbcType=VARCHAR},
+      </if>
+      <if test="indexCreatperson != null" >
+        #{indexCreatperson,jdbcType=VARCHAR},
+      </if>
+      <if test="getvalueSql != null" >
+        #{getvalueSql,jdbcType=VARCHAR},
+      </if>
+      <if test="standardLevel != null" >
+        #{standardLevel,jdbcType=INTEGER},
+      </if>
+      <if test="assessId != null" >
+        #{assessId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gs.domain.EsmspIndexStandard" >
+    update esmsp_index_standard
+    <set >
+      <if test="indexCode != null" >
+        INDEX_CODE = #{indexCode,jdbcType=INTEGER},
+      </if>
+      <if test="indexName != null" >
+        INDEX_NAME = #{indexName,jdbcType=VARCHAR},
+      </if>
+      <if test="indexUnitCode != null" >
+        INDEX_UNIT_CODE = #{indexUnitCode,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationType != null" >
+        APPLICATION_TYPE = #{applicationType,jdbcType=INTEGER},
+      </if>
+      <if test="applicationCode != null" >
+        APPLICATION_CODE = #{applicationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="standardValue1 != null" >
+        STANDARD_VALUE1 = #{standardValue1,jdbcType=DECIMAL},
+      </if>
+      <if test="standardValue2 != null" >
+        STANDARD_VALUE2 = #{standardValue2,jdbcType=DECIMAL},
+      </if>
+      <if test="standardValue3 != null" >
+        STANDARD_VALUE3 = #{standardValue3,jdbcType=DECIMAL},
+      </if>
+      <if test="standardValue4 != null" >
+        STANDARD_VALUE4 = #{standardValue4,jdbcType=DECIMAL},
+      </if>
+      <if test="standardValue5 != null" >
+        STANDARD_VALUE5 = #{standardValue5,jdbcType=DECIMAL},
+      </if>
+      <if test="indexPublishtime != null" >
+        INDEX_PUBLISHTIME = #{indexPublishtime,jdbcType=VARCHAR},
+      </if>
+      <if test="indexPublishperson != null" >
+        INDEX_PUBLISHPERSON = #{indexPublishperson,jdbcType=VARCHAR},
+      </if>
+      <if test="indexPublishtag != null" >
+        INDEX_PUBLISHTAG = #{indexPublishtag,jdbcType=INTEGER},
+      </if>
+      <if test="keyBackups != null" >
+        Key_BACKUPS = #{keyBackups,jdbcType=VARCHAR},
+      </if>
+      <if test="indexCreatime != null" >
+        INDEX_CREATIME = #{indexCreatime,jdbcType=VARCHAR},
+      </if>
+      <if test="indexCreatperson != null" >
+        INDEX_CREATPERSON = #{indexCreatperson,jdbcType=VARCHAR},
+      </if>
+      <if test="getvalueSql != null" >
+        GETVALUE_SQL = #{getvalueSql,jdbcType=VARCHAR},
+      </if>
+      <if test="standardLevel != null" >
+        STANDARD_LEVEL = #{standardLevel,jdbcType=INTEGER},
+      </if>
+      <if test="assessId != null" >
+        ASSESS_ID = #{assessId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gs.domain.EsmspIndexStandard" >
+    update esmsp_index_standard
+    set INDEX_CODE = #{indexCode,jdbcType=INTEGER},
+      INDEX_NAME = #{indexName,jdbcType=VARCHAR},
+      INDEX_UNIT_CODE = #{indexUnitCode,jdbcType=VARCHAR},
+      APPLICATION_TYPE = #{applicationType,jdbcType=INTEGER},
+      APPLICATION_CODE = #{applicationCode,jdbcType=VARCHAR},
+      STANDARD_VALUE1 = #{standardValue1,jdbcType=DECIMAL},
+      STANDARD_VALUE2 = #{standardValue2,jdbcType=DECIMAL},
+      STANDARD_VALUE3 = #{standardValue3,jdbcType=DECIMAL},
+      STANDARD_VALUE4 = #{standardValue4,jdbcType=DECIMAL},
+      STANDARD_VALUE5 = #{standardValue5,jdbcType=DECIMAL},
+      INDEX_PUBLISHTIME = #{indexPublishtime,jdbcType=VARCHAR},
+      INDEX_PUBLISHPERSON = #{indexPublishperson,jdbcType=VARCHAR},
+      INDEX_PUBLISHTAG = #{indexPublishtag,jdbcType=INTEGER},
+      Key_BACKUPS = #{keyBackups,jdbcType=VARCHAR},
+      INDEX_CREATIME = #{indexCreatime,jdbcType=VARCHAR},
+      INDEX_CREATPERSON = #{indexCreatperson,jdbcType=VARCHAR},
+      GETVALUE_SQL = #{getvalueSql,jdbcType=VARCHAR},
+      STANDARD_LEVEL = #{standardLevel,jdbcType=INTEGER},
+      ASSESS_ID = #{assessId,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

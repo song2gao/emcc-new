@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gs.mapper.PomsUserDefinedStatisticsMapper" >
+  <resultMap id="BaseResultMap" type="com.gs.domain.PomsUserDefinedStatistics" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="EUI_ID" property="euiId" jdbcType="VARCHAR" />
+    <result column="UDS_NAMES" property="udsNames" jdbcType="VARCHAR" />
+    <result column="UDS_ORDERS" property="udsOrders" jdbcType="VARCHAR" />
+    <result column="UDS_BACKUPS" property="udsBackups" jdbcType="VARCHAR" />
+    <result column="UDS_PARENT_ID" property="udsParentId" jdbcType="VARCHAR" />
+    <result column="UDS_CODE" property="udsCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, EUI_ID, UDS_NAMES, UDS_ORDERS, UDS_BACKUPS, UDS_PARENT_ID, UDS_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_user_defined_statistics
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from poms_user_defined_statistics
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gs.domain.PomsUserDefinedStatistics" >
+    insert into poms_user_defined_statistics (ID, EUI_ID, UDS_NAMES, 
+      UDS_ORDERS, UDS_BACKUPS, UDS_PARENT_ID, 
+      UDS_CODE)
+    values (#{id,jdbcType=VARCHAR}, #{euiId,jdbcType=VARCHAR}, #{udsNames,jdbcType=VARCHAR}, 
+      #{udsOrders,jdbcType=VARCHAR}, #{udsBackups,jdbcType=VARCHAR}, #{udsParentId,jdbcType=VARCHAR}, 
+      #{udsCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gs.domain.PomsUserDefinedStatistics" >
+    insert into poms_user_defined_statistics
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="euiId != null" >
+        EUI_ID,
+      </if>
+      <if test="udsNames != null" >
+        UDS_NAMES,
+      </if>
+      <if test="udsOrders != null" >
+        UDS_ORDERS,
+      </if>
+      <if test="udsBackups != null" >
+        UDS_BACKUPS,
+      </if>
+      <if test="udsParentId != null" >
+        UDS_PARENT_ID,
+      </if>
+      <if test="udsCode != null" >
+        UDS_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="euiId != null" >
+        #{euiId,jdbcType=VARCHAR},
+      </if>
+      <if test="udsNames != null" >
+        #{udsNames,jdbcType=VARCHAR},
+      </if>
+      <if test="udsOrders != null" >
+        #{udsOrders,jdbcType=VARCHAR},
+      </if>
+      <if test="udsBackups != null" >
+        #{udsBackups,jdbcType=VARCHAR},
+      </if>
+      <if test="udsParentId != null" >
+        #{udsParentId,jdbcType=VARCHAR},
+      </if>
+      <if test="udsCode != null" >
+        #{udsCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gs.domain.PomsUserDefinedStatistics" >
+    update poms_user_defined_statistics
+    <set >
+      <if test="euiId != null" >
+        EUI_ID = #{euiId,jdbcType=VARCHAR},
+      </if>
+      <if test="udsNames != null" >
+        UDS_NAMES = #{udsNames,jdbcType=VARCHAR},
+      </if>
+      <if test="udsOrders != null" >
+        UDS_ORDERS = #{udsOrders,jdbcType=VARCHAR},
+      </if>
+      <if test="udsBackups != null" >
+        UDS_BACKUPS = #{udsBackups,jdbcType=VARCHAR},
+      </if>
+      <if test="udsParentId != null" >
+        UDS_PARENT_ID = #{udsParentId,jdbcType=VARCHAR},
+      </if>
+      <if test="udsCode != null" >
+        UDS_CODE = #{udsCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gs.domain.PomsUserDefinedStatistics" >
+    update poms_user_defined_statistics
+    set EUI_ID = #{euiId,jdbcType=VARCHAR},
+      UDS_NAMES = #{udsNames,jdbcType=VARCHAR},
+      UDS_ORDERS = #{udsOrders,jdbcType=VARCHAR},
+      UDS_BACKUPS = #{udsBackups,jdbcType=VARCHAR},
+      UDS_PARENT_ID = #{udsParentId,jdbcType=VARCHAR},
+      UDS_CODE = #{udsCode,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

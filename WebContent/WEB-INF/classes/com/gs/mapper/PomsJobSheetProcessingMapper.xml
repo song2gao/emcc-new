@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gs.mapper.PomsJobSheetProcessingMapper" >
+  <resultMap id="BaseResultMap" type="com.gs.domain.PomsJobSheetProcessing" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="JOB_SHEET_ID" property="jobSheetId" jdbcType="VARCHAR" />
+    <result column="JOB_SHEET_PROCESSOR" property="jobSheetProcessor" jdbcType="VARCHAR" />
+    <result column="JOB_SHEET_PROCEDURE" property="jobSheetProcedure" jdbcType="VARCHAR" />
+    <result column="JOB_SHEET_ISCOMPLETE" property="jobSheetIscomplete" jdbcType="VARCHAR" />
+    <result column="JOB_SHEET_DEALTIME" property="jobSheetDealtime" jdbcType="VARCHAR" />
+    <result column="JOB_SHEET_BACKUP" property="jobSheetBackup" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, JOB_SHEET_ID, JOB_SHEET_PROCESSOR, JOB_SHEET_PROCEDURE, JOB_SHEET_ISCOMPLETE, 
+    JOB_SHEET_DEALTIME, JOB_SHEET_BACKUP
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_job_sheet_processing
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from poms_job_sheet_processing
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gs.domain.PomsJobSheetProcessing" >
+    insert into poms_job_sheet_processing (ID, JOB_SHEET_ID, JOB_SHEET_PROCESSOR, 
+      JOB_SHEET_PROCEDURE, JOB_SHEET_ISCOMPLETE, 
+      JOB_SHEET_DEALTIME, JOB_SHEET_BACKUP)
+    values (#{id,jdbcType=VARCHAR}, #{jobSheetId,jdbcType=VARCHAR}, #{jobSheetProcessor,jdbcType=VARCHAR}, 
+      #{jobSheetProcedure,jdbcType=VARCHAR}, #{jobSheetIscomplete,jdbcType=VARCHAR}, 
+      #{jobSheetDealtime,jdbcType=VARCHAR}, #{jobSheetBackup,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gs.domain.PomsJobSheetProcessing" >
+    insert into poms_job_sheet_processing
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="jobSheetId != null" >
+        JOB_SHEET_ID,
+      </if>
+      <if test="jobSheetProcessor != null" >
+        JOB_SHEET_PROCESSOR,
+      </if>
+      <if test="jobSheetProcedure != null" >
+        JOB_SHEET_PROCEDURE,
+      </if>
+      <if test="jobSheetIscomplete != null" >
+        JOB_SHEET_ISCOMPLETE,
+      </if>
+      <if test="jobSheetDealtime != null" >
+        JOB_SHEET_DEALTIME,
+      </if>
+      <if test="jobSheetBackup != null" >
+        JOB_SHEET_BACKUP,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="jobSheetId != null" >
+        #{jobSheetId,jdbcType=VARCHAR},
+      </if>
+      <if test="jobSheetProcessor != null" >
+        #{jobSheetProcessor,jdbcType=VARCHAR},
+      </if>
+      <if test="jobSheetProcedure != null" >
+        #{jobSheetProcedure,jdbcType=VARCHAR},
+      </if>
+      <if test="jobSheetIscomplete != null" >
+        #{jobSheetIscomplete,jdbcType=VARCHAR},
+      </if>
+      <if test="jobSheetDealtime != null" >
+        #{jobSheetDealtime,jdbcType=VARCHAR},
+      </if>
+      <if test="jobSheetBackup != null" >
+        #{jobSheetBackup,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gs.domain.PomsJobSheetProcessing" >
+    update poms_job_sheet_processing
+    <set >
+      <if test="jobSheetId != null" >
+        JOB_SHEET_ID = #{jobSheetId,jdbcType=VARCHAR},
+      </if>
+      <if test="jobSheetProcessor != null" >
+        JOB_SHEET_PROCESSOR = #{jobSheetProcessor,jdbcType=VARCHAR},
+      </if>
+      <if test="jobSheetProcedure != null" >
+        JOB_SHEET_PROCEDURE = #{jobSheetProcedure,jdbcType=VARCHAR},
+      </if>
+      <if test="jobSheetIscomplete != null" >
+        JOB_SHEET_ISCOMPLETE = #{jobSheetIscomplete,jdbcType=VARCHAR},
+      </if>
+      <if test="jobSheetDealtime != null" >
+        JOB_SHEET_DEALTIME = #{jobSheetDealtime,jdbcType=VARCHAR},
+      </if>
+      <if test="jobSheetBackup != null" >
+        JOB_SHEET_BACKUP = #{jobSheetBackup,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gs.domain.PomsJobSheetProcessing" >
+    update poms_job_sheet_processing
+    set JOB_SHEET_ID = #{jobSheetId,jdbcType=VARCHAR},
+      JOB_SHEET_PROCESSOR = #{jobSheetProcessor,jdbcType=VARCHAR},
+      JOB_SHEET_PROCEDURE = #{jobSheetProcedure,jdbcType=VARCHAR},
+      JOB_SHEET_ISCOMPLETE = #{jobSheetIscomplete,jdbcType=VARCHAR},
+      JOB_SHEET_DEALTIME = #{jobSheetDealtime,jdbcType=VARCHAR},
+      JOB_SHEET_BACKUP = #{jobSheetBackup,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

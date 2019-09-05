@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gs.mapper.PomsMeasurpointWarningStorageMapper" >
+  <resultMap id="BaseResultMap" type="com.gs.domain.PomsMeasurpointWarningStorage" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="MPWS_DATE" property="mpwsDate" jdbcType="VARCHAR" />
+    <result column="MPBS_ENTERPRISE_CODE" property="mpbsEnterpriseCode" jdbcType="VARCHAR" />
+    <result column="MPBS_EQUIPMENT_CODE" property="mpbsEquipmentCode" jdbcType="VARCHAR" />
+    <result column="MPBS_POINT_CODE" property="mpbsPointCode" jdbcType="VARCHAR" />
+    <result column="MPBS_CURVAL" property="mpbsCurval" jdbcType="DECIMAL" />
+    <result column="MPBS_CURVAL_TYPE" property="mpbsCurvalType" jdbcType="VARCHAR" />
+    <result column="MPBS_WARNING_VAL" property="mpbsWarningVal" jdbcType="DECIMAL" />
+    <result column="MPBS_DATE_TYPE" property="mpbsDateType" jdbcType="VARCHAR" />
+    <result column="MPBS_BACKUP" property="mpbsBackup" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, MPWS_DATE, MPBS_ENTERPRISE_CODE, MPBS_EQUIPMENT_CODE, MPBS_POINT_CODE, MPBS_CURVAL, 
+    MPBS_CURVAL_TYPE, MPBS_WARNING_VAL, MPBS_DATE_TYPE, MPBS_BACKUP
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_measurpoint_warning_storage
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from poms_measurpoint_warning_storage
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gs.domain.PomsMeasurpointWarningStorage" >
+    insert into poms_measurpoint_warning_storage (ID, MPWS_DATE, MPBS_ENTERPRISE_CODE, 
+      MPBS_EQUIPMENT_CODE, MPBS_POINT_CODE, MPBS_CURVAL, 
+      MPBS_CURVAL_TYPE, MPBS_WARNING_VAL, MPBS_DATE_TYPE, 
+      MPBS_BACKUP)
+    values (#{id,jdbcType=VARCHAR}, #{mpwsDate,jdbcType=VARCHAR}, #{mpbsEnterpriseCode,jdbcType=VARCHAR}, 
+      #{mpbsEquipmentCode,jdbcType=VARCHAR}, #{mpbsPointCode,jdbcType=VARCHAR}, #{mpbsCurval,jdbcType=DECIMAL}, 
+      #{mpbsCurvalType,jdbcType=VARCHAR}, #{mpbsWarningVal,jdbcType=DECIMAL}, #{mpbsDateType,jdbcType=VARCHAR}, 
+      #{mpbsBackup,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gs.domain.PomsMeasurpointWarningStorage" >
+    insert into poms_measurpoint_warning_storage
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="mpwsDate != null" >
+        MPWS_DATE,
+      </if>
+      <if test="mpbsEnterpriseCode != null" >
+        MPBS_ENTERPRISE_CODE,
+      </if>
+      <if test="mpbsEquipmentCode != null" >
+        MPBS_EQUIPMENT_CODE,
+      </if>
+      <if test="mpbsPointCode != null" >
+        MPBS_POINT_CODE,
+      </if>
+      <if test="mpbsCurval != null" >
+        MPBS_CURVAL,
+      </if>
+      <if test="mpbsCurvalType != null" >
+        MPBS_CURVAL_TYPE,
+      </if>
+      <if test="mpbsWarningVal != null" >
+        MPBS_WARNING_VAL,
+      </if>
+      <if test="mpbsDateType != null" >
+        MPBS_DATE_TYPE,
+      </if>
+      <if test="mpbsBackup != null" >
+        MPBS_BACKUP,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="mpwsDate != null" >
+        #{mpwsDate,jdbcType=VARCHAR},
+      </if>
+      <if test="mpbsEnterpriseCode != null" >
+        #{mpbsEnterpriseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="mpbsEquipmentCode != null" >
+        #{mpbsEquipmentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="mpbsPointCode != null" >
+        #{mpbsPointCode,jdbcType=VARCHAR},
+      </if>
+      <if test="mpbsCurval != null" >
+        #{mpbsCurval,jdbcType=DECIMAL},
+      </if>
+      <if test="mpbsCurvalType != null" >
+        #{mpbsCurvalType,jdbcType=VARCHAR},
+      </if>
+      <if test="mpbsWarningVal != null" >
+        #{mpbsWarningVal,jdbcType=DECIMAL},
+      </if>
+      <if test="mpbsDateType != null" >
+        #{mpbsDateType,jdbcType=VARCHAR},
+      </if>
+      <if test="mpbsBackup != null" >
+        #{mpbsBackup,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gs.domain.PomsMeasurpointWarningStorage" >
+    update poms_measurpoint_warning_storage
+    <set >
+      <if test="mpwsDate != null" >
+        MPWS_DATE = #{mpwsDate,jdbcType=VARCHAR},
+      </if>
+      <if test="mpbsEnterpriseCode != null" >
+        MPBS_ENTERPRISE_CODE = #{mpbsEnterpriseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="mpbsEquipmentCode != null" >
+        MPBS_EQUIPMENT_CODE = #{mpbsEquipmentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="mpbsPointCode != null" >
+        MPBS_POINT_CODE = #{mpbsPointCode,jdbcType=VARCHAR},
+      </if>
+      <if test="mpbsCurval != null" >
+        MPBS_CURVAL = #{mpbsCurval,jdbcType=DECIMAL},
+      </if>
+      <if test="mpbsCurvalType != null" >
+        MPBS_CURVAL_TYPE = #{mpbsCurvalType,jdbcType=VARCHAR},
+      </if>
+      <if test="mpbsWarningVal != null" >
+        MPBS_WARNING_VAL = #{mpbsWarningVal,jdbcType=DECIMAL},
+      </if>
+      <if test="mpbsDateType != null" >
+        MPBS_DATE_TYPE = #{mpbsDateType,jdbcType=VARCHAR},
+      </if>
+      <if test="mpbsBackup != null" >
+        MPBS_BACKUP = #{mpbsBackup,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gs.domain.PomsMeasurpointWarningStorage" >
+    update poms_measurpoint_warning_storage
+    set MPWS_DATE = #{mpwsDate,jdbcType=VARCHAR},
+      MPBS_ENTERPRISE_CODE = #{mpbsEnterpriseCode,jdbcType=VARCHAR},
+      MPBS_EQUIPMENT_CODE = #{mpbsEquipmentCode,jdbcType=VARCHAR},
+      MPBS_POINT_CODE = #{mpbsPointCode,jdbcType=VARCHAR},
+      MPBS_CURVAL = #{mpbsCurval,jdbcType=DECIMAL},
+      MPBS_CURVAL_TYPE = #{mpbsCurvalType,jdbcType=VARCHAR},
+      MPBS_WARNING_VAL = #{mpbsWarningVal,jdbcType=DECIMAL},
+      MPBS_DATE_TYPE = #{mpbsDateType,jdbcType=VARCHAR},
+      MPBS_BACKUP = #{mpbsBackup,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

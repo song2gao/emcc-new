@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gs.mapper.PomsCalculateDeviceStatusAlterMapper" >
+  <resultMap id="BaseResultMap" type="com.gs.domain.PomsCalculateDeviceStatusAlter" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="STATUS_DEVICE_ID" property="statusDeviceId" jdbcType="VARCHAR" />
+    <result column="STATUS_ALTER_TIME" property="statusAlterTime" jdbcType="VARCHAR" />
+    <result column="STATUS_ALTER_USERID" property="statusAlterUserid" jdbcType="VARCHAR" />
+    <result column="STATUS_ALTER_REASON" property="statusAlterReason" jdbcType="VARCHAR" />
+    <result column="STATUS_BACKUPS" property="statusBackups" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, STATUS_DEVICE_ID, STATUS_ALTER_TIME, STATUS_ALTER_USERID, STATUS_ALTER_REASON, 
+    STATUS_BACKUPS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_calculate_device_status_alter
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from poms_calculate_device_status_alter
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gs.domain.PomsCalculateDeviceStatusAlter" >
+    insert into poms_calculate_device_status_alter (ID, STATUS_DEVICE_ID, STATUS_ALTER_TIME, 
+      STATUS_ALTER_USERID, STATUS_ALTER_REASON, STATUS_BACKUPS
+      )
+    values (#{id,jdbcType=VARCHAR}, #{statusDeviceId,jdbcType=VARCHAR}, #{statusAlterTime,jdbcType=VARCHAR}, 
+      #{statusAlterUserid,jdbcType=VARCHAR}, #{statusAlterReason,jdbcType=VARCHAR}, #{statusBackups,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gs.domain.PomsCalculateDeviceStatusAlter" >
+    insert into poms_calculate_device_status_alter
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="statusDeviceId != null" >
+        STATUS_DEVICE_ID,
+      </if>
+      <if test="statusAlterTime != null" >
+        STATUS_ALTER_TIME,
+      </if>
+      <if test="statusAlterUserid != null" >
+        STATUS_ALTER_USERID,
+      </if>
+      <if test="statusAlterReason != null" >
+        STATUS_ALTER_REASON,
+      </if>
+      <if test="statusBackups != null" >
+        STATUS_BACKUPS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="statusDeviceId != null" >
+        #{statusDeviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="statusAlterTime != null" >
+        #{statusAlterTime,jdbcType=VARCHAR},
+      </if>
+      <if test="statusAlterUserid != null" >
+        #{statusAlterUserid,jdbcType=VARCHAR},
+      </if>
+      <if test="statusAlterReason != null" >
+        #{statusAlterReason,jdbcType=VARCHAR},
+      </if>
+      <if test="statusBackups != null" >
+        #{statusBackups,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gs.domain.PomsCalculateDeviceStatusAlter" >
+    update poms_calculate_device_status_alter
+    <set >
+      <if test="statusDeviceId != null" >
+        STATUS_DEVICE_ID = #{statusDeviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="statusAlterTime != null" >
+        STATUS_ALTER_TIME = #{statusAlterTime,jdbcType=VARCHAR},
+      </if>
+      <if test="statusAlterUserid != null" >
+        STATUS_ALTER_USERID = #{statusAlterUserid,jdbcType=VARCHAR},
+      </if>
+      <if test="statusAlterReason != null" >
+        STATUS_ALTER_REASON = #{statusAlterReason,jdbcType=VARCHAR},
+      </if>
+      <if test="statusBackups != null" >
+        STATUS_BACKUPS = #{statusBackups,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gs.domain.PomsCalculateDeviceStatusAlter" >
+    update poms_calculate_device_status_alter
+    set STATUS_DEVICE_ID = #{statusDeviceId,jdbcType=VARCHAR},
+      STATUS_ALTER_TIME = #{statusAlterTime,jdbcType=VARCHAR},
+      STATUS_ALTER_USERID = #{statusAlterUserid,jdbcType=VARCHAR},
+      STATUS_ALTER_REASON = #{statusAlterReason,jdbcType=VARCHAR},
+      STATUS_BACKUPS = #{statusBackups,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

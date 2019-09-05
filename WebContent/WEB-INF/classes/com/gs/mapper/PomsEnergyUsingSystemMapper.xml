@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gs.mapper.PomsEnergyUsingSystemMapper" >
+  <resultMap id="BaseResultMap" type="com.gs.domain.PomsEnergyUsingSystem" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="EUI_ID" property="euiId" jdbcType="VARCHAR" />
+    <result column="SYSTEM_MODEL_ID" property="systemModelId" jdbcType="VARCHAR" />
+    <result column="EUS_NAMES" property="eusNames" jdbcType="VARCHAR" />
+    <result column="EUL_ID" property="eulId" jdbcType="VARCHAR" />
+    <result column="EUS_BACKUPS" property="eusBackups" jdbcType="VARCHAR" />
+    <result column="EUS_PARENT_ID" property="eusParentId" jdbcType="VARCHAR" />
+    <result column="EUS_CODE" property="eusCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, EUI_ID, SYSTEM_MODEL_ID, EUS_NAMES, EUL_ID, EUS_BACKUPS, EUS_PARENT_ID, EUS_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_energy_using_system
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from poms_energy_using_system
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gs.domain.PomsEnergyUsingSystem" >
+    insert into poms_energy_using_system (ID, EUI_ID, SYSTEM_MODEL_ID, 
+      EUS_NAMES, EUL_ID, EUS_BACKUPS, 
+      EUS_PARENT_ID, EUS_CODE)
+    values (#{id,jdbcType=VARCHAR}, #{euiId,jdbcType=VARCHAR}, #{systemModelId,jdbcType=VARCHAR}, 
+      #{eusNames,jdbcType=VARCHAR}, #{eulId,jdbcType=VARCHAR}, #{eusBackups,jdbcType=VARCHAR}, 
+      #{eusParentId,jdbcType=VARCHAR}, #{eusCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gs.domain.PomsEnergyUsingSystem" >
+    insert into poms_energy_using_system
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="euiId != null" >
+        EUI_ID,
+      </if>
+      <if test="systemModelId != null" >
+        SYSTEM_MODEL_ID,
+      </if>
+      <if test="eusNames != null" >
+        EUS_NAMES,
+      </if>
+      <if test="eulId != null" >
+        EUL_ID,
+      </if>
+      <if test="eusBackups != null" >
+        EUS_BACKUPS,
+      </if>
+      <if test="eusParentId != null" >
+        EUS_PARENT_ID,
+      </if>
+      <if test="eusCode != null" >
+        EUS_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="euiId != null" >
+        #{euiId,jdbcType=VARCHAR},
+      </if>
+      <if test="systemModelId != null" >
+        #{systemModelId,jdbcType=VARCHAR},
+      </if>
+      <if test="eusNames != null" >
+        #{eusNames,jdbcType=VARCHAR},
+      </if>
+      <if test="eulId != null" >
+        #{eulId,jdbcType=VARCHAR},
+      </if>
+      <if test="eusBackups != null" >
+        #{eusBackups,jdbcType=VARCHAR},
+      </if>
+      <if test="eusParentId != null" >
+        #{eusParentId,jdbcType=VARCHAR},
+      </if>
+      <if test="eusCode != null" >
+        #{eusCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gs.domain.PomsEnergyUsingSystem" >
+    update poms_energy_using_system
+    <set >
+      <if test="euiId != null" >
+        EUI_ID = #{euiId,jdbcType=VARCHAR},
+      </if>
+      <if test="systemModelId != null" >
+        SYSTEM_MODEL_ID = #{systemModelId,jdbcType=VARCHAR},
+      </if>
+      <if test="eusNames != null" >
+        EUS_NAMES = #{eusNames,jdbcType=VARCHAR},
+      </if>
+      <if test="eulId != null" >
+        EUL_ID = #{eulId,jdbcType=VARCHAR},
+      </if>
+      <if test="eusBackups != null" >
+        EUS_BACKUPS = #{eusBackups,jdbcType=VARCHAR},
+      </if>
+      <if test="eusParentId != null" >
+        EUS_PARENT_ID = #{eusParentId,jdbcType=VARCHAR},
+      </if>
+      <if test="eusCode != null" >
+        EUS_CODE = #{eusCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gs.domain.PomsEnergyUsingSystem" >
+    update poms_energy_using_system
+    set EUI_ID = #{euiId,jdbcType=VARCHAR},
+      SYSTEM_MODEL_ID = #{systemModelId,jdbcType=VARCHAR},
+      EUS_NAMES = #{eusNames,jdbcType=VARCHAR},
+      EUL_ID = #{eulId,jdbcType=VARCHAR},
+      EUS_BACKUPS = #{eusBackups,jdbcType=VARCHAR},
+      EUS_PARENT_ID = #{eusParentId,jdbcType=VARCHAR},
+      EUS_CODE = #{eusCode,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

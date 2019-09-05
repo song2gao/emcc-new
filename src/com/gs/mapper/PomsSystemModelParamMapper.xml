@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gs.mapper.PomsSystemModelParamMapper" >
+  <resultMap id="BaseResultMap" type="com.gs.domain.PomsSystemModelParam" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="SYSTEM_MODEL_ID" property="systemModelId" jdbcType="VARCHAR" />
+    <result column="MODEL_PARAM_NAME" property="modelParamName" jdbcType="VARCHAR" />
+    <result column="MODEL_PARAM_VAL" property="modelParamVal" jdbcType="VARCHAR" />
+    <result column="MODEL_PARAM_BACKUPS" property="modelParamBackups" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, SYSTEM_MODEL_ID, MODEL_PARAM_NAME, MODEL_PARAM_VAL, MODEL_PARAM_BACKUPS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_system_model_param
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from poms_system_model_param
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gs.domain.PomsSystemModelParam" >
+    insert into poms_system_model_param (ID, SYSTEM_MODEL_ID, MODEL_PARAM_NAME, 
+      MODEL_PARAM_VAL, MODEL_PARAM_BACKUPS)
+    values (#{id,jdbcType=VARCHAR}, #{systemModelId,jdbcType=VARCHAR}, #{modelParamName,jdbcType=VARCHAR}, 
+      #{modelParamVal,jdbcType=VARCHAR}, #{modelParamBackups,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gs.domain.PomsSystemModelParam" >
+    insert into poms_system_model_param
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="systemModelId != null" >
+        SYSTEM_MODEL_ID,
+      </if>
+      <if test="modelParamName != null" >
+        MODEL_PARAM_NAME,
+      </if>
+      <if test="modelParamVal != null" >
+        MODEL_PARAM_VAL,
+      </if>
+      <if test="modelParamBackups != null" >
+        MODEL_PARAM_BACKUPS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="systemModelId != null" >
+        #{systemModelId,jdbcType=VARCHAR},
+      </if>
+      <if test="modelParamName != null" >
+        #{modelParamName,jdbcType=VARCHAR},
+      </if>
+      <if test="modelParamVal != null" >
+        #{modelParamVal,jdbcType=VARCHAR},
+      </if>
+      <if test="modelParamBackups != null" >
+        #{modelParamBackups,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gs.domain.PomsSystemModelParam" >
+    update poms_system_model_param
+    <set >
+      <if test="systemModelId != null" >
+        SYSTEM_MODEL_ID = #{systemModelId,jdbcType=VARCHAR},
+      </if>
+      <if test="modelParamName != null" >
+        MODEL_PARAM_NAME = #{modelParamName,jdbcType=VARCHAR},
+      </if>
+      <if test="modelParamVal != null" >
+        MODEL_PARAM_VAL = #{modelParamVal,jdbcType=VARCHAR},
+      </if>
+      <if test="modelParamBackups != null" >
+        MODEL_PARAM_BACKUPS = #{modelParamBackups,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gs.domain.PomsSystemModelParam" >
+    update poms_system_model_param
+    set SYSTEM_MODEL_ID = #{systemModelId,jdbcType=VARCHAR},
+      MODEL_PARAM_NAME = #{modelParamName,jdbcType=VARCHAR},
+      MODEL_PARAM_VAL = #{modelParamVal,jdbcType=VARCHAR},
+      MODEL_PARAM_BACKUPS = #{modelParamBackups,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

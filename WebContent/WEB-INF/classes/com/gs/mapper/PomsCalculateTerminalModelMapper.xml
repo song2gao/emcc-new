@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gs.mapper.PomsCalculateTerminalModelMapper" >
+  <resultMap id="BaseResultMap" type="com.gs.domain.PomsCalculateTerminalModel" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="CTM_CODES" property="ctmCodes" jdbcType="VARCHAR" />
+    <result column="CTM_NAMES" property="ctmNames" jdbcType="VARCHAR" />
+    <result column="CTM_ENERGY_TYPE" property="ctmEnergyType" jdbcType="VARCHAR" />
+    <result column="CTM_PROTOCAL_FUN_CODE" property="ctmProtocalFunCode" jdbcType="VARCHAR" />
+    <result column="CTM_PROTOCAL_SEC_FUN_CODE" property="ctmProtocalSecFunCode" jdbcType="VARCHAR" />
+    <result column="CTM_PROTOCAL_SECDAY_FUN_CODE" property="ctmProtocalSecdayFunCode" jdbcType="VARCHAR" />
+    <result column="CTM_PROTOCAL_SECMON_FUN_CODE" property="ctmProtocalSecmonFunCode" jdbcType="VARCHAR" />
+    <result column="CTM_BACKUPS" property="ctmBackups" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, CTM_CODES, CTM_NAMES, CTM_ENERGY_TYPE, CTM_PROTOCAL_FUN_CODE, CTM_PROTOCAL_SEC_FUN_CODE, 
+    CTM_PROTOCAL_SECDAY_FUN_CODE, CTM_PROTOCAL_SECMON_FUN_CODE, CTM_BACKUPS
+  </sql>
+  
+   <!-- 根据 实体code 中的某个字段 条件查询所有  -->
+  <select id="selectCodesPage" resultMap="BaseResultMap" parameterType="com.gs.domain.PomsCalculateTerminalModel" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_calculate_terminal_model
+    where 1=1
+    <if	test="calmodel.ctmNames!=null and calmodel.ctmNames!=''">
+        and CTM_NAMES like '%${calmodel.ctmNames}%'
+    </if>
+    <if	test="calmodel.ctmCodes!=null and calmodel.ctmCodes!=''">
+        and CTM_CODES like '%${calmodel.ctmCodes}%'
+    </if>
+    <if	test="pageSize!=null and pageSize!=0 and pageBegin!=null">
+      	limit #{pageBegin},#{pageSize}
+     </if>
+  </select>
+  <!-- 查询总条数 -->
+  <select id="getCount"  resultType="java.lang.Integer">
+	select count(*) from poms_calculate_terminal_model
+  </select>
+  
+  <select id="selectAll" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from poms_calculate_terminal_model
+  </select>
+  <select id="selectByPrimaryKeyByID" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_calculate_terminal_model
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_calculate_terminal_model
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from poms_calculate_terminal_model
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gs.domain.PomsCalculateTerminalModel" >
+    insert into poms_calculate_terminal_model (ID, CTM_CODES, CTM_NAMES, 
+      CTM_ENERGY_TYPE, CTM_PROTOCAL_FUN_CODE, CTM_PROTOCAL_SEC_FUN_CODE, 
+      CTM_PROTOCAL_SECDAY_FUN_CODE, CTM_PROTOCAL_SECMON_FUN_CODE, 
+      CTM_BACKUPS)
+    values (#{id,jdbcType=VARCHAR}, #{ctmCodes,jdbcType=VARCHAR}, #{ctmNames,jdbcType=VARCHAR}, 
+      #{ctmEnergyType,jdbcType=VARCHAR}, #{ctmProtocalFunCode,jdbcType=VARCHAR}, #{ctmProtocalSecFunCode,jdbcType=VARCHAR}, 
+      #{ctmProtocalSecdayFunCode,jdbcType=VARCHAR}, #{ctmProtocalSecmonFunCode,jdbcType=VARCHAR}, 
+      #{ctmBackups,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gs.domain.PomsCalculateTerminalModel" >
+    insert into poms_calculate_terminal_model
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="ctmCodes != null" >
+        CTM_CODES,
+      </if>
+      <if test="ctmNames != null" >
+        CTM_NAMES,
+      </if>
+      <if test="ctmEnergyType != null" >
+        CTM_ENERGY_TYPE,
+      </if>
+      <if test="ctmProtocalFunCode != null" >
+        CTM_PROTOCAL_FUN_CODE,
+      </if>
+      <if test="ctmProtocalSecFunCode != null" >
+        CTM_PROTOCAL_SEC_FUN_CODE,
+      </if>
+      <if test="ctmProtocalSecdayFunCode != null" >
+        CTM_PROTOCAL_SECDAY_FUN_CODE,
+      </if>
+      <if test="ctmProtocalSecmonFunCode != null" >
+        CTM_PROTOCAL_SECMON_FUN_CODE,
+      </if>
+      <if test="ctmBackups != null" >
+        CTM_BACKUPS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="ctmCodes != null" >
+        #{ctmCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="ctmNames != null" >
+        #{ctmNames,jdbcType=VARCHAR},
+      </if>
+      <if test="ctmEnergyType != null" >
+        #{ctmEnergyType,jdbcType=VARCHAR},
+      </if>
+      <if test="ctmProtocalFunCode != null" >
+        #{ctmProtocalFunCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ctmProtocalSecFunCode != null" >
+        #{ctmProtocalSecFunCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ctmProtocalSecdayFunCode != null" >
+        #{ctmProtocalSecdayFunCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ctmProtocalSecmonFunCode != null" >
+        #{ctmProtocalSecmonFunCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ctmBackups != null" >
+        #{ctmBackups,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gs.domain.PomsCalculateTerminalModel" >
+    update poms_calculate_terminal_model
+    <set >
+      <if test="ctmCodes != null" >
+        CTM_CODES = #{ctmCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="ctmNames != null" >
+        CTM_NAMES = #{ctmNames,jdbcType=VARCHAR},
+      </if>
+      <if test="ctmEnergyType != null" >
+        CTM_ENERGY_TYPE = #{ctmEnergyType,jdbcType=VARCHAR},
+      </if>
+      <if test="ctmProtocalFunCode != null" >
+        CTM_PROTOCAL_FUN_CODE = #{ctmProtocalFunCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ctmProtocalSecFunCode != null" >
+        CTM_PROTOCAL_SEC_FUN_CODE = #{ctmProtocalSecFunCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ctmProtocalSecdayFunCode != null" >
+        CTM_PROTOCAL_SECDAY_FUN_CODE = #{ctmProtocalSecdayFunCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ctmProtocalSecmonFunCode != null" >
+        CTM_PROTOCAL_SECMON_FUN_CODE = #{ctmProtocalSecmonFunCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ctmBackups != null" >
+        CTM_BACKUPS = #{ctmBackups,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gs.domain.PomsCalculateTerminalModel" >
+    update poms_calculate_terminal_model
+    set CTM_CODES = #{ctmCodes,jdbcType=VARCHAR},
+      CTM_NAMES = #{ctmNames,jdbcType=VARCHAR},
+      CTM_ENERGY_TYPE = #{ctmEnergyType,jdbcType=VARCHAR},
+      CTM_PROTOCAL_FUN_CODE = #{ctmProtocalFunCode,jdbcType=VARCHAR},
+      CTM_PROTOCAL_SEC_FUN_CODE = #{ctmProtocalSecFunCode,jdbcType=VARCHAR},
+      CTM_PROTOCAL_SECDAY_FUN_CODE = #{ctmProtocalSecdayFunCode,jdbcType=VARCHAR},
+      CTM_PROTOCAL_SECMON_FUN_CODE = #{ctmProtocalSecmonFunCode,jdbcType=VARCHAR},
+      CTM_BACKUPS = #{ctmBackups,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

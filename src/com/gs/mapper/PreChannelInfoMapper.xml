@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gs.mapper.PreChannelInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.gs.domain.PreChannelInfo" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="cha_number" property="chaNumber" jdbcType="VARCHAR" />
+    <result column="cha_protocolCode" property="chaProtocolcode" jdbcType="VARCHAR" />
+    <result column="cha_addressPort" property="chaAddressport" jdbcType="VARCHAR" />
+    <result column="cha_useMark" property="chaUsemark" jdbcType="INTEGER" />
+    <result column="cha_detectionMark" property="chaDetectionmark" jdbcType="VARCHAR" />
+    <result column="cha_commMode" property="chaCommmode" jdbcType="VARCHAR" />
+    <result column="cha_reserveChannel" property="chaReservechannel" jdbcType="VARCHAR" />
+    <result column="cha_runStatus" property="chaRunstatus" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, cha_number, cha_protocolCode, cha_addressPort, cha_useMark, cha_detectionMark, 
+    cha_commMode, cha_reserveChannel, cha_runStatus
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from pre_channel_info
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from pre_channel_info
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gs.domain.PreChannelInfo" >
+    insert into pre_channel_info (id, cha_number, cha_protocolCode, 
+      cha_addressPort, cha_useMark, cha_detectionMark, 
+      cha_commMode, cha_reserveChannel, cha_runStatus
+      )
+    values (#{id,jdbcType=VARCHAR}, #{chaNumber,jdbcType=VARCHAR}, #{chaProtocolcode,jdbcType=VARCHAR}, 
+      #{chaAddressport,jdbcType=VARCHAR}, #{chaUsemark,jdbcType=INTEGER}, #{chaDetectionmark,jdbcType=VARCHAR}, 
+      #{chaCommmode,jdbcType=VARCHAR}, #{chaReservechannel,jdbcType=VARCHAR}, #{chaRunstatus,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gs.domain.PreChannelInfo" >
+    insert into pre_channel_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="chaNumber != null" >
+        cha_number,
+      </if>
+      <if test="chaProtocolcode != null" >
+        cha_protocolCode,
+      </if>
+      <if test="chaAddressport != null" >
+        cha_addressPort,
+      </if>
+      <if test="chaUsemark != null" >
+        cha_useMark,
+      </if>
+      <if test="chaDetectionmark != null" >
+        cha_detectionMark,
+      </if>
+      <if test="chaCommmode != null" >
+        cha_commMode,
+      </if>
+      <if test="chaReservechannel != null" >
+        cha_reserveChannel,
+      </if>
+      <if test="chaRunstatus != null" >
+        cha_runStatus,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="chaNumber != null" >
+        #{chaNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="chaProtocolcode != null" >
+        #{chaProtocolcode,jdbcType=VARCHAR},
+      </if>
+      <if test="chaAddressport != null" >
+        #{chaAddressport,jdbcType=VARCHAR},
+      </if>
+      <if test="chaUsemark != null" >
+        #{chaUsemark,jdbcType=INTEGER},
+      </if>
+      <if test="chaDetectionmark != null" >
+        #{chaDetectionmark,jdbcType=VARCHAR},
+      </if>
+      <if test="chaCommmode != null" >
+        #{chaCommmode,jdbcType=VARCHAR},
+      </if>
+      <if test="chaReservechannel != null" >
+        #{chaReservechannel,jdbcType=VARCHAR},
+      </if>
+      <if test="chaRunstatus != null" >
+        #{chaRunstatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gs.domain.PreChannelInfo" >
+    update pre_channel_info
+    <set >
+      <if test="chaNumber != null" >
+        cha_number = #{chaNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="chaProtocolcode != null" >
+        cha_protocolCode = #{chaProtocolcode,jdbcType=VARCHAR},
+      </if>
+      <if test="chaAddressport != null" >
+        cha_addressPort = #{chaAddressport,jdbcType=VARCHAR},
+      </if>
+      <if test="chaUsemark != null" >
+        cha_useMark = #{chaUsemark,jdbcType=INTEGER},
+      </if>
+      <if test="chaDetectionmark != null" >
+        cha_detectionMark = #{chaDetectionmark,jdbcType=VARCHAR},
+      </if>
+      <if test="chaCommmode != null" >
+        cha_commMode = #{chaCommmode,jdbcType=VARCHAR},
+      </if>
+      <if test="chaReservechannel != null" >
+        cha_reserveChannel = #{chaReservechannel,jdbcType=VARCHAR},
+      </if>
+      <if test="chaRunstatus != null" >
+        cha_runStatus = #{chaRunstatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gs.domain.PreChannelInfo" >
+    update pre_channel_info
+    set cha_number = #{chaNumber,jdbcType=VARCHAR},
+      cha_protocolCode = #{chaProtocolcode,jdbcType=VARCHAR},
+      cha_addressPort = #{chaAddressport,jdbcType=VARCHAR},
+      cha_useMark = #{chaUsemark,jdbcType=INTEGER},
+      cha_detectionMark = #{chaDetectionmark,jdbcType=VARCHAR},
+      cha_commMode = #{chaCommmode,jdbcType=VARCHAR},
+      cha_reserveChannel = #{chaReservechannel,jdbcType=VARCHAR},
+      cha_runStatus = #{chaRunstatus,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

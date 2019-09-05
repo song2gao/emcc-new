@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gs.mapper.PomsDeviceParamVerificationDeriveMapper" >
+  <resultMap id="BaseResultMap" type="com.gs.domain.PomsDeviceParamVerificationDerive" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="MODEL_POINT_ID" property="modelPointId" jdbcType="VARCHAR" />
+    <result column="DATA_VERIFICATION_ID" property="dataVerificationId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, MODEL_POINT_ID, DATA_VERIFICATION_ID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_device_param_verification_derive
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from poms_device_param_verification_derive
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gs.domain.PomsDeviceParamVerificationDerive" >
+    insert into poms_device_param_verification_derive (ID, MODEL_POINT_ID, DATA_VERIFICATION_ID
+      )
+    values (#{id,jdbcType=VARCHAR}, #{modelPointId,jdbcType=VARCHAR}, #{dataVerificationId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gs.domain.PomsDeviceParamVerificationDerive" >
+    insert into poms_device_param_verification_derive
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="modelPointId != null" >
+        MODEL_POINT_ID,
+      </if>
+      <if test="dataVerificationId != null" >
+        DATA_VERIFICATION_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="modelPointId != null" >
+        #{modelPointId,jdbcType=VARCHAR},
+      </if>
+      <if test="dataVerificationId != null" >
+        #{dataVerificationId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gs.domain.PomsDeviceParamVerificationDerive" >
+    update poms_device_param_verification_derive
+    <set >
+      <if test="modelPointId != null" >
+        MODEL_POINT_ID = #{modelPointId,jdbcType=VARCHAR},
+      </if>
+      <if test="dataVerificationId != null" >
+        DATA_VERIFICATION_ID = #{dataVerificationId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gs.domain.PomsDeviceParamVerificationDerive" >
+    update poms_device_param_verification_derive
+    set MODEL_POINT_ID = #{modelPointId,jdbcType=VARCHAR},
+      DATA_VERIFICATION_ID = #{dataVerificationId,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

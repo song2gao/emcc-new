@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gs.mapper.PomsCalculateTerminalDeviceMapper" >
+  <resultMap id="BaseResultMap" type="com.gs.domain.PomsCalculateTerminalDevice" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="CTM_ID" property="ctmId" jdbcType="VARCHAR" />
+    <result column="CDT_ASSEMBLEID" property="cdtAssembleid" jdbcType="VARCHAR" />
+    <result column="CTD_ADDR" property="ctdAddr" jdbcType="VARCHAR" />
+    <result column="CDT_CORPORATE_ID" property="cdtCorporateId" jdbcType="VARCHAR" />
+    <result column="CTD_CODES" property="ctdCodes" jdbcType="VARCHAR" />
+    <result column="CDT_TERMINAL_STATUS" property="cdtTerminalStatus" jdbcType="VARCHAR" />
+    <result column="CDT_MEASURE_LOOP" property="cdtMeasureLoop" jdbcType="VARCHAR" />
+    <result column="CDT_INIT_VALUE" property="cdtInitValue" jdbcType="DECIMAL" />
+    <result column="CDT_TERMINAL_NAME" property="cdtTerminalName" jdbcType="VARCHAR" />
+    <result column="CDT_TERMINAL_INDUSTRY" property="cdtTerminalIndustry" jdbcType="VARCHAR" />
+    <result column="CDT_PRODUCTION_CODE" property="cdtProductionCode" jdbcType="VARCHAR" />
+    <result column="CDT_CHECK_PERIOD" property="cdtCheckPeriod" jdbcType="VARCHAR" />
+    <result column="CDT_NEXT_CHECK_TIME" property="cdtNextCheckTime" jdbcType="VARCHAR" />
+    <result column="CDT_ADD_TIME" property="cdtAddTime" jdbcType="VARCHAR" />
+    <result column="CDT_SCALE" property="cdtScale" jdbcType="DECIMAL" />
+    <result column="CDT_ISINVENTED" property="cdtIsinvented" jdbcType="VARCHAR" />
+    <result column="CDT_FORMULAR" property="cdtFormular" jdbcType="VARCHAR" />
+    <result column="CDT_FORMULARID" property="cdtFormularid" jdbcType="VARCHAR" />
+    <result column="CDT_BACKUPS" property="cdtBackups" jdbcType="VARCHAR" />
+    <result column="CDT_PROTOCAL_FUN_CODE" property="cdtProtocalFunCode" jdbcType="VARCHAR" />
+    <result column="CDT_PROTOCAL_SEC_FUN_CODE" property="cdtProtocalSecFunCode" jdbcType="VARCHAR" />
+    <result column="CDT_PROTOCAL_SECDAY_FUN_CODE" property="cdtProtocalSecdayFunCode" jdbcType="VARCHAR" />
+    <result column="CDT_PROTOCAL_SECMON_FUN_CODE" property="cdtProtocalSecmonFunCode" jdbcType="VARCHAR" />
+    <result column="PCLC_PARENT_ID" property="pclcParentId" jdbcType="VARCHAR" />
+    <result column="PCLC_CALCULATE_BAND" property="pclcCalculateBand" jdbcType="INTEGER" />
+    <result column="PCLC_ENERGY_TYPE" property="pclcEnergyType" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, CTM_ID, CDT_ASSEMBLEID, CTD_ADDR, CDT_CORPORATE_ID, CTD_CODES, CDT_TERMINAL_STATUS, 
+    CDT_MEASURE_LOOP, CDT_INIT_VALUE, CDT_TERMINAL_NAME, CDT_TERMINAL_INDUSTRY, CDT_PRODUCTION_CODE, 
+    CDT_CHECK_PERIOD, CDT_NEXT_CHECK_TIME, CDT_ADD_TIME, CDT_SCALE, CDT_ISINVENTED, CDT_FORMULAR, 
+    CDT_FORMULARID, CDT_BACKUPS, CDT_PROTOCAL_FUN_CODE, CDT_PROTOCAL_SEC_FUN_CODE, CDT_PROTOCAL_SECDAY_FUN_CODE, 
+    CDT_PROTOCAL_SECMON_FUN_CODE, PCLC_PARENT_ID, PCLC_CALCULATE_BAND, PCLC_ENERGY_TYPE
+  </sql>
+  
+  <select id="findMeasurCalculateCount" resultType="java.lang.Integer" >
+    select count(*)
+    from poms_calculate_terminal_device where CTM_ID=#{unitid} and CDT_ASSEMBLEID=#{calculteid}
+  </select>
+  <select id="findMeasurCalculateAndPoint" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_calculate_terminal_device where CTM_ID=#{unitid} and CDT_ASSEMBLEID=#{calculteid}  limit #{i},#{pageSize}
+  </select>
+  
+  <select id="findChildTabUnitInfo" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_calculate_terminal_device
+    where CDT_CORPORATE_ID = #{cdtCorporateId,jdbcType=VARCHAR}
+  </select>
+  <select id="findAllByEnergyType" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_calculate_terminal_device
+    where PCLC_ENERGY_TYPE = #{energyType,jdbcType=VARCHAR}
+     <if test="flag!=0 and flag!=null and flag!=''">
+    and CDT_CORPORATE_ID=#{flag} order by cast(ctd_addr as signed integer),cdt_measure_loop;
+    </if>
+  </select>
+   <select id="findByEnergyType" resultType="java.lang.String" parameterType="java.lang.String" >
+    select 
+    ctd_codes
+    from poms_calculate_terminal_device
+    where 1=1 
+    <if	test="energyType!=null and energyType.length>0">
+        and	pclc_energy_type in
+        	 <foreach collection="energyType" item="e" open="(" separator="," close=")">  
+            #{e}  
+        </foreach>
+     </if>
+     <if test="flag!=null and flag!=''">
+     and CDT_CORPORATE_ID=#{flag}
+     order by cast(ctd_addr as signed integer),cdt_measure_loop;
+     </if>
+  </select>
+   <select id="findTerType" resultType="java.lang.String" parameterType="java.lang.String" >
+    select 
+    ctd_codes
+    from poms_calculate_terminal_device
+    where 1=1
+     <if	test="terType!=null and terType.length>0">
+        and	CDT_TERMINAL_INDUSTRY in
+        	 <foreach collection="terType" item="e" open="(" separator="," close=")">  
+            #{e}  
+        </foreach>
+     </if>
+    
+  </select>
+  <select id="findByLikeName" resultType="java.lang.String" parameterType="java.lang.String" >
+    select 
+    ctd_codes
+    from poms_calculate_terminal_device
+    where  CDT_TERMINAL_NAME like #{name,jdbcType=VARCHAR}
+  </select>
+  <!-- 万能条件查询 -->
+  <select id="selectByAll" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_calculate_terminal_device
+    where 1=1
+    <if test="calmodel.ctdCodes!=null and calmodel.ctdCodes!=''">
+		and CTD_CODES=#{calmodel.ctdCodes}
+	</if>
+	<if test="calmodel.cdtProductionCode!=null and calmodel.cdtProductionCode!=''">
+		and CDT_PRODUCTION_CODE=#{calmodel.cdtProductionCode}
+	</if>
+  </select>
+  
+  <select id="selectByCode" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_calculate_terminal_device
+    where ctd_codes = #{code,jdbcType=VARCHAR}
+  </select>
+  <!-- 批量删除 -->
+   <delete id="deleteByAll" parameterType="java.lang.String">
+          DELETE FROM poms_calculate_terminal_device WHERE  ID in
+        <foreach collection="array" item="id" open="(" separator="," close=")">
+           #{id}
+        </foreach>
+    </delete>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from poms_calculate_terminal_device
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gs.domain.PomsCalculateTerminalDevice" >
+    insert into poms_calculate_terminal_device (ID, CTM_ID, CDT_ASSEMBLEID, 
+      CTD_ADDR, CDT_CORPORATE_ID, CTD_CODES, 
+      CDT_TERMINAL_STATUS, CDT_MEASURE_LOOP, CDT_INIT_VALUE, 
+      CDT_TERMINAL_NAME, CDT_TERMINAL_INDUSTRY, CDT_PRODUCTION_CODE, 
+      CDT_CHECK_PERIOD, CDT_NEXT_CHECK_TIME, CDT_ADD_TIME, 
+      CDT_SCALE, CDT_ISINVENTED, CDT_FORMULAR, 
+      CDT_FORMULARID, CDT_BACKUPS, CDT_PROTOCAL_FUN_CODE, 
+      CDT_PROTOCAL_SEC_FUN_CODE, CDT_PROTOCAL_SECDAY_FUN_CODE, 
+      CDT_PROTOCAL_SECMON_FUN_CODE, PCLC_PARENT_ID, 
+      PCLC_CALCULATE_BAND, PCLC_ENERGY_TYPE)
+    values (#{id,jdbcType=VARCHAR}, #{ctmId,jdbcType=VARCHAR}, #{cdtAssembleid,jdbcType=VARCHAR}, 
+      #{ctdAddr,jdbcType=VARCHAR}, #{cdtCorporateId,jdbcType=VARCHAR}, #{ctdCodes,jdbcType=VARCHAR}, 
+      #{cdtTerminalStatus,jdbcType=VARCHAR}, #{cdtMeasureLoop,jdbcType=VARCHAR}, #{cdtInitValue,jdbcType=DECIMAL}, 
+      #{cdtTerminalName,jdbcType=VARCHAR}, #{cdtTerminalIndustry,jdbcType=VARCHAR}, #{cdtProductionCode,jdbcType=VARCHAR}, 
+      #{cdtCheckPeriod,jdbcType=VARCHAR}, #{cdtNextCheckTime,jdbcType=VARCHAR}, #{cdtAddTime,jdbcType=VARCHAR}, 
+      #{cdtScale,jdbcType=DECIMAL}, #{cdtIsinvented,jdbcType=VARCHAR}, #{cdtFormular,jdbcType=VARCHAR}, 
+      #{cdtFormularid,jdbcType=VARCHAR}, #{cdtBackups,jdbcType=VARCHAR}, #{cdtProtocalFunCode,jdbcType=VARCHAR}, 
+      #{cdtProtocalSecFunCode,jdbcType=VARCHAR}, #{cdtProtocalSecdayFunCode,jdbcType=VARCHAR}, 
+      #{cdtProtocalSecmonFunCode,jdbcType=VARCHAR}, #{pclcParentId,jdbcType=VARCHAR}, 
+      #{pclcCalculateBand,jdbcType=INTEGER}, #{pclcEnergyType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gs.domain.PomsCalculateTerminalDevice" >
+    insert into poms_calculate_terminal_device
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="ctmId != null" >
+        CTM_ID,
+      </if>
+      <if test="cdtAssembleid != null" >
+        CDT_ASSEMBLEID,
+      </if>
+      <if test="ctdAddr != null" >
+        CTD_ADDR,
+      </if>
+      <if test="cdtCorporateId != null" >
+        CDT_CORPORATE_ID,
+      </if>
+      <if test="ctdCodes != null" >
+        CTD_CODES,
+      </if>
+      <if test="cdtTerminalStatus != null" >
+        CDT_TERMINAL_STATUS,
+      </if>
+      <if test="cdtMeasureLoop != null" >
+        CDT_MEASURE_LOOP,
+      </if>
+      <if test="cdtInitValue != null" >
+        CDT_INIT_VALUE,
+      </if>
+      <if test="cdtTerminalName != null" >
+        CDT_TERMINAL_NAME,
+      </if>
+      <if test="cdtTerminalIndustry != null" >
+        CDT_TERMINAL_INDUSTRY,
+      </if>
+      <if test="cdtProductionCode != null" >
+        CDT_PRODUCTION_CODE,
+      </if>
+      <if test="cdtCheckPeriod != null" >
+        CDT_CHECK_PERIOD,
+      </if>
+      <if test="cdtNextCheckTime != null" >
+        CDT_NEXT_CHECK_TIME,
+      </if>
+      <if test="cdtAddTime != null" >
+        CDT_ADD_TIME,
+      </if>
+      <if test="cdtScale != null" >
+        CDT_SCALE,
+      </if>
+      <if test="cdtIsinvented != null" >
+        CDT_ISINVENTED,
+      </if>
+      <if test="cdtFormular != null" >
+        CDT_FORMULAR,
+      </if>
+      <if test="cdtFormularid != null" >
+        CDT_FORMULARID,
+      </if>
+      <if test="cdtBackups != null" >
+        CDT_BACKUPS,
+      </if>
+      <if test="cdtProtocalFunCode != null" >
+        CDT_PROTOCAL_FUN_CODE,
+      </if>
+      <if test="cdtProtocalSecFunCode != null" >
+        CDT_PROTOCAL_SEC_FUN_CODE,
+      </if>
+      <if test="cdtProtocalSecdayFunCode != null" >
+        CDT_PROTOCAL_SECDAY_FUN_CODE,
+      </if>
+      <if test="cdtProtocalSecmonFunCode != null" >
+        CDT_PROTOCAL_SECMON_FUN_CODE,
+      </if>
+      <if test="pclcParentId != null" >
+        PCLC_PARENT_ID,
+      </if>
+      <if test="pclcCalculateBand != null" >
+        PCLC_CALCULATE_BAND,
+      </if>
+      <if test="pclcEnergyType != null" >
+        PCLC_ENERGY_TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="ctmId != null" >
+        #{ctmId,jdbcType=VARCHAR},
+      </if>
+      <if test="cdtAssembleid != null" >
+        #{cdtAssembleid,jdbcType=VARCHAR},
+      </if>
+      <if test="ctdAddr != null" >
+        #{ctdAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="cdtCorporateId != null" >
+        #{cdtCorporateId,jdbcType=VARCHAR},
+      </if>
+      <if test="ctdCodes != null" >
+        #{ctdCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="cdtTerminalStatus != null" >
+        #{cdtTerminalStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="cdtMeasureLoop != null" >
+        #{cdtMeasureLoop,jdbcType=VARCHAR},
+      </if>
+      <if test="cdtInitValue != null" >
+        #{cdtInitValue,jdbcType=DECIMAL},
+      </if>
+      <if test="cdtTerminalName != null" >
+        #{cdtTerminalName,jdbcType=VARCHAR},
+      </if>
+      <if test="cdtTerminalIndustry != null" >
+        #{cdtTerminalIndustry,jdbcType=VARCHAR},
+      </if>
+      <if test="cdtProductionCode != null" >
+        #{cdtProductionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cdtCheckPeriod != null" >
+        #{cdtCheckPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="cdtNextCheckTime != null" >
+        #{cdtNextCheckTime,jdbcType=VARCHAR},
+      </if>
+      <if test="cdtAddTime != null" >
+        #{cdtAddTime,jdbcType=VARCHAR},
+      </if>
+      <if test="cdtScale != null" >
+        #{cdtScale,jdbcType=DECIMAL},
+      </if>
+      <if test="cdtIsinvented != null" >
+        #{cdtIsinvented,jdbcType=VARCHAR},
+      </if>
+      <if test="cdtFormular != null" >
+        #{cdtFormular,jdbcType=VARCHAR},
+      </if>
+      <if test="cdtFormularid != null" >
+        #{cdtFormularid,jdbcType=VARCHAR},
+      </if>
+      <if test="cdtBackups != null" >
+        #{cdtBackups,jdbcType=VARCHAR},
+      </if>
+      <if test="cdtProtocalFunCode != null" >
+        #{cdtProtocalFunCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cdtProtocalSecFunCode != null" >
+        #{cdtProtocalSecFunCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cdtProtocalSecdayFunCode != null" >
+        #{cdtProtocalSecdayFunCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cdtProtocalSecmonFunCode != null" >
+        #{cdtProtocalSecmonFunCode,jdbcType=VARCHAR},
+      </if>
+      <if test="pclcParentId != null" >
+        #{pclcParentId,jdbcType=VARCHAR},
+      </if>
+      <if test="pclcCalculateBand != null" >
+        #{pclcCalculateBand,jdbcType=INTEGER},
+      </if>
+      <if test="pclcEnergyType != null" >
+        #{pclcEnergyType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gs.domain.PomsCalculateTerminalDevice" >
+    update poms_calculate_terminal_device
+    <set >
+      <if test="ctmId != null" >
+        CTM_ID = #{ctmId,jdbcType=VARCHAR},
+      </if>
+      <if test="cdtAssembleid != null" >
+        CDT_ASSEMBLEID = #{cdtAssembleid,jdbcType=VARCHAR},
+      </if>
+      <if test="ctdAddr != null" >
+        CTD_ADDR = #{ctdAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="cdtCorporateId != null" >
+        CDT_CORPORATE_ID = #{cdtCorporateId,jdbcType=VARCHAR},
+      </if>
+      <if test="ctdCodes != null" >
+        CTD_CODES = #{ctdCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="cdtTerminalStatus != null" >
+        CDT_TERMINAL_STATUS = #{cdtTerminalStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="cdtMeasureLoop != null" >
+        CDT_MEASURE_LOOP = #{cdtMeasureLoop,jdbcType=VARCHAR},
+      </if>
+      <if test="cdtInitValue != null" >
+        CDT_INIT_VALUE = #{cdtInitValue,jdbcType=DECIMAL},
+      </if>
+      <if test="cdtTerminalName != null" >
+        CDT_TERMINAL_NAME = #{cdtTerminalName,jdbcType=VARCHAR},
+      </if>
+      <if test="cdtTerminalIndustry != null" >
+        CDT_TERMINAL_INDUSTRY = #{cdtTerminalIndustry,jdbcType=VARCHAR},
+      </if>
+      <if test="cdtProductionCode != null" >
+        CDT_PRODUCTION_CODE = #{cdtProductionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cdtCheckPeriod != null" >
+        CDT_CHECK_PERIOD = #{cdtCheckPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="cdtNextCheckTime != null" >
+        CDT_NEXT_CHECK_TIME = #{cdtNextCheckTime,jdbcType=VARCHAR},
+      </if>
+      <if test="cdtAddTime != null" >
+        CDT_ADD_TIME = #{cdtAddTime,jdbcType=VARCHAR},
+      </if>
+      <if test="cdtScale != null" >
+        CDT_SCALE = #{cdtScale,jdbcType=DECIMAL},
+      </if>
+      <if test="cdtIsinvented != null" >
+        CDT_ISINVENTED = #{cdtIsinvented,jdbcType=VARCHAR},
+      </if>
+      <if test="cdtFormular != null" >
+        CDT_FORMULAR = #{cdtFormular,jdbcType=VARCHAR},
+      </if>
+      <if test="cdtFormularid != null" >
+        CDT_FORMULARID = #{cdtFormularid,jdbcType=VARCHAR},
+      </if>
+      <if test="cdtBackups != null" >
+        CDT_BACKUPS = #{cdtBackups,jdbcType=VARCHAR},
+      </if>
+      <if test="cdtProtocalFunCode != null" >
+        CDT_PROTOCAL_FUN_CODE = #{cdtProtocalFunCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cdtProtocalSecFunCode != null" >
+        CDT_PROTOCAL_SEC_FUN_CODE = #{cdtProtocalSecFunCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cdtProtocalSecdayFunCode != null" >
+        CDT_PROTOCAL_SECDAY_FUN_CODE = #{cdtProtocalSecdayFunCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cdtProtocalSecmonFunCode != null" >
+        CDT_PROTOCAL_SECMON_FUN_CODE = #{cdtProtocalSecmonFunCode,jdbcType=VARCHAR},
+      </if>
+      <if test="pclcParentId != null" >
+        PCLC_PARENT_ID = #{pclcParentId,jdbcType=VARCHAR},
+      </if>
+      <if test="pclcCalculateBand != null" >
+        PCLC_CALCULATE_BAND = #{pclcCalculateBand,jdbcType=INTEGER},
+      </if>
+      <if test="pclcEnergyType != null" >
+        PCLC_ENERGY_TYPE = #{pclcEnergyType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gs.domain.PomsCalculateTerminalDevice" >
+    update poms_calculate_terminal_device
+    set CTM_ID = #{ctmId,jdbcType=VARCHAR},
+      CDT_ASSEMBLEID = #{cdtAssembleid,jdbcType=VARCHAR},
+      CTD_ADDR = #{ctdAddr,jdbcType=VARCHAR},
+      CDT_CORPORATE_ID = #{cdtCorporateId,jdbcType=VARCHAR},
+      CTD_CODES = #{ctdCodes,jdbcType=VARCHAR},
+      CDT_TERMINAL_STATUS = #{cdtTerminalStatus,jdbcType=VARCHAR},
+      CDT_MEASURE_LOOP = #{cdtMeasureLoop,jdbcType=VARCHAR},
+      CDT_INIT_VALUE = #{cdtInitValue,jdbcType=DECIMAL},
+      CDT_TERMINAL_NAME = #{cdtTerminalName,jdbcType=VARCHAR},
+      CDT_TERMINAL_INDUSTRY = #{cdtTerminalIndustry,jdbcType=VARCHAR},
+      CDT_PRODUCTION_CODE = #{cdtProductionCode,jdbcType=VARCHAR},
+      CDT_CHECK_PERIOD = #{cdtCheckPeriod,jdbcType=VARCHAR},
+      CDT_NEXT_CHECK_TIME = #{cdtNextCheckTime,jdbcType=VARCHAR},
+      CDT_ADD_TIME = #{cdtAddTime,jdbcType=VARCHAR},
+      CDT_SCALE = #{cdtScale,jdbcType=DECIMAL},
+      CDT_ISINVENTED = #{cdtIsinvented,jdbcType=VARCHAR},
+      CDT_FORMULAR = #{cdtFormular,jdbcType=VARCHAR},
+      CDT_FORMULARID = #{cdtFormularid,jdbcType=VARCHAR},
+      CDT_BACKUPS = #{cdtBackups,jdbcType=VARCHAR},
+      CDT_PROTOCAL_FUN_CODE = #{cdtProtocalFunCode,jdbcType=VARCHAR},
+      CDT_PROTOCAL_SEC_FUN_CODE = #{cdtProtocalSecFunCode,jdbcType=VARCHAR},
+      CDT_PROTOCAL_SECDAY_FUN_CODE = #{cdtProtocalSecdayFunCode,jdbcType=VARCHAR},
+      CDT_PROTOCAL_SECMON_FUN_CODE = #{cdtProtocalSecmonFunCode,jdbcType=VARCHAR},
+      PCLC_PARENT_ID = #{pclcParentId,jdbcType=VARCHAR},
+      PCLC_CALCULATE_BAND = #{pclcCalculateBand,jdbcType=INTEGER},
+      PCLC_ENERGY_TYPE = #{pclcEnergyType,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gs.mapper.PomsAssembledTerminalDeviceMapper" >
+  <resultMap id="BaseResultMap" type="com.gs.domain.PomsAssembledTerminalDevice" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="ASSTD_ENTERPRISEID" property="asstdEnterpriseid" jdbcType="VARCHAR" />
+    <result column="ASSTD_CODE" property="asstdCode" jdbcType="VARCHAR" />
+    <result column="ASSTD_NAMES" property="asstdNames" jdbcType="VARCHAR" />
+    <result column="ASSTD_RUN_STATUS" property="asstdRunStatus" jdbcType="VARCHAR" />
+    <result column="ASSTD_PRODUCTION" property="asstdProduction" jdbcType="VARCHAR" />
+    <result column="FRO_ID" property="froId" jdbcType="VARCHAR" />
+    <result column="ASSTD_ASSEMBLE_IP" property="asstdAssembleIp" jdbcType="VARCHAR" />
+    <result column="CRC_COMMUNICATE_TYPE" property="crcCommunicateType" jdbcType="VARCHAR" />
+    <result column="CRC_COMMUNICATE_SERIAL" property="crcCommunicateSerial" jdbcType="VARCHAR" />
+    <result column="ASSTD_BACKUPS" property="asstdBackups" jdbcType="VARCHAR" />
+    <result column="CHANNEL_ID" property="channelId" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    ID, ASSTD_ENTERPRISEID, ASSTD_CODE, ASSTD_NAMES, ASSTD_RUN_STATUS, ASSTD_PRODUCTION, 
+    FRO_ID, ASSTD_ASSEMBLE_IP, CRC_COMMUNICATE_TYPE, CRC_COMMUNICATE_SERIAL, ASSTD_BACKUPS, 
+    CHANNEL_ID
+  </sql>
+  
+  
+  <select id="findAssAll" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_assembled_terminal_device
+  </select>
+  
+  <select id="findAss" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_assembled_terminal_device
+    where ASSTD_ENTERPRISEID = #{unitid}
+  </select>
+
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_assembled_terminal_device
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from poms_assembled_terminal_device
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gs.domain.PomsAssembledTerminalDevice" >
+    insert into poms_assembled_terminal_device (ID, ASSTD_ENTERPRISEID, ASSTD_CODE, 
+      ASSTD_NAMES, ASSTD_RUN_STATUS, ASSTD_PRODUCTION, 
+      FRO_ID, ASSTD_ASSEMBLE_IP, CRC_COMMUNICATE_TYPE, 
+      CRC_COMMUNICATE_SERIAL, ASSTD_BACKUPS, CHANNEL_ID
+      )
+    values (#{id,jdbcType=VARCHAR}, #{asstdEnterpriseid,jdbcType=VARCHAR}, #{asstdCode,jdbcType=VARCHAR}, 
+      #{asstdNames,jdbcType=VARCHAR}, #{asstdRunStatus,jdbcType=VARCHAR}, #{asstdProduction,jdbcType=VARCHAR}, 
+      #{froId,jdbcType=VARCHAR}, #{asstdAssembleIp,jdbcType=VARCHAR}, #{crcCommunicateType,jdbcType=VARCHAR}, 
+      #{crcCommunicateSerial,jdbcType=VARCHAR}, #{asstdBackups,jdbcType=VARCHAR}, #{channelId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gs.domain.PomsAssembledTerminalDevice" >
+    insert into poms_assembled_terminal_device
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="asstdEnterpriseid != null" >
+        ASSTD_ENTERPRISEID,
+      </if>
+      <if test="asstdCode != null" >
+        ASSTD_CODE,
+      </if>
+      <if test="asstdNames != null" >
+        ASSTD_NAMES,
+      </if>
+      <if test="asstdRunStatus != null" >
+        ASSTD_RUN_STATUS,
+      </if>
+      <if test="asstdProduction != null" >
+        ASSTD_PRODUCTION,
+      </if>
+      <if test="froId != null" >
+        FRO_ID,
+      </if>
+      <if test="asstdAssembleIp != null" >
+        ASSTD_ASSEMBLE_IP,
+      </if>
+      <if test="crcCommunicateType != null" >
+        CRC_COMMUNICATE_TYPE,
+      </if>
+      <if test="crcCommunicateSerial != null" >
+        CRC_COMMUNICATE_SERIAL,
+      </if>
+      <if test="asstdBackups != null" >
+        ASSTD_BACKUPS,
+      </if>
+      <if test="channelId != null" >
+        CHANNEL_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="asstdEnterpriseid != null" >
+        #{asstdEnterpriseid,jdbcType=VARCHAR},
+      </if>
+      <if test="asstdCode != null" >
+        #{asstdCode,jdbcType=VARCHAR},
+      </if>
+      <if test="asstdNames != null" >
+        #{asstdNames,jdbcType=VARCHAR},
+      </if>
+      <if test="asstdRunStatus != null" >
+        #{asstdRunStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="asstdProduction != null" >
+        #{asstdProduction,jdbcType=VARCHAR},
+      </if>
+      <if test="froId != null" >
+        #{froId,jdbcType=VARCHAR},
+      </if>
+      <if test="asstdAssembleIp != null" >
+        #{asstdAssembleIp,jdbcType=VARCHAR},
+      </if>
+      <if test="crcCommunicateType != null" >
+        #{crcCommunicateType,jdbcType=VARCHAR},
+      </if>
+      <if test="crcCommunicateSerial != null" >
+        #{crcCommunicateSerial,jdbcType=VARCHAR},
+      </if>
+      <if test="asstdBackups != null" >
+        #{asstdBackups,jdbcType=VARCHAR},
+      </if>
+      <if test="channelId != null" >
+        #{channelId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gs.domain.PomsAssembledTerminalDevice" >
+    update poms_assembled_terminal_device
+    <set >
+      <if test="asstdEnterpriseid != null" >
+        ASSTD_ENTERPRISEID = #{asstdEnterpriseid,jdbcType=VARCHAR},
+      </if>
+      <if test="asstdCode != null" >
+        ASSTD_CODE = #{asstdCode,jdbcType=VARCHAR},
+      </if>
+      <if test="asstdNames != null" >
+        ASSTD_NAMES = #{asstdNames,jdbcType=VARCHAR},
+      </if>
+      <if test="asstdRunStatus != null" >
+        ASSTD_RUN_STATUS = #{asstdRunStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="asstdProduction != null" >
+        ASSTD_PRODUCTION = #{asstdProduction,jdbcType=VARCHAR},
+      </if>
+      <if test="froId != null" >
+        FRO_ID = #{froId,jdbcType=VARCHAR},
+      </if>
+      <if test="asstdAssembleIp != null" >
+        ASSTD_ASSEMBLE_IP = #{asstdAssembleIp,jdbcType=VARCHAR},
+      </if>
+      <if test="crcCommunicateType != null" >
+        CRC_COMMUNICATE_TYPE = #{crcCommunicateType,jdbcType=VARCHAR},
+      </if>
+      <if test="crcCommunicateSerial != null" >
+        CRC_COMMUNICATE_SERIAL = #{crcCommunicateSerial,jdbcType=VARCHAR},
+      </if>
+      <if test="asstdBackups != null" >
+        ASSTD_BACKUPS = #{asstdBackups,jdbcType=VARCHAR},
+      </if>
+      <if test="channelId != null" >
+        CHANNEL_ID = #{channelId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gs.domain.PomsAssembledTerminalDevice" >
+    update poms_assembled_terminal_device
+    set ASSTD_ENTERPRISEID = #{asstdEnterpriseid,jdbcType=VARCHAR},
+      ASSTD_CODE = #{asstdCode,jdbcType=VARCHAR},
+      ASSTD_NAMES = #{asstdNames,jdbcType=VARCHAR},
+      ASSTD_RUN_STATUS = #{asstdRunStatus,jdbcType=VARCHAR},
+      ASSTD_PRODUCTION = #{asstdProduction,jdbcType=VARCHAR},
+      FRO_ID = #{froId,jdbcType=VARCHAR},
+      ASSTD_ASSEMBLE_IP = #{asstdAssembleIp,jdbcType=VARCHAR},
+      CRC_COMMUNICATE_TYPE = #{crcCommunicateType,jdbcType=VARCHAR},
+      CRC_COMMUNICATE_SERIAL = #{crcCommunicateSerial,jdbcType=VARCHAR},
+      ASSTD_BACKUPS = #{asstdBackups,jdbcType=VARCHAR},
+      CHANNEL_ID = #{channelId,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

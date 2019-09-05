@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gs.mapper.PomsModleMeasurPointMapper" >
+  <resultMap id="BaseResultMap" type="com.gs.domain.PomsModleMeasurPoint" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="CTM_ID" property="ctmId" jdbcType="VARCHAR" />
+    <result column="MMP_CODES" property="mmpCodes" jdbcType="VARCHAR" />
+    <result column="MMP_NAMES" property="mmpNames" jdbcType="VARCHAR" />
+    <result column="MOD_ADDRESS" property="modAddress" jdbcType="VARCHAR" />
+    <result column="MMP_LENGTH" property="mmpLength" jdbcType="INTEGER" />
+    <result column="MMP_SYMBOLS" property="mmpSymbols" jdbcType="VARCHAR" />
+    <result column="MMP_UNITS" property="mmpUnits" jdbcType="VARCHAR" />
+    <result column="MMP_FORMULAR" property="mmpFormular" jdbcType="VARCHAR" />
+    <result column="MMP_ISSAVE" property="mmpIssave" jdbcType="INTEGER" />
+    <result column="MMP_TYPE" property="mmpType" jdbcType="VARCHAR" />
+    <result column="MMP_SAVE_INTERVAL" property="mmpSaveInterval" jdbcType="VARCHAR" />
+    <result column="MMP_SAVE_STYLE" property="mmpSaveStyle" jdbcType="VARCHAR" />
+    <result column="MMP_STATISTIC_TYPE" property="mmpStatisticType" jdbcType="VARCHAR" />
+    <result column="MMP_UP_VALUE" property="mmpUpValue" jdbcType="DECIMAL" />
+    <result column="MMP_UPER_LINE" property="mmpUperLine" jdbcType="DECIMAL" />
+    <result column="MMP_DOWN_VALUE" property="mmpDownValue" jdbcType="DECIMAL" />
+    <result column="MMP_DOWNER_LINE" property="mmpDownerLine" jdbcType="DECIMAL" />
+    <result column="MMP_STANDARD_VAL" property="mmpStandardVal" jdbcType="DECIMAL" />
+    <result column="MMP_BACKUPS" property="mmpBackups" jdbcType="VARCHAR" />
+    <result column="MMP_ISCT" property="mmpIsct" jdbcType="INTEGER" />
+    <result column="MMP_ISPT" property="mmpIspt" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, CTM_ID, MMP_CODES, MMP_NAMES, MOD_ADDRESS, MMP_LENGTH, MMP_SYMBOLS, MMP_UNITS, 
+    MMP_FORMULAR, MMP_ISSAVE, MMP_TYPE, MMP_SAVE_INTERVAL, MMP_SAVE_STYLE, MMP_STATISTIC_TYPE, 
+    MMP_UP_VALUE, MMP_UPER_LINE, MMP_DOWN_VALUE, MMP_DOWNER_LINE, MMP_STANDARD_VAL, MMP_BACKUPS, 
+    MMP_ISCT, MMP_ISPT
+    
+  </sql>
+  
+   <!-- 根据 实体code 中的某个字段 条件查询所有  -->
+  <select id="selectCodesPage" resultMap="BaseResultMap" parameterType="com.gs.domain.PomsModleMeasurPoint" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_modle_measur_point
+    where 1=1
+    <if	test="measurPoint.mmpNames!=null and measurPoint.mmpNames!=''">
+        and MMP_NAMES like '%${measurPoint.mmpNames}%'
+    </if>
+    <if	test="measurPoint.mmpCodes!=null and measurPoint.mmpCodes!=''">
+        and MMP_CODES like '%${measurPoint.mmpCodes}%'
+    </if>
+    <if	test="pageSize!=null and pageSize!=0 and pageBegin!=null">
+      	limit #{pageBegin},#{pageSize}
+     </if>
+  </select>
+  <!-- 查询总条数 -->
+  <select id="getCount"  resultType="java.lang.Integer">
+	select count(*) from poms_modle_measur_point
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_modle_measur_point
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+   <select id="findByCtmId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_modle_measur_point
+    where CTM_ID = #{ctmId}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from poms_modle_measur_point
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gs.domain.PomsModleMeasurPoint" >
+    insert into poms_modle_measur_point (ID, CTM_ID, MMP_CODES, 
+      MMP_NAMES, MOD_ADDRESS, MMP_LENGTH, 
+      MMP_SYMBOLS, MMP_UNITS, MMP_FORMULAR, 
+      MMP_ISSAVE, MMP_TYPE, MMP_SAVE_INTERVAL, 
+      MMP_SAVE_STYLE, MMP_STATISTIC_TYPE, MMP_UP_VALUE, 
+      MMP_UPER_LINE, MMP_DOWN_VALUE, MMP_DOWNER_LINE, 
+      MMP_STANDARD_VAL, MMP_BACKUPS, MMP_ISCT, 
+      MMP_ISPT)
+    values (#{id,jdbcType=INTEGER}, #{ctmId,jdbcType=VARCHAR}, #{mmpCodes,jdbcType=VARCHAR}, 
+      #{mmpNames,jdbcType=VARCHAR}, #{modAddress,jdbcType=VARCHAR}, #{mmpLength,jdbcType=INTEGER}, 
+      #{mmpSymbols,jdbcType=VARCHAR}, #{mmpUnits,jdbcType=VARCHAR}, #{mmpFormular,jdbcType=VARCHAR}, 
+      #{mmpIssave,jdbcType=INTEGER}, #{mmpType,jdbcType=VARCHAR}, #{mmpSaveInterval,jdbcType=VARCHAR}, 
+      #{mmpSaveStyle,jdbcType=VARCHAR}, #{mmpStatisticType,jdbcType=VARCHAR}, #{mmpUpValue,jdbcType=DECIMAL}, 
+      #{mmpUperLine,jdbcType=DECIMAL}, #{mmpDownValue,jdbcType=DECIMAL}, #{mmpDownerLine,jdbcType=DECIMAL}, 
+      #{mmpStandardVal,jdbcType=DECIMAL}, #{mmpBackups,jdbcType=VARCHAR}, #{mmpIsct,jdbcType=INTEGER}, 
+      #{mmpIspt,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gs.domain.PomsModleMeasurPoint" >
+    insert into poms_modle_measur_point
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="ctmId != null" >
+        CTM_ID,
+      </if>
+      <if test="mmpCodes != null" >
+        MMP_CODES,
+      </if>
+      <if test="mmpNames != null" >
+        MMP_NAMES,
+      </if>
+      <if test="modAddress != null" >
+        MOD_ADDRESS,
+      </if>
+      <if test="mmpLength != null" >
+        MMP_LENGTH,
+      </if>
+      <if test="mmpSymbols != null" >
+        MMP_SYMBOLS,
+      </if>
+      <if test="mmpUnits != null" >
+        MMP_UNITS,
+      </if>
+      <if test="mmpFormular != null" >
+        MMP_FORMULAR,
+      </if>
+      <if test="mmpIssave != null" >
+        MMP_ISSAVE,
+      </if>
+      <if test="mmpType != null" >
+        MMP_TYPE,
+      </if>
+      <if test="mmpSaveInterval != null" >
+        MMP_SAVE_INTERVAL,
+      </if>
+      <if test="mmpSaveStyle != null" >
+        MMP_SAVE_STYLE,
+      </if>
+      <if test="mmpStatisticType != null" >
+        MMP_STATISTIC_TYPE,
+      </if>
+      <if test="mmpUpValue != null" >
+        MMP_UP_VALUE,
+      </if>
+      <if test="mmpUperLine != null" >
+        MMP_UPER_LINE,
+      </if>
+      <if test="mmpDownValue != null" >
+        MMP_DOWN_VALUE,
+      </if>
+      <if test="mmpDownerLine != null" >
+        MMP_DOWNER_LINE,
+      </if>
+      <if test="mmpStandardVal != null" >
+        MMP_STANDARD_VAL,
+      </if>
+      <if test="mmpBackups != null" >
+        MMP_BACKUPS,
+      </if>
+      <if test="mmpIsct != null" >
+        MMP_ISCT,
+      </if>
+      <if test="mmpIspt != null" >
+        MMP_ISPT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="ctmId != null" >
+        #{ctmId,jdbcType=VARCHAR},
+      </if>
+      <if test="mmpCodes != null" >
+        #{mmpCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="mmpNames != null" >
+        #{mmpNames,jdbcType=VARCHAR},
+      </if>
+      <if test="modAddress != null" >
+        #{modAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="mmpLength != null" >
+        #{mmpLength,jdbcType=INTEGER},
+      </if>
+      <if test="mmpSymbols != null" >
+        #{mmpSymbols,jdbcType=VARCHAR},
+      </if>
+      <if test="mmpUnits != null" >
+        #{mmpUnits,jdbcType=VARCHAR},
+      </if>
+      <if test="mmpFormular != null" >
+        #{mmpFormular,jdbcType=VARCHAR},
+      </if>
+      <if test="mmpIssave != null" >
+        #{mmpIssave,jdbcType=INTEGER},
+      </if>
+      <if test="mmpType != null" >
+        #{mmpType,jdbcType=VARCHAR},
+      </if>
+      <if test="mmpSaveInterval != null" >
+        #{mmpSaveInterval,jdbcType=VARCHAR},
+      </if>
+      <if test="mmpSaveStyle != null" >
+        #{mmpSaveStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="mmpStatisticType != null" >
+        #{mmpStatisticType,jdbcType=VARCHAR},
+      </if>
+      <if test="mmpUpValue != null" >
+        #{mmpUpValue,jdbcType=DECIMAL},
+      </if>
+      <if test="mmpUperLine != null" >
+        #{mmpUperLine,jdbcType=DECIMAL},
+      </if>
+      <if test="mmpDownValue != null" >
+        #{mmpDownValue,jdbcType=DECIMAL},
+      </if>
+      <if test="mmpDownerLine != null" >
+        #{mmpDownerLine,jdbcType=DECIMAL},
+      </if>
+      <if test="mmpStandardVal != null" >
+        #{mmpStandardVal,jdbcType=DECIMAL},
+      </if>
+      <if test="mmpBackups != null" >
+        #{mmpBackups,jdbcType=VARCHAR},
+      </if>
+      <if test="mmpIsct != null" >
+        #{mmpIsct,jdbcType=INTEGER},
+      </if>
+      <if test="mmpIspt != null" >
+        #{mmpIspt,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gs.domain.PomsModleMeasurPoint" >
+    update poms_modle_measur_point
+    <set >
+      <if test="ctmId != null" >
+        CTM_ID = #{ctmId,jdbcType=VARCHAR},
+      </if>
+      <if test="mmpCodes != null" >
+        MMP_CODES = #{mmpCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="mmpNames != null" >
+        MMP_NAMES = #{mmpNames,jdbcType=VARCHAR},
+      </if>
+      <if test="modAddress != null" >
+        MOD_ADDRESS = #{modAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="mmpLength != null" >
+        MMP_LENGTH = #{mmpLength,jdbcType=INTEGER},
+      </if>
+      <if test="mmpSymbols != null" >
+        MMP_SYMBOLS = #{mmpSymbols,jdbcType=VARCHAR},
+      </if>
+      <if test="mmpUnits != null" >
+        MMP_UNITS = #{mmpUnits,jdbcType=VARCHAR},
+      </if>
+      <if test="mmpFormular != null" >
+        MMP_FORMULAR = #{mmpFormular,jdbcType=VARCHAR},
+      </if>
+      <if test="mmpIssave != null" >
+        MMP_ISSAVE = #{mmpIssave,jdbcType=INTEGER},
+      </if>
+      <if test="mmpType != null" >
+        MMP_TYPE = #{mmpType,jdbcType=VARCHAR},
+      </if>
+      <if test="mmpSaveInterval != null" >
+        MMP_SAVE_INTERVAL = #{mmpSaveInterval,jdbcType=VARCHAR},
+      </if>
+      <if test="mmpSaveStyle != null" >
+        MMP_SAVE_STYLE = #{mmpSaveStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="mmpStatisticType != null" >
+        MMP_STATISTIC_TYPE = #{mmpStatisticType,jdbcType=VARCHAR},
+      </if>
+      <if test="mmpUpValue != null" >
+        MMP_UP_VALUE = #{mmpUpValue,jdbcType=DECIMAL},
+      </if>
+      <if test="mmpUperLine != null" >
+        MMP_UPER_LINE = #{mmpUperLine,jdbcType=DECIMAL},
+      </if>
+      <if test="mmpDownValue != null" >
+        MMP_DOWN_VALUE = #{mmpDownValue,jdbcType=DECIMAL},
+      </if>
+      <if test="mmpDownerLine != null" >
+        MMP_DOWNER_LINE = #{mmpDownerLine,jdbcType=DECIMAL},
+      </if>
+      <if test="mmpStandardVal != null" >
+        MMP_STANDARD_VAL = #{mmpStandardVal,jdbcType=DECIMAL},
+      </if>
+      <if test="mmpBackups != null" >
+        MMP_BACKUPS = #{mmpBackups,jdbcType=VARCHAR},
+      </if>
+      <if test="mmpIsct != null" >
+        MMP_ISCT = #{mmpIsct,jdbcType=INTEGER},
+      </if>
+      <if test="mmpIspt != null" >
+        MMP_ISPT = #{mmpIspt,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gs.domain.PomsModleMeasurPoint" >
+    update poms_modle_measur_point
+    set CTM_ID = #{ctmId,jdbcType=VARCHAR},
+      MMP_CODES = #{mmpCodes,jdbcType=VARCHAR},
+      MMP_NAMES = #{mmpNames,jdbcType=VARCHAR},
+      MOD_ADDRESS = #{modAddress,jdbcType=VARCHAR},
+      MMP_LENGTH = #{mmpLength,jdbcType=INTEGER},
+      MMP_SYMBOLS = #{mmpSymbols,jdbcType=VARCHAR},
+      MMP_UNITS = #{mmpUnits,jdbcType=VARCHAR},
+      MMP_FORMULAR = #{mmpFormular,jdbcType=VARCHAR},
+      MMP_ISSAVE = #{mmpIssave,jdbcType=INTEGER},
+      MMP_TYPE = #{mmpType,jdbcType=VARCHAR},
+      MMP_SAVE_INTERVAL = #{mmpSaveInterval,jdbcType=VARCHAR},
+      MMP_SAVE_STYLE = #{mmpSaveStyle,jdbcType=VARCHAR},
+      MMP_STATISTIC_TYPE = #{mmpStatisticType,jdbcType=VARCHAR},
+      MMP_UP_VALUE = #{mmpUpValue,jdbcType=DECIMAL},
+      MMP_UPER_LINE = #{mmpUperLine,jdbcType=DECIMAL},
+      MMP_DOWN_VALUE = #{mmpDownValue,jdbcType=DECIMAL},
+      MMP_DOWNER_LINE = #{mmpDownerLine,jdbcType=DECIMAL},
+      MMP_STANDARD_VAL = #{mmpStandardVal,jdbcType=DECIMAL},
+      MMP_BACKUPS = #{mmpBackups,jdbcType=VARCHAR},
+      MMP_ISCT = #{mmpIsct,jdbcType=INTEGER},
+      MMP_ISPT = #{mmpIspt,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

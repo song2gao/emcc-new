@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gs.mapper.PomsAlternativeTerminalDeviceParamMapper" >
+  <resultMap id="BaseResultMap" type="com.gs.domain.PomsAlternativeTerminalDeviceParam" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="ATDP_ALTER_RECORD_ID" property="atdpAlterRecordId" jdbcType="VARCHAR" />
+    <result column="ATDP_CODES" property="atdpCodes" jdbcType="VARCHAR" />
+    <result column="ATDP_NAMES" property="atdpNames" jdbcType="VARCHAR" />
+    <result column="ATDP_SYMBOLS" property="atdpSymbols" jdbcType="VARCHAR" />
+    <result column="ATDP_UNITS" property="atdpUnits" jdbcType="VARCHAR" />
+    <result column="ATDP_FORMULAR" property="atdpFormular" jdbcType="VARCHAR" />
+    <result column="ATDP_ISSAVE" property="atdpIssave" jdbcType="VARCHAR" />
+    <result column="ATDP_TYPE" property="atdpType" jdbcType="VARCHAR" />
+    <result column="ATDP_SAVE_INTERVAL" property="atdpSaveInterval" jdbcType="VARCHAR" />
+    <result column="ATDP_SAVE_STYLE" property="atdpSaveStyle" jdbcType="VARCHAR" />
+    <result column="ATDP_STATISTIC_TYPE" property="atdpStatisticType" jdbcType="VARCHAR" />
+    <result column="ATDP_UP_LINE" property="atdpUpLine" jdbcType="DECIMAL" />
+    <result column="ATDP_UPER_LINE" property="atdpUperLine" jdbcType="DECIMAL" />
+    <result column="ATDP_DOWN_LINE" property="atdpDownLine" jdbcType="DECIMAL" />
+    <result column="ATDP_DOWNER_LINE" property="atdpDownerLine" jdbcType="DECIMAL" />
+    <result column="ATDP_STANDARD_VAL" property="atdpStandardVal" jdbcType="DECIMAL" />
+    <result column="ATDP_ORDERS" property="atdpOrders" jdbcType="INTEGER" />
+    <result column="ATDP_BACKUPS" property="atdpBackups" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, ATDP_ALTER_RECORD_ID, ATDP_CODES, ATDP_NAMES, ATDP_SYMBOLS, ATDP_UNITS, ATDP_FORMULAR, 
+    ATDP_ISSAVE, ATDP_TYPE, ATDP_SAVE_INTERVAL, ATDP_SAVE_STYLE, ATDP_STATISTIC_TYPE, 
+    ATDP_UP_LINE, ATDP_UPER_LINE, ATDP_DOWN_LINE, ATDP_DOWNER_LINE, ATDP_STANDARD_VAL, 
+    ATDP_ORDERS, ATDP_BACKUPS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_alternative_terminal_device_param
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from poms_alternative_terminal_device_param
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gs.domain.PomsAlternativeTerminalDeviceParam" >
+    insert into poms_alternative_terminal_device_param (ID, ATDP_ALTER_RECORD_ID, ATDP_CODES, 
+      ATDP_NAMES, ATDP_SYMBOLS, ATDP_UNITS, 
+      ATDP_FORMULAR, ATDP_ISSAVE, ATDP_TYPE, 
+      ATDP_SAVE_INTERVAL, ATDP_SAVE_STYLE, ATDP_STATISTIC_TYPE, 
+      ATDP_UP_LINE, ATDP_UPER_LINE, ATDP_DOWN_LINE, 
+      ATDP_DOWNER_LINE, ATDP_STANDARD_VAL, ATDP_ORDERS, 
+      ATDP_BACKUPS)
+    values (#{id,jdbcType=VARCHAR}, #{atdpAlterRecordId,jdbcType=VARCHAR}, #{atdpCodes,jdbcType=VARCHAR}, 
+      #{atdpNames,jdbcType=VARCHAR}, #{atdpSymbols,jdbcType=VARCHAR}, #{atdpUnits,jdbcType=VARCHAR}, 
+      #{atdpFormular,jdbcType=VARCHAR}, #{atdpIssave,jdbcType=VARCHAR}, #{atdpType,jdbcType=VARCHAR}, 
+      #{atdpSaveInterval,jdbcType=VARCHAR}, #{atdpSaveStyle,jdbcType=VARCHAR}, #{atdpStatisticType,jdbcType=VARCHAR}, 
+      #{atdpUpLine,jdbcType=DECIMAL}, #{atdpUperLine,jdbcType=DECIMAL}, #{atdpDownLine,jdbcType=DECIMAL}, 
+      #{atdpDownerLine,jdbcType=DECIMAL}, #{atdpStandardVal,jdbcType=DECIMAL}, #{atdpOrders,jdbcType=INTEGER}, 
+      #{atdpBackups,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gs.domain.PomsAlternativeTerminalDeviceParam" >
+    insert into poms_alternative_terminal_device_param
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="atdpAlterRecordId != null" >
+        ATDP_ALTER_RECORD_ID,
+      </if>
+      <if test="atdpCodes != null" >
+        ATDP_CODES,
+      </if>
+      <if test="atdpNames != null" >
+        ATDP_NAMES,
+      </if>
+      <if test="atdpSymbols != null" >
+        ATDP_SYMBOLS,
+      </if>
+      <if test="atdpUnits != null" >
+        ATDP_UNITS,
+      </if>
+      <if test="atdpFormular != null" >
+        ATDP_FORMULAR,
+      </if>
+      <if test="atdpIssave != null" >
+        ATDP_ISSAVE,
+      </if>
+      <if test="atdpType != null" >
+        ATDP_TYPE,
+      </if>
+      <if test="atdpSaveInterval != null" >
+        ATDP_SAVE_INTERVAL,
+      </if>
+      <if test="atdpSaveStyle != null" >
+        ATDP_SAVE_STYLE,
+      </if>
+      <if test="atdpStatisticType != null" >
+        ATDP_STATISTIC_TYPE,
+      </if>
+      <if test="atdpUpLine != null" >
+        ATDP_UP_LINE,
+      </if>
+      <if test="atdpUperLine != null" >
+        ATDP_UPER_LINE,
+      </if>
+      <if test="atdpDownLine != null" >
+        ATDP_DOWN_LINE,
+      </if>
+      <if test="atdpDownerLine != null" >
+        ATDP_DOWNER_LINE,
+      </if>
+      <if test="atdpStandardVal != null" >
+        ATDP_STANDARD_VAL,
+      </if>
+      <if test="atdpOrders != null" >
+        ATDP_ORDERS,
+      </if>
+      <if test="atdpBackups != null" >
+        ATDP_BACKUPS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="atdpAlterRecordId != null" >
+        #{atdpAlterRecordId,jdbcType=VARCHAR},
+      </if>
+      <if test="atdpCodes != null" >
+        #{atdpCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="atdpNames != null" >
+        #{atdpNames,jdbcType=VARCHAR},
+      </if>
+      <if test="atdpSymbols != null" >
+        #{atdpSymbols,jdbcType=VARCHAR},
+      </if>
+      <if test="atdpUnits != null" >
+        #{atdpUnits,jdbcType=VARCHAR},
+      </if>
+      <if test="atdpFormular != null" >
+        #{atdpFormular,jdbcType=VARCHAR},
+      </if>
+      <if test="atdpIssave != null" >
+        #{atdpIssave,jdbcType=VARCHAR},
+      </if>
+      <if test="atdpType != null" >
+        #{atdpType,jdbcType=VARCHAR},
+      </if>
+      <if test="atdpSaveInterval != null" >
+        #{atdpSaveInterval,jdbcType=VARCHAR},
+      </if>
+      <if test="atdpSaveStyle != null" >
+        #{atdpSaveStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="atdpStatisticType != null" >
+        #{atdpStatisticType,jdbcType=VARCHAR},
+      </if>
+      <if test="atdpUpLine != null" >
+        #{atdpUpLine,jdbcType=DECIMAL},
+      </if>
+      <if test="atdpUperLine != null" >
+        #{atdpUperLine,jdbcType=DECIMAL},
+      </if>
+      <if test="atdpDownLine != null" >
+        #{atdpDownLine,jdbcType=DECIMAL},
+      </if>
+      <if test="atdpDownerLine != null" >
+        #{atdpDownerLine,jdbcType=DECIMAL},
+      </if>
+      <if test="atdpStandardVal != null" >
+        #{atdpStandardVal,jdbcType=DECIMAL},
+      </if>
+      <if test="atdpOrders != null" >
+        #{atdpOrders,jdbcType=INTEGER},
+      </if>
+      <if test="atdpBackups != null" >
+        #{atdpBackups,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gs.domain.PomsAlternativeTerminalDeviceParam" >
+    update poms_alternative_terminal_device_param
+    <set >
+      <if test="atdpAlterRecordId != null" >
+        ATDP_ALTER_RECORD_ID = #{atdpAlterRecordId,jdbcType=VARCHAR},
+      </if>
+      <if test="atdpCodes != null" >
+        ATDP_CODES = #{atdpCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="atdpNames != null" >
+        ATDP_NAMES = #{atdpNames,jdbcType=VARCHAR},
+      </if>
+      <if test="atdpSymbols != null" >
+        ATDP_SYMBOLS = #{atdpSymbols,jdbcType=VARCHAR},
+      </if>
+      <if test="atdpUnits != null" >
+        ATDP_UNITS = #{atdpUnits,jdbcType=VARCHAR},
+      </if>
+      <if test="atdpFormular != null" >
+        ATDP_FORMULAR = #{atdpFormular,jdbcType=VARCHAR},
+      </if>
+      <if test="atdpIssave != null" >
+        ATDP_ISSAVE = #{atdpIssave,jdbcType=VARCHAR},
+      </if>
+      <if test="atdpType != null" >
+        ATDP_TYPE = #{atdpType,jdbcType=VARCHAR},
+      </if>
+      <if test="atdpSaveInterval != null" >
+        ATDP_SAVE_INTERVAL = #{atdpSaveInterval,jdbcType=VARCHAR},
+      </if>
+      <if test="atdpSaveStyle != null" >
+        ATDP_SAVE_STYLE = #{atdpSaveStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="atdpStatisticType != null" >
+        ATDP_STATISTIC_TYPE = #{atdpStatisticType,jdbcType=VARCHAR},
+      </if>
+      <if test="atdpUpLine != null" >
+        ATDP_UP_LINE = #{atdpUpLine,jdbcType=DECIMAL},
+      </if>
+      <if test="atdpUperLine != null" >
+        ATDP_UPER_LINE = #{atdpUperLine,jdbcType=DECIMAL},
+      </if>
+      <if test="atdpDownLine != null" >
+        ATDP_DOWN_LINE = #{atdpDownLine,jdbcType=DECIMAL},
+      </if>
+      <if test="atdpDownerLine != null" >
+        ATDP_DOWNER_LINE = #{atdpDownerLine,jdbcType=DECIMAL},
+      </if>
+      <if test="atdpStandardVal != null" >
+        ATDP_STANDARD_VAL = #{atdpStandardVal,jdbcType=DECIMAL},
+      </if>
+      <if test="atdpOrders != null" >
+        ATDP_ORDERS = #{atdpOrders,jdbcType=INTEGER},
+      </if>
+      <if test="atdpBackups != null" >
+        ATDP_BACKUPS = #{atdpBackups,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gs.domain.PomsAlternativeTerminalDeviceParam" >
+    update poms_alternative_terminal_device_param
+    set ATDP_ALTER_RECORD_ID = #{atdpAlterRecordId,jdbcType=VARCHAR},
+      ATDP_CODES = #{atdpCodes,jdbcType=VARCHAR},
+      ATDP_NAMES = #{atdpNames,jdbcType=VARCHAR},
+      ATDP_SYMBOLS = #{atdpSymbols,jdbcType=VARCHAR},
+      ATDP_UNITS = #{atdpUnits,jdbcType=VARCHAR},
+      ATDP_FORMULAR = #{atdpFormular,jdbcType=VARCHAR},
+      ATDP_ISSAVE = #{atdpIssave,jdbcType=VARCHAR},
+      ATDP_TYPE = #{atdpType,jdbcType=VARCHAR},
+      ATDP_SAVE_INTERVAL = #{atdpSaveInterval,jdbcType=VARCHAR},
+      ATDP_SAVE_STYLE = #{atdpSaveStyle,jdbcType=VARCHAR},
+      ATDP_STATISTIC_TYPE = #{atdpStatisticType,jdbcType=VARCHAR},
+      ATDP_UP_LINE = #{atdpUpLine,jdbcType=DECIMAL},
+      ATDP_UPER_LINE = #{atdpUperLine,jdbcType=DECIMAL},
+      ATDP_DOWN_LINE = #{atdpDownLine,jdbcType=DECIMAL},
+      ATDP_DOWNER_LINE = #{atdpDownerLine,jdbcType=DECIMAL},
+      ATDP_STANDARD_VAL = #{atdpStandardVal,jdbcType=DECIMAL},
+      ATDP_ORDERS = #{atdpOrders,jdbcType=INTEGER},
+      ATDP_BACKUPS = #{atdpBackups,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

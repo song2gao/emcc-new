@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gs.mapper.PomsNonRationalVericationRuleMapper" >
+  <resultMap id="BaseResultMap" type="com.gs.domain.PomsNonRationalVericationRule" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="POM_ID" property="pomId" jdbcType="VARCHAR" />
+    <result column="PORVR_EXPRESSION" property="porvrExpression" jdbcType="VARCHAR" />
+    <result column="PORVR_RELATION_SYMBOL" property="porvrRelationSymbol" jdbcType="VARCHAR" />
+    <result column="PORVR_EXPECT_VALUE" property="porvrExpectValue" jdbcType="DECIMAL" />
+    <result column="PORVR_LOGIC_SYMBOL" property="porvrLogicSymbol" jdbcType="VARCHAR" />
+    <result column="PORVR_ORDER" property="porvrOrder" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, POM_ID, PORVR_EXPRESSION, PORVR_RELATION_SYMBOL, PORVR_EXPECT_VALUE, PORVR_LOGIC_SYMBOL, 
+    PORVR_ORDER
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_non_rational_verication_rule
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from poms_non_rational_verication_rule
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gs.domain.PomsNonRationalVericationRule" >
+    insert into poms_non_rational_verication_rule (ID, POM_ID, PORVR_EXPRESSION, 
+      PORVR_RELATION_SYMBOL, PORVR_EXPECT_VALUE, 
+      PORVR_LOGIC_SYMBOL, PORVR_ORDER)
+    values (#{id,jdbcType=VARCHAR}, #{pomId,jdbcType=VARCHAR}, #{porvrExpression,jdbcType=VARCHAR}, 
+      #{porvrRelationSymbol,jdbcType=VARCHAR}, #{porvrExpectValue,jdbcType=DECIMAL}, 
+      #{porvrLogicSymbol,jdbcType=VARCHAR}, #{porvrOrder,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gs.domain.PomsNonRationalVericationRule" >
+    insert into poms_non_rational_verication_rule
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="pomId != null" >
+        POM_ID,
+      </if>
+      <if test="porvrExpression != null" >
+        PORVR_EXPRESSION,
+      </if>
+      <if test="porvrRelationSymbol != null" >
+        PORVR_RELATION_SYMBOL,
+      </if>
+      <if test="porvrExpectValue != null" >
+        PORVR_EXPECT_VALUE,
+      </if>
+      <if test="porvrLogicSymbol != null" >
+        PORVR_LOGIC_SYMBOL,
+      </if>
+      <if test="porvrOrder != null" >
+        PORVR_ORDER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="pomId != null" >
+        #{pomId,jdbcType=VARCHAR},
+      </if>
+      <if test="porvrExpression != null" >
+        #{porvrExpression,jdbcType=VARCHAR},
+      </if>
+      <if test="porvrRelationSymbol != null" >
+        #{porvrRelationSymbol,jdbcType=VARCHAR},
+      </if>
+      <if test="porvrExpectValue != null" >
+        #{porvrExpectValue,jdbcType=DECIMAL},
+      </if>
+      <if test="porvrLogicSymbol != null" >
+        #{porvrLogicSymbol,jdbcType=VARCHAR},
+      </if>
+      <if test="porvrOrder != null" >
+        #{porvrOrder,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gs.domain.PomsNonRationalVericationRule" >
+    update poms_non_rational_verication_rule
+    <set >
+      <if test="pomId != null" >
+        POM_ID = #{pomId,jdbcType=VARCHAR},
+      </if>
+      <if test="porvrExpression != null" >
+        PORVR_EXPRESSION = #{porvrExpression,jdbcType=VARCHAR},
+      </if>
+      <if test="porvrRelationSymbol != null" >
+        PORVR_RELATION_SYMBOL = #{porvrRelationSymbol,jdbcType=VARCHAR},
+      </if>
+      <if test="porvrExpectValue != null" >
+        PORVR_EXPECT_VALUE = #{porvrExpectValue,jdbcType=DECIMAL},
+      </if>
+      <if test="porvrLogicSymbol != null" >
+        PORVR_LOGIC_SYMBOL = #{porvrLogicSymbol,jdbcType=VARCHAR},
+      </if>
+      <if test="porvrOrder != null" >
+        PORVR_ORDER = #{porvrOrder,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gs.domain.PomsNonRationalVericationRule" >
+    update poms_non_rational_verication_rule
+    set POM_ID = #{pomId,jdbcType=VARCHAR},
+      PORVR_EXPRESSION = #{porvrExpression,jdbcType=VARCHAR},
+      PORVR_RELATION_SYMBOL = #{porvrRelationSymbol,jdbcType=VARCHAR},
+      PORVR_EXPECT_VALUE = #{porvrExpectValue,jdbcType=DECIMAL},
+      PORVR_LOGIC_SYMBOL = #{porvrLogicSymbol,jdbcType=VARCHAR},
+      PORVR_ORDER = #{porvrOrder,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

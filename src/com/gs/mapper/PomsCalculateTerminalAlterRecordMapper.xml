@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gs.mapper.PomsCalculateTerminalAlterRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.gs.domain.PomsCalculateTerminalAlterRecord" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="CTAR_DEVICE_ID" property="ctarDeviceId" jdbcType="VARCHAR" />
+    <result column="CTAR_MODULE_ID" property="ctarModuleId" jdbcType="VARCHAR" />
+    <result column="CTAR_CODES" property="ctarCodes" jdbcType="VARCHAR" />
+    <result column="CTAR_MEASURE_LOOP" property="ctarMeasureLoop" jdbcType="VARCHAR" />
+    <result column="CTAR_INIT_VALUE" property="ctarInitValue" jdbcType="DECIMAL" />
+    <result column="CTAR_TERMINAL_NAME" property="ctarTerminalName" jdbcType="VARCHAR" />
+    <result column="CTAR_TERMINAL_INDUSTRY" property="ctarTerminalIndustry" jdbcType="VARCHAR" />
+    <result column="CTAR_PRODUCTION_CODE" property="ctarProductionCode" jdbcType="VARCHAR" />
+    <result column="CTAR_CHECK_PERIOD" property="ctarCheckPeriod" jdbcType="VARCHAR" />
+    <result column="CTAR_NEXT_CHECK_TIME" property="ctarNextCheckTime" jdbcType="VARCHAR" />
+    <result column="CTAR_ADD_TIME" property="ctarAddTime" jdbcType="VARCHAR" />
+    <result column="CTAR_SCALE" property="ctarScale" jdbcType="DECIMAL" />
+    <result column="CTAR_ISINVENTED" property="ctarIsinvented" jdbcType="VARCHAR" />
+    <result column="CTAR_FORMULAR" property="ctarFormular" jdbcType="VARCHAR" />
+    <result column="CTAR_FORMULARID" property="ctarFormularid" jdbcType="VARCHAR" />
+    <result column="CTAR_ALTER_REASON" property="ctarAlterReason" jdbcType="VARCHAR" />
+    <result column="CTAR_ALTER_USERID" property="ctarAlterUserid" jdbcType="VARCHAR" />
+    <result column="CTAR_BACKUPS" property="ctarBackups" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, CTAR_DEVICE_ID, CTAR_MODULE_ID, CTAR_CODES, CTAR_MEASURE_LOOP, CTAR_INIT_VALUE, 
+    CTAR_TERMINAL_NAME, CTAR_TERMINAL_INDUSTRY, CTAR_PRODUCTION_CODE, CTAR_CHECK_PERIOD, 
+    CTAR_NEXT_CHECK_TIME, CTAR_ADD_TIME, CTAR_SCALE, CTAR_ISINVENTED, CTAR_FORMULAR, 
+    CTAR_FORMULARID, CTAR_ALTER_REASON, CTAR_ALTER_USERID, CTAR_BACKUPS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_calculate_terminal_alter_record
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from poms_calculate_terminal_alter_record
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gs.domain.PomsCalculateTerminalAlterRecord" >
+    insert into poms_calculate_terminal_alter_record (ID, CTAR_DEVICE_ID, CTAR_MODULE_ID, 
+      CTAR_CODES, CTAR_MEASURE_LOOP, CTAR_INIT_VALUE, 
+      CTAR_TERMINAL_NAME, CTAR_TERMINAL_INDUSTRY, 
+      CTAR_PRODUCTION_CODE, CTAR_CHECK_PERIOD, CTAR_NEXT_CHECK_TIME, 
+      CTAR_ADD_TIME, CTAR_SCALE, CTAR_ISINVENTED, 
+      CTAR_FORMULAR, CTAR_FORMULARID, CTAR_ALTER_REASON, 
+      CTAR_ALTER_USERID, CTAR_BACKUPS)
+    values (#{id,jdbcType=VARCHAR}, #{ctarDeviceId,jdbcType=VARCHAR}, #{ctarModuleId,jdbcType=VARCHAR}, 
+      #{ctarCodes,jdbcType=VARCHAR}, #{ctarMeasureLoop,jdbcType=VARCHAR}, #{ctarInitValue,jdbcType=DECIMAL}, 
+      #{ctarTerminalName,jdbcType=VARCHAR}, #{ctarTerminalIndustry,jdbcType=VARCHAR}, 
+      #{ctarProductionCode,jdbcType=VARCHAR}, #{ctarCheckPeriod,jdbcType=VARCHAR}, #{ctarNextCheckTime,jdbcType=VARCHAR}, 
+      #{ctarAddTime,jdbcType=VARCHAR}, #{ctarScale,jdbcType=DECIMAL}, #{ctarIsinvented,jdbcType=VARCHAR}, 
+      #{ctarFormular,jdbcType=VARCHAR}, #{ctarFormularid,jdbcType=VARCHAR}, #{ctarAlterReason,jdbcType=VARCHAR}, 
+      #{ctarAlterUserid,jdbcType=VARCHAR}, #{ctarBackups,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gs.domain.PomsCalculateTerminalAlterRecord" >
+    insert into poms_calculate_terminal_alter_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="ctarDeviceId != null" >
+        CTAR_DEVICE_ID,
+      </if>
+      <if test="ctarModuleId != null" >
+        CTAR_MODULE_ID,
+      </if>
+      <if test="ctarCodes != null" >
+        CTAR_CODES,
+      </if>
+      <if test="ctarMeasureLoop != null" >
+        CTAR_MEASURE_LOOP,
+      </if>
+      <if test="ctarInitValue != null" >
+        CTAR_INIT_VALUE,
+      </if>
+      <if test="ctarTerminalName != null" >
+        CTAR_TERMINAL_NAME,
+      </if>
+      <if test="ctarTerminalIndustry != null" >
+        CTAR_TERMINAL_INDUSTRY,
+      </if>
+      <if test="ctarProductionCode != null" >
+        CTAR_PRODUCTION_CODE,
+      </if>
+      <if test="ctarCheckPeriod != null" >
+        CTAR_CHECK_PERIOD,
+      </if>
+      <if test="ctarNextCheckTime != null" >
+        CTAR_NEXT_CHECK_TIME,
+      </if>
+      <if test="ctarAddTime != null" >
+        CTAR_ADD_TIME,
+      </if>
+      <if test="ctarScale != null" >
+        CTAR_SCALE,
+      </if>
+      <if test="ctarIsinvented != null" >
+        CTAR_ISINVENTED,
+      </if>
+      <if test="ctarFormular != null" >
+        CTAR_FORMULAR,
+      </if>
+      <if test="ctarFormularid != null" >
+        CTAR_FORMULARID,
+      </if>
+      <if test="ctarAlterReason != null" >
+        CTAR_ALTER_REASON,
+      </if>
+      <if test="ctarAlterUserid != null" >
+        CTAR_ALTER_USERID,
+      </if>
+      <if test="ctarBackups != null" >
+        CTAR_BACKUPS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="ctarDeviceId != null" >
+        #{ctarDeviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="ctarModuleId != null" >
+        #{ctarModuleId,jdbcType=VARCHAR},
+      </if>
+      <if test="ctarCodes != null" >
+        #{ctarCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="ctarMeasureLoop != null" >
+        #{ctarMeasureLoop,jdbcType=VARCHAR},
+      </if>
+      <if test="ctarInitValue != null" >
+        #{ctarInitValue,jdbcType=DECIMAL},
+      </if>
+      <if test="ctarTerminalName != null" >
+        #{ctarTerminalName,jdbcType=VARCHAR},
+      </if>
+      <if test="ctarTerminalIndustry != null" >
+        #{ctarTerminalIndustry,jdbcType=VARCHAR},
+      </if>
+      <if test="ctarProductionCode != null" >
+        #{ctarProductionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ctarCheckPeriod != null" >
+        #{ctarCheckPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="ctarNextCheckTime != null" >
+        #{ctarNextCheckTime,jdbcType=VARCHAR},
+      </if>
+      <if test="ctarAddTime != null" >
+        #{ctarAddTime,jdbcType=VARCHAR},
+      </if>
+      <if test="ctarScale != null" >
+        #{ctarScale,jdbcType=DECIMAL},
+      </if>
+      <if test="ctarIsinvented != null" >
+        #{ctarIsinvented,jdbcType=VARCHAR},
+      </if>
+      <if test="ctarFormular != null" >
+        #{ctarFormular,jdbcType=VARCHAR},
+      </if>
+      <if test="ctarFormularid != null" >
+        #{ctarFormularid,jdbcType=VARCHAR},
+      </if>
+      <if test="ctarAlterReason != null" >
+        #{ctarAlterReason,jdbcType=VARCHAR},
+      </if>
+      <if test="ctarAlterUserid != null" >
+        #{ctarAlterUserid,jdbcType=VARCHAR},
+      </if>
+      <if test="ctarBackups != null" >
+        #{ctarBackups,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gs.domain.PomsCalculateTerminalAlterRecord" >
+    update poms_calculate_terminal_alter_record
+    <set >
+      <if test="ctarDeviceId != null" >
+        CTAR_DEVICE_ID = #{ctarDeviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="ctarModuleId != null" >
+        CTAR_MODULE_ID = #{ctarModuleId,jdbcType=VARCHAR},
+      </if>
+      <if test="ctarCodes != null" >
+        CTAR_CODES = #{ctarCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="ctarMeasureLoop != null" >
+        CTAR_MEASURE_LOOP = #{ctarMeasureLoop,jdbcType=VARCHAR},
+      </if>
+      <if test="ctarInitValue != null" >
+        CTAR_INIT_VALUE = #{ctarInitValue,jdbcType=DECIMAL},
+      </if>
+      <if test="ctarTerminalName != null" >
+        CTAR_TERMINAL_NAME = #{ctarTerminalName,jdbcType=VARCHAR},
+      </if>
+      <if test="ctarTerminalIndustry != null" >
+        CTAR_TERMINAL_INDUSTRY = #{ctarTerminalIndustry,jdbcType=VARCHAR},
+      </if>
+      <if test="ctarProductionCode != null" >
+        CTAR_PRODUCTION_CODE = #{ctarProductionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ctarCheckPeriod != null" >
+        CTAR_CHECK_PERIOD = #{ctarCheckPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="ctarNextCheckTime != null" >
+        CTAR_NEXT_CHECK_TIME = #{ctarNextCheckTime,jdbcType=VARCHAR},
+      </if>
+      <if test="ctarAddTime != null" >
+        CTAR_ADD_TIME = #{ctarAddTime,jdbcType=VARCHAR},
+      </if>
+      <if test="ctarScale != null" >
+        CTAR_SCALE = #{ctarScale,jdbcType=DECIMAL},
+      </if>
+      <if test="ctarIsinvented != null" >
+        CTAR_ISINVENTED = #{ctarIsinvented,jdbcType=VARCHAR},
+      </if>
+      <if test="ctarFormular != null" >
+        CTAR_FORMULAR = #{ctarFormular,jdbcType=VARCHAR},
+      </if>
+      <if test="ctarFormularid != null" >
+        CTAR_FORMULARID = #{ctarFormularid,jdbcType=VARCHAR},
+      </if>
+      <if test="ctarAlterReason != null" >
+        CTAR_ALTER_REASON = #{ctarAlterReason,jdbcType=VARCHAR},
+      </if>
+      <if test="ctarAlterUserid != null" >
+        CTAR_ALTER_USERID = #{ctarAlterUserid,jdbcType=VARCHAR},
+      </if>
+      <if test="ctarBackups != null" >
+        CTAR_BACKUPS = #{ctarBackups,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gs.domain.PomsCalculateTerminalAlterRecord" >
+    update poms_calculate_terminal_alter_record
+    set CTAR_DEVICE_ID = #{ctarDeviceId,jdbcType=VARCHAR},
+      CTAR_MODULE_ID = #{ctarModuleId,jdbcType=VARCHAR},
+      CTAR_CODES = #{ctarCodes,jdbcType=VARCHAR},
+      CTAR_MEASURE_LOOP = #{ctarMeasureLoop,jdbcType=VARCHAR},
+      CTAR_INIT_VALUE = #{ctarInitValue,jdbcType=DECIMAL},
+      CTAR_TERMINAL_NAME = #{ctarTerminalName,jdbcType=VARCHAR},
+      CTAR_TERMINAL_INDUSTRY = #{ctarTerminalIndustry,jdbcType=VARCHAR},
+      CTAR_PRODUCTION_CODE = #{ctarProductionCode,jdbcType=VARCHAR},
+      CTAR_CHECK_PERIOD = #{ctarCheckPeriod,jdbcType=VARCHAR},
+      CTAR_NEXT_CHECK_TIME = #{ctarNextCheckTime,jdbcType=VARCHAR},
+      CTAR_ADD_TIME = #{ctarAddTime,jdbcType=VARCHAR},
+      CTAR_SCALE = #{ctarScale,jdbcType=DECIMAL},
+      CTAR_ISINVENTED = #{ctarIsinvented,jdbcType=VARCHAR},
+      CTAR_FORMULAR = #{ctarFormular,jdbcType=VARCHAR},
+      CTAR_FORMULARID = #{ctarFormularid,jdbcType=VARCHAR},
+      CTAR_ALTER_REASON = #{ctarAlterReason,jdbcType=VARCHAR},
+      CTAR_ALTER_USERID = #{ctarAlterUserid,jdbcType=VARCHAR},
+      CTAR_BACKUPS = #{ctarBackups,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

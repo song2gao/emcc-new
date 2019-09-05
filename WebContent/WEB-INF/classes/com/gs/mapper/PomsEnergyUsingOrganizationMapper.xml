@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gs.mapper.PomsEnergyUsingOrganizationMapper" >
+  <resultMap id="BaseResultMap" type="com.gs.domain.PomsEnergyUsingOrganization" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="EUI_ID" property="euiId" jdbcType="VARCHAR" />
+    <result column="EUO_CODE" property="euoCode" jdbcType="VARCHAR" />
+    <result column="EUO_NAMES" property="euoNames" jdbcType="VARCHAR" />
+    <result column="EUO_ORDERS" property="euoOrders" jdbcType="VARCHAR" />
+    <result column="EUO_BACKUPS" property="euoBackups" jdbcType="VARCHAR" />
+    <result column="EUO_PARENT_ID" property="euoParentId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, EUI_ID, EUO_CODE, EUO_NAMES, EUO_ORDERS, EUO_BACKUPS, EUO_PARENT_ID
+  </sql>
+  <select id="selectByCode" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_energy_using_organization
+    where euo_code = #{euoCode} and eui_id=#{euiCode}
+  </select>
+   <select id="selectByPId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_energy_using_organization
+    where EUO_PARENT_ID = #{pid}
+  </select>
+  <select id="selectByPIdAndType" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_energy_using_organization
+    where EUO_PARENT_ID = #{pid} and EUO_BACKUPS=#{type}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from poms_energy_using_organization
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gs.domain.PomsEnergyUsingOrganization" >
+    insert into poms_energy_using_organization (ID, EUI_ID, EUO_CODE, 
+      EUO_NAMES, EUO_ORDERS, EUO_BACKUPS, 
+      EUO_PARENT_ID)
+    values (#{id,jdbcType=VARCHAR}, #{euiId,jdbcType=VARCHAR}, #{euoCode,jdbcType=VARCHAR}, 
+      #{euoNames,jdbcType=VARCHAR}, #{euoOrders,jdbcType=VARCHAR}, #{euoBackups,jdbcType=VARCHAR}, 
+      #{euoParentId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gs.domain.PomsEnergyUsingOrganization" >
+    insert into poms_energy_using_organization
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="euiId != null" >
+        EUI_ID,
+      </if>
+      <if test="euoCode != null" >
+        EUO_CODE,
+      </if>
+      <if test="euoNames != null" >
+        EUO_NAMES,
+      </if>
+      <if test="euoOrders != null" >
+        EUO_ORDERS,
+      </if>
+      <if test="euoBackups != null" >
+        EUO_BACKUPS,
+      </if>
+      <if test="euoParentId != null" >
+        EUO_PARENT_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="euiId != null" >
+        #{euiId,jdbcType=VARCHAR},
+      </if>
+      <if test="euoCode != null" >
+        #{euoCode,jdbcType=VARCHAR},
+      </if>
+      <if test="euoNames != null" >
+        #{euoNames,jdbcType=VARCHAR},
+      </if>
+      <if test="euoOrders != null" >
+        #{euoOrders,jdbcType=VARCHAR},
+      </if>
+      <if test="euoBackups != null" >
+        #{euoBackups,jdbcType=VARCHAR},
+      </if>
+      <if test="euoParentId != null" >
+        #{euoParentId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gs.domain.PomsEnergyUsingOrganization" >
+    update poms_energy_using_organization
+    <set >
+      <if test="euiId != null" >
+        EUI_ID = #{euiId,jdbcType=VARCHAR},
+      </if>
+      <if test="euoCode != null" >
+        EUO_CODE = #{euoCode,jdbcType=VARCHAR},
+      </if>
+      <if test="euoNames != null" >
+        EUO_NAMES = #{euoNames,jdbcType=VARCHAR},
+      </if>
+      <if test="euoOrders != null" >
+        EUO_ORDERS = #{euoOrders,jdbcType=VARCHAR},
+      </if>
+      <if test="euoBackups != null" >
+        EUO_BACKUPS = #{euoBackups,jdbcType=VARCHAR},
+      </if>
+      <if test="euoParentId != null" >
+        EUO_PARENT_ID = #{euoParentId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gs.domain.PomsEnergyUsingOrganization" >
+    update poms_energy_using_organization
+    set EUI_ID = #{euiId,jdbcType=VARCHAR},
+      EUO_CODE = #{euoCode,jdbcType=VARCHAR},
+      EUO_NAMES = #{euoNames,jdbcType=VARCHAR},
+      EUO_ORDERS = #{euoOrders,jdbcType=VARCHAR},
+      EUO_BACKUPS = #{euoBackups,jdbcType=VARCHAR},
+      EUO_PARENT_ID = #{euoParentId,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  
+</mapper>

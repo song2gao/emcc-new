@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gs.mapper.PomsMeasurPointDayStorageMapper" >
+  <resultMap id="BaseResultMap" type="com.gs.domain.PomsMeasurPointDayStorage" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="MPDS_DATE" property="mpdsDate" jdbcType="VARCHAR" />
+    <result column="MPBS_ENTERPRISE_CODES" property="mpbsEnterpriseCodes" jdbcType="VARCHAR" />
+    <result column="MPBS_EQUIPMENT_CODES" property="mpbsEquipmentCodes" jdbcType="VARCHAR" />
+    <result column="MPBS_POINT_CODES" property="mpbsPointCodes" jdbcType="VARCHAR" />
+    <result column="MPBS_CURVAL" property="mpbsCurval" jdbcType="DECIMAL" />
+    <result column="MPBS_INCREVAL" property="mpbsIncreval" jdbcType="DECIMAL" />
+    <result column="MPBS_MAXVAL" property="mpbsMaxval" jdbcType="DECIMAL" />
+    <result column="MPBS_MAXVAL_TIME" property="mpbsMaxvalTime" jdbcType="VARCHAR" />
+    <result column="MPBS_MINVAL" property="mpbsMinval" jdbcType="DECIMAL" />
+    <result column="MPBS_MINVAL_TIME" property="mpbsMinvalTime" jdbcType="VARCHAR" />
+    <result column="MPBS_AVGVAL" property="mpbsAvgval" jdbcType="DECIMAL" />
+    <result column="MPBS_BACKUPS" property="mpbsBackups" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, MPDS_DATE, MPBS_ENTERPRISE_CODES, MPBS_EQUIPMENT_CODES, MPBS_POINT_CODES, MPBS_CURVAL, 
+    MPBS_INCREVAL, MPBS_MAXVAL, MPBS_MAXVAL_TIME, MPBS_MINVAL, MPBS_MINVAL_TIME, MPBS_AVGVAL, 
+    MPBS_BACKUPS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_measur_point_day_storage
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from poms_measur_point_day_storage
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gs.domain.PomsMeasurPointDayStorage" >
+    insert into poms_measur_point_day_storage (ID, MPDS_DATE, MPBS_ENTERPRISE_CODES, 
+      MPBS_EQUIPMENT_CODES, MPBS_POINT_CODES, MPBS_CURVAL, 
+      MPBS_INCREVAL, MPBS_MAXVAL, MPBS_MAXVAL_TIME, 
+      MPBS_MINVAL, MPBS_MINVAL_TIME, MPBS_AVGVAL, 
+      MPBS_BACKUPS)
+    values (#{id,jdbcType=VARCHAR}, #{mpdsDate,jdbcType=VARCHAR}, #{mpbsEnterpriseCodes,jdbcType=VARCHAR}, 
+      #{mpbsEquipmentCodes,jdbcType=VARCHAR}, #{mpbsPointCodes,jdbcType=VARCHAR}, #{mpbsCurval,jdbcType=DECIMAL}, 
+      #{mpbsIncreval,jdbcType=DECIMAL}, #{mpbsMaxval,jdbcType=DECIMAL}, #{mpbsMaxvalTime,jdbcType=VARCHAR}, 
+      #{mpbsMinval,jdbcType=DECIMAL}, #{mpbsMinvalTime,jdbcType=VARCHAR}, #{mpbsAvgval,jdbcType=DECIMAL}, 
+      #{mpbsBackups,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gs.domain.PomsMeasurPointDayStorage" >
+    insert into poms_measur_point_day_storage
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="mpdsDate != null" >
+        MPDS_DATE,
+      </if>
+      <if test="mpbsEnterpriseCodes != null" >
+        MPBS_ENTERPRISE_CODES,
+      </if>
+      <if test="mpbsEquipmentCodes != null" >
+        MPBS_EQUIPMENT_CODES,
+      </if>
+      <if test="mpbsPointCodes != null" >
+        MPBS_POINT_CODES,
+      </if>
+      <if test="mpbsCurval != null" >
+        MPBS_CURVAL,
+      </if>
+      <if test="mpbsIncreval != null" >
+        MPBS_INCREVAL,
+      </if>
+      <if test="mpbsMaxval != null" >
+        MPBS_MAXVAL,
+      </if>
+      <if test="mpbsMaxvalTime != null" >
+        MPBS_MAXVAL_TIME,
+      </if>
+      <if test="mpbsMinval != null" >
+        MPBS_MINVAL,
+      </if>
+      <if test="mpbsMinvalTime != null" >
+        MPBS_MINVAL_TIME,
+      </if>
+      <if test="mpbsAvgval != null" >
+        MPBS_AVGVAL,
+      </if>
+      <if test="mpbsBackups != null" >
+        MPBS_BACKUPS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="mpdsDate != null" >
+        #{mpdsDate,jdbcType=VARCHAR},
+      </if>
+      <if test="mpbsEnterpriseCodes != null" >
+        #{mpbsEnterpriseCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="mpbsEquipmentCodes != null" >
+        #{mpbsEquipmentCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="mpbsPointCodes != null" >
+        #{mpbsPointCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="mpbsCurval != null" >
+        #{mpbsCurval,jdbcType=DECIMAL},
+      </if>
+      <if test="mpbsIncreval != null" >
+        #{mpbsIncreval,jdbcType=DECIMAL},
+      </if>
+      <if test="mpbsMaxval != null" >
+        #{mpbsMaxval,jdbcType=DECIMAL},
+      </if>
+      <if test="mpbsMaxvalTime != null" >
+        #{mpbsMaxvalTime,jdbcType=VARCHAR},
+      </if>
+      <if test="mpbsMinval != null" >
+        #{mpbsMinval,jdbcType=DECIMAL},
+      </if>
+      <if test="mpbsMinvalTime != null" >
+        #{mpbsMinvalTime,jdbcType=VARCHAR},
+      </if>
+      <if test="mpbsAvgval != null" >
+        #{mpbsAvgval,jdbcType=DECIMAL},
+      </if>
+      <if test="mpbsBackups != null" >
+        #{mpbsBackups,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gs.domain.PomsMeasurPointDayStorage" >
+    update poms_measur_point_day_storage
+    <set >
+      <if test="mpdsDate != null" >
+        MPDS_DATE = #{mpdsDate,jdbcType=VARCHAR},
+      </if>
+      <if test="mpbsEnterpriseCodes != null" >
+        MPBS_ENTERPRISE_CODES = #{mpbsEnterpriseCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="mpbsEquipmentCodes != null" >
+        MPBS_EQUIPMENT_CODES = #{mpbsEquipmentCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="mpbsPointCodes != null" >
+        MPBS_POINT_CODES = #{mpbsPointCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="mpbsCurval != null" >
+        MPBS_CURVAL = #{mpbsCurval,jdbcType=DECIMAL},
+      </if>
+      <if test="mpbsIncreval != null" >
+        MPBS_INCREVAL = #{mpbsIncreval,jdbcType=DECIMAL},
+      </if>
+      <if test="mpbsMaxval != null" >
+        MPBS_MAXVAL = #{mpbsMaxval,jdbcType=DECIMAL},
+      </if>
+      <if test="mpbsMaxvalTime != null" >
+        MPBS_MAXVAL_TIME = #{mpbsMaxvalTime,jdbcType=VARCHAR},
+      </if>
+      <if test="mpbsMinval != null" >
+        MPBS_MINVAL = #{mpbsMinval,jdbcType=DECIMAL},
+      </if>
+      <if test="mpbsMinvalTime != null" >
+        MPBS_MINVAL_TIME = #{mpbsMinvalTime,jdbcType=VARCHAR},
+      </if>
+      <if test="mpbsAvgval != null" >
+        MPBS_AVGVAL = #{mpbsAvgval,jdbcType=DECIMAL},
+      </if>
+      <if test="mpbsBackups != null" >
+        MPBS_BACKUPS = #{mpbsBackups,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gs.domain.PomsMeasurPointDayStorage" >
+    update poms_measur_point_day_storage
+    set MPDS_DATE = #{mpdsDate,jdbcType=VARCHAR},
+      MPBS_ENTERPRISE_CODES = #{mpbsEnterpriseCodes,jdbcType=VARCHAR},
+      MPBS_EQUIPMENT_CODES = #{mpbsEquipmentCodes,jdbcType=VARCHAR},
+      MPBS_POINT_CODES = #{mpbsPointCodes,jdbcType=VARCHAR},
+      MPBS_CURVAL = #{mpbsCurval,jdbcType=DECIMAL},
+      MPBS_INCREVAL = #{mpbsIncreval,jdbcType=DECIMAL},
+      MPBS_MAXVAL = #{mpbsMaxval,jdbcType=DECIMAL},
+      MPBS_MAXVAL_TIME = #{mpbsMaxvalTime,jdbcType=VARCHAR},
+      MPBS_MINVAL = #{mpbsMinval,jdbcType=DECIMAL},
+      MPBS_MINVAL_TIME = #{mpbsMinvalTime,jdbcType=VARCHAR},
+      MPBS_AVGVAL = #{mpbsAvgval,jdbcType=DECIMAL},
+      MPBS_BACKUPS = #{mpbsBackups,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

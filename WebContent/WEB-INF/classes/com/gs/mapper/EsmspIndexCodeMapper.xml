@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gs.mapper.EsmspIndexCodeMapper" >
+  <resultMap id="BaseResultMap" type="com.gs.domain.EsmspIndexCode" >
+    <id column="INDEX_CODE" property="indexCode" jdbcType="INTEGER" />
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="INDEX_TYPE" property="indexType" jdbcType="INTEGER" />
+    <result column="INDEX_CAT" property="indexCat" jdbcType="INTEGER" />
+    <result column="INDEX_NAME" property="indexName" jdbcType="VARCHAR" />
+    <result column="INDEX_FULLNAME" property="indexFullname" jdbcType="VARCHAR" />
+    <result column="INDEX_UNIT_CODE" property="indexUnitCode" jdbcType="VARCHAR" />
+    <result column="SURVEY_CYCLE" property="surveyCycle" jdbcType="VARCHAR" />
+    <result column="CAL_METHOD" property="calMethod" jdbcType="VARCHAR" />
+    <result column="STANDARD_VALUE" property="standardValue" jdbcType="DECIMAL" />
+    <result column="WARNING_VALUE" property="warningValue" jdbcType="DECIMAL" />
+    <result column="TARGET_VALUE" property="targetValue" jdbcType="DECIMAL" />
+    <result column="LOWER_VALUE" property="lowerValue" jdbcType="DECIMAL" />
+    <result column="HIGH_VALUE" property="highValue" jdbcType="DECIMAL" />
+    <result column="INDEX_ENABLE" property="indexEnable" jdbcType="INTEGER" />
+    <result column="INDEX_NOTE" property="indexNote" jdbcType="VARCHAR" />
+    <result column="EUI_CODE" property="euiCode" jdbcType="VARCHAR" />
+    <result column="INDEX_CREATIME" property="indexCreatime" jdbcType="VARCHAR" />
+    <result column="INDEX_CREATPERSON" property="indexCreatperson" jdbcType="VARCHAR" />
+    <result column="PARENT_ID" property="parentId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    INDEX_CODE, ID, INDEX_TYPE, INDEX_CAT, INDEX_NAME, INDEX_FULLNAME, INDEX_UNIT_CODE, 
+    SURVEY_CYCLE, CAL_METHOD, STANDARD_VALUE, WARNING_VALUE, TARGET_VALUE, LOWER_VALUE, 
+    HIGH_VALUE, INDEX_ENABLE, INDEX_NOTE, EUI_CODE, INDEX_CREATIME, INDEX_CREATPERSON, 
+    PARENT_ID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from esmsp_index_code
+    where INDEX_CODE = #{indexCode,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from esmsp_index_code
+    where INDEX_CODE = #{indexCode,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gs.domain.EsmspIndexCode" >
+    insert into esmsp_index_code (INDEX_CODE, ID, INDEX_TYPE, 
+      INDEX_CAT, INDEX_NAME, INDEX_FULLNAME, 
+      INDEX_UNIT_CODE, SURVEY_CYCLE, CAL_METHOD, 
+      STANDARD_VALUE, WARNING_VALUE, TARGET_VALUE, 
+      LOWER_VALUE, HIGH_VALUE, INDEX_ENABLE, 
+      INDEX_NOTE, EUI_CODE, INDEX_CREATIME, 
+      INDEX_CREATPERSON, PARENT_ID)
+    values (#{indexCode,jdbcType=INTEGER}, #{id,jdbcType=VARCHAR}, #{indexType,jdbcType=INTEGER}, 
+      #{indexCat,jdbcType=INTEGER}, #{indexName,jdbcType=VARCHAR}, #{indexFullname,jdbcType=VARCHAR}, 
+      #{indexUnitCode,jdbcType=VARCHAR}, #{surveyCycle,jdbcType=VARCHAR}, #{calMethod,jdbcType=VARCHAR}, 
+      #{standardValue,jdbcType=DECIMAL}, #{warningValue,jdbcType=DECIMAL}, #{targetValue,jdbcType=DECIMAL}, 
+      #{lowerValue,jdbcType=DECIMAL}, #{highValue,jdbcType=DECIMAL}, #{indexEnable,jdbcType=INTEGER}, 
+      #{indexNote,jdbcType=VARCHAR}, #{euiCode,jdbcType=VARCHAR}, #{indexCreatime,jdbcType=VARCHAR}, 
+      #{indexCreatperson,jdbcType=VARCHAR}, #{parentId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gs.domain.EsmspIndexCode" >
+    insert into esmsp_index_code
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="indexCode != null" >
+        INDEX_CODE,
+      </if>
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="indexType != null" >
+        INDEX_TYPE,
+      </if>
+      <if test="indexCat != null" >
+        INDEX_CAT,
+      </if>
+      <if test="indexName != null" >
+        INDEX_NAME,
+      </if>
+      <if test="indexFullname != null" >
+        INDEX_FULLNAME,
+      </if>
+      <if test="indexUnitCode != null" >
+        INDEX_UNIT_CODE,
+      </if>
+      <if test="surveyCycle != null" >
+        SURVEY_CYCLE,
+      </if>
+      <if test="calMethod != null" >
+        CAL_METHOD,
+      </if>
+      <if test="standardValue != null" >
+        STANDARD_VALUE,
+      </if>
+      <if test="warningValue != null" >
+        WARNING_VALUE,
+      </if>
+      <if test="targetValue != null" >
+        TARGET_VALUE,
+      </if>
+      <if test="lowerValue != null" >
+        LOWER_VALUE,
+      </if>
+      <if test="highValue != null" >
+        HIGH_VALUE,
+      </if>
+      <if test="indexEnable != null" >
+        INDEX_ENABLE,
+      </if>
+      <if test="indexNote != null" >
+        INDEX_NOTE,
+      </if>
+      <if test="euiCode != null" >
+        EUI_CODE,
+      </if>
+      <if test="indexCreatime != null" >
+        INDEX_CREATIME,
+      </if>
+      <if test="indexCreatperson != null" >
+        INDEX_CREATPERSON,
+      </if>
+      <if test="parentId != null" >
+        PARENT_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="indexCode != null" >
+        #{indexCode,jdbcType=INTEGER},
+      </if>
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="indexType != null" >
+        #{indexType,jdbcType=INTEGER},
+      </if>
+      <if test="indexCat != null" >
+        #{indexCat,jdbcType=INTEGER},
+      </if>
+      <if test="indexName != null" >
+        #{indexName,jdbcType=VARCHAR},
+      </if>
+      <if test="indexFullname != null" >
+        #{indexFullname,jdbcType=VARCHAR},
+      </if>
+      <if test="indexUnitCode != null" >
+        #{indexUnitCode,jdbcType=VARCHAR},
+      </if>
+      <if test="surveyCycle != null" >
+        #{surveyCycle,jdbcType=VARCHAR},
+      </if>
+      <if test="calMethod != null" >
+        #{calMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="standardValue != null" >
+        #{standardValue,jdbcType=DECIMAL},
+      </if>
+      <if test="warningValue != null" >
+        #{warningValue,jdbcType=DECIMAL},
+      </if>
+      <if test="targetValue != null" >
+        #{targetValue,jdbcType=DECIMAL},
+      </if>
+      <if test="lowerValue != null" >
+        #{lowerValue,jdbcType=DECIMAL},
+      </if>
+      <if test="highValue != null" >
+        #{highValue,jdbcType=DECIMAL},
+      </if>
+      <if test="indexEnable != null" >
+        #{indexEnable,jdbcType=INTEGER},
+      </if>
+      <if test="indexNote != null" >
+        #{indexNote,jdbcType=VARCHAR},
+      </if>
+      <if test="euiCode != null" >
+        #{euiCode,jdbcType=VARCHAR},
+      </if>
+      <if test="indexCreatime != null" >
+        #{indexCreatime,jdbcType=VARCHAR},
+      </if>
+      <if test="indexCreatperson != null" >
+        #{indexCreatperson,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gs.domain.EsmspIndexCode" >
+    update esmsp_index_code
+    <set >
+      <if test="id != null" >
+        ID = #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="indexType != null" >
+        INDEX_TYPE = #{indexType,jdbcType=INTEGER},
+      </if>
+      <if test="indexCat != null" >
+        INDEX_CAT = #{indexCat,jdbcType=INTEGER},
+      </if>
+      <if test="indexName != null" >
+        INDEX_NAME = #{indexName,jdbcType=VARCHAR},
+      </if>
+      <if test="indexFullname != null" >
+        INDEX_FULLNAME = #{indexFullname,jdbcType=VARCHAR},
+      </if>
+      <if test="indexUnitCode != null" >
+        INDEX_UNIT_CODE = #{indexUnitCode,jdbcType=VARCHAR},
+      </if>
+      <if test="surveyCycle != null" >
+        SURVEY_CYCLE = #{surveyCycle,jdbcType=VARCHAR},
+      </if>
+      <if test="calMethod != null" >
+        CAL_METHOD = #{calMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="standardValue != null" >
+        STANDARD_VALUE = #{standardValue,jdbcType=DECIMAL},
+      </if>
+      <if test="warningValue != null" >
+        WARNING_VALUE = #{warningValue,jdbcType=DECIMAL},
+      </if>
+      <if test="targetValue != null" >
+        TARGET_VALUE = #{targetValue,jdbcType=DECIMAL},
+      </if>
+      <if test="lowerValue != null" >
+        LOWER_VALUE = #{lowerValue,jdbcType=DECIMAL},
+      </if>
+      <if test="highValue != null" >
+        HIGH_VALUE = #{highValue,jdbcType=DECIMAL},
+      </if>
+      <if test="indexEnable != null" >
+        INDEX_ENABLE = #{indexEnable,jdbcType=INTEGER},
+      </if>
+      <if test="indexNote != null" >
+        INDEX_NOTE = #{indexNote,jdbcType=VARCHAR},
+      </if>
+      <if test="euiCode != null" >
+        EUI_CODE = #{euiCode,jdbcType=VARCHAR},
+      </if>
+      <if test="indexCreatime != null" >
+        INDEX_CREATIME = #{indexCreatime,jdbcType=VARCHAR},
+      </if>
+      <if test="indexCreatperson != null" >
+        INDEX_CREATPERSON = #{indexCreatperson,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        PARENT_ID = #{parentId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where INDEX_CODE = #{indexCode,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gs.domain.EsmspIndexCode" >
+    update esmsp_index_code
+    set ID = #{id,jdbcType=VARCHAR},
+      INDEX_TYPE = #{indexType,jdbcType=INTEGER},
+      INDEX_CAT = #{indexCat,jdbcType=INTEGER},
+      INDEX_NAME = #{indexName,jdbcType=VARCHAR},
+      INDEX_FULLNAME = #{indexFullname,jdbcType=VARCHAR},
+      INDEX_UNIT_CODE = #{indexUnitCode,jdbcType=VARCHAR},
+      SURVEY_CYCLE = #{surveyCycle,jdbcType=VARCHAR},
+      CAL_METHOD = #{calMethod,jdbcType=VARCHAR},
+      STANDARD_VALUE = #{standardValue,jdbcType=DECIMAL},
+      WARNING_VALUE = #{warningValue,jdbcType=DECIMAL},
+      TARGET_VALUE = #{targetValue,jdbcType=DECIMAL},
+      LOWER_VALUE = #{lowerValue,jdbcType=DECIMAL},
+      HIGH_VALUE = #{highValue,jdbcType=DECIMAL},
+      INDEX_ENABLE = #{indexEnable,jdbcType=INTEGER},
+      INDEX_NOTE = #{indexNote,jdbcType=VARCHAR},
+      EUI_CODE = #{euiCode,jdbcType=VARCHAR},
+      INDEX_CREATIME = #{indexCreatime,jdbcType=VARCHAR},
+      INDEX_CREATPERSON = #{indexCreatperson,jdbcType=VARCHAR},
+      PARENT_ID = #{parentId,jdbcType=VARCHAR}
+    where INDEX_CODE = #{indexCode,jdbcType=INTEGER}
+  </update>
+</mapper>

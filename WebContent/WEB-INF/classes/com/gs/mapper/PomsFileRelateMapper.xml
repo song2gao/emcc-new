@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gs.mapper.PomsFileRelateMapper" >
+  <resultMap id="BaseResultMap" type="com.gs.domain.PomsFileRelate" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="TABLE_NAME" property="tableName" jdbcType="VARCHAR" />
+    <result column="TABLE_FIELD_NAME" property="tableFieldName" jdbcType="VARCHAR" />
+    <result column="TABLE_FIELD_VALUE" property="tableFieldValue" jdbcType="VARCHAR" />
+    <result column="COLUMN_NAME" property="columnName" jdbcType="VARCHAR" />
+    <result column="FILE_TYPE_CODE" property="fileTypeCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, TABLE_NAME, TABLE_FIELD_NAME, TABLE_FIELD_VALUE, COLUMN_NAME, FILE_TYPE_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_file_relate
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from poms_file_relate
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gs.domain.PomsFileRelate" >
+    insert into poms_file_relate (ID, TABLE_NAME, TABLE_FIELD_NAME, 
+      TABLE_FIELD_VALUE, COLUMN_NAME, FILE_TYPE_CODE
+      )
+    values (#{id,jdbcType=VARCHAR}, #{tableName,jdbcType=VARCHAR}, #{tableFieldName,jdbcType=VARCHAR}, 
+      #{tableFieldValue,jdbcType=VARCHAR}, #{columnName,jdbcType=VARCHAR}, #{fileTypeCode,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gs.domain.PomsFileRelate" >
+    insert into poms_file_relate
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="tableName != null" >
+        TABLE_NAME,
+      </if>
+      <if test="tableFieldName != null" >
+        TABLE_FIELD_NAME,
+      </if>
+      <if test="tableFieldValue != null" >
+        TABLE_FIELD_VALUE,
+      </if>
+      <if test="columnName != null" >
+        COLUMN_NAME,
+      </if>
+      <if test="fileTypeCode != null" >
+        FILE_TYPE_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="tableName != null" >
+        #{tableName,jdbcType=VARCHAR},
+      </if>
+      <if test="tableFieldName != null" >
+        #{tableFieldName,jdbcType=VARCHAR},
+      </if>
+      <if test="tableFieldValue != null" >
+        #{tableFieldValue,jdbcType=VARCHAR},
+      </if>
+      <if test="columnName != null" >
+        #{columnName,jdbcType=VARCHAR},
+      </if>
+      <if test="fileTypeCode != null" >
+        #{fileTypeCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gs.domain.PomsFileRelate" >
+    update poms_file_relate
+    <set >
+      <if test="tableName != null" >
+        TABLE_NAME = #{tableName,jdbcType=VARCHAR},
+      </if>
+      <if test="tableFieldName != null" >
+        TABLE_FIELD_NAME = #{tableFieldName,jdbcType=VARCHAR},
+      </if>
+      <if test="tableFieldValue != null" >
+        TABLE_FIELD_VALUE = #{tableFieldValue,jdbcType=VARCHAR},
+      </if>
+      <if test="columnName != null" >
+        COLUMN_NAME = #{columnName,jdbcType=VARCHAR},
+      </if>
+      <if test="fileTypeCode != null" >
+        FILE_TYPE_CODE = #{fileTypeCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gs.domain.PomsFileRelate" >
+    update poms_file_relate
+    set TABLE_NAME = #{tableName,jdbcType=VARCHAR},
+      TABLE_FIELD_NAME = #{tableFieldName,jdbcType=VARCHAR},
+      TABLE_FIELD_VALUE = #{tableFieldValue,jdbcType=VARCHAR},
+      COLUMN_NAME = #{columnName,jdbcType=VARCHAR},
+      FILE_TYPE_CODE = #{fileTypeCode,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

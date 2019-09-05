@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gs.mapper.PomsOperationAssignmentSheetMapper">
+	<resultMap id="BaseResultMap" type="com.gs.domain.PomsOperationAssignmentSheet">
+		<id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="UM_ID" property="umId" jdbcType="VARCHAR" />
+		<result column="SYSTEM_LOG_ID" property="systemLogId" jdbcType="VARCHAR" />
+		<result column="OAS_SHEET_TYPE" property="oasSheetType"
+			jdbcType="VARCHAR" />
+		<result column="OAS_PROPOSER" property="oasProposer" jdbcType="VARCHAR" />
+		<result column="PROPOSE_TIME" property="proposeTime" jdbcType="VARCHAR" />
+		<result column="PROPOSE_CONTENT" property="proposeContent"
+			jdbcType="VARCHAR" />
+		<result column="NEED_COMPLTE_TIME" property="needComplteTime"
+			jdbcType="VARCHAR" />
+		<result column="OAS_PRIORITY" property="oasPriority" jdbcType="VARCHAR" />
+		<result column="SOLVE_CONTENT" property="solveContent"
+			jdbcType="VARCHAR" />
+		<result column="COMPLTE_TIME" property="complteTime" jdbcType="VARCHAR" />
+		<result column="DEAL_STATUS" property="dealStatus" jdbcType="VARCHAR" />
+		<result column="OAS_DEVICE_REFID" property="oasDeviceRefid"
+			jdbcType="VARCHAR" />
+		<result column="OAS_DEVICE_TYPE" property="oasDeviceType"
+			jdbcType="VARCHAR" />
+		<result column="OAS_BACKUPS" property="oasBackups" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, UM_ID, SYSTEM_LOG_ID, OAS_SHEET_TYPE, OAS_PROPOSER, PROPOSE_TIME,
+		PROPOSE_CONTENT,
+		NEED_COMPLTE_TIME, OAS_PRIORITY, SOLVE_CONTENT, COMPLTE_TIME, DEAL_STATUS,
+		OAS_DEVICE_REFID,
+		OAS_DEVICE_TYPE, OAS_BACKUPS
+	</sql>
+
+	<!-- 批量删除 -->
+	<delete id="deleteByAll" parameterType="java.lang.String">
+		delete from poms_operation_assignment_sheet
+		where ID in
+		<foreach collection="array" item="id" open="(" separator=","
+			close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+	<!-- 根据 实体code 中的某个字段 条件查询所有 -->
+	<select id="findAll" resultMap="BaseResultMap"
+		parameterType="com.gs.domain.PomsOperationAssignmentSheet">
+		select
+		<include refid="Base_Column_List" />
+		from poms_operation_assignment_sheet
+		where 1=1
+		<if test="pageSize!=null and pageSize!=0 and pageBegin!=0">
+			limit #{pageBegin},#{pageSize}
+		</if>
+	</select>
+	<!-- 查询总条数 -->
+	<select id="getCount" resultType="java.lang.Integer">
+		select count(*) from
+		poms_operation_assignment_sheet
+	</select>
+	<!-- 条件模糊查询 -->
+	<select id="findBySearch" resultMap="BaseResultMap"
+		parameterType="com.gs.domain.PomsOperationAssignmentSheet">
+		select
+		<include refid="Base_Column_List" />
+		from poms_operation_assignment_sheet
+		where 1=1
+		<if test="alarminfo!='' and alarminfo!=null">
+			and OAS_SHEET_TYPE=#{alarminfo}
+		</if>
+		<if test="isok!='' and isok!=null">
+			and DEAL_STATUS=#{isok}
+		</if>
+		<if test="date!='' and date!=null">
+			and PROPOSE_TIME=#{date}
+		</if>
+		<if test="search!='' and search!=null">
+			and UM_ID in (select ID from poms_users_management where
+			LOGIN_NAME like '%${search}%')
+		</if>
+	</select>
+
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from poms_operation_assignment_sheet
+		where ID = #{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from poms_operation_assignment_sheet
+		where ID = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.gs.domain.PomsOperationAssignmentSheet">
+		insert into poms_operation_assignment_sheet (ID, UM_ID, SYSTEM_LOG_ID,
+		OAS_SHEET_TYPE, OAS_PROPOSER, PROPOSE_TIME,
+		PROPOSE_CONTENT, NEED_COMPLTE_TIME, OAS_PRIORITY,
+		SOLVE_CONTENT, COMPLTE_TIME, DEAL_STATUS,
+		OAS_DEVICE_REFID, OAS_DEVICE_TYPE, OAS_BACKUPS
+		)
+		values (#{id,jdbcType=VARCHAR}, #{umId,jdbcType=VARCHAR},
+		#{systemLogId,jdbcType=VARCHAR},
+		#{oasSheetType,jdbcType=VARCHAR}, #{oasProposer,jdbcType=VARCHAR}, #{proposeTime,jdbcType=VARCHAR},
+		#{proposeContent,jdbcType=VARCHAR},
+		#{needComplteTime,jdbcType=VARCHAR}, #{oasPriority,jdbcType=VARCHAR},
+		#{solveContent,jdbcType=VARCHAR}, #{complteTime,jdbcType=VARCHAR},
+		#{dealStatus,jdbcType=VARCHAR},
+		#{oasDeviceRefid,jdbcType=VARCHAR}, #{oasDeviceType,jdbcType=VARCHAR}, #{oasBackups,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.gs.domain.PomsOperationAssignmentSheet">
+		insert into poms_operation_assignment_sheet
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="umId != null">
+				UM_ID,
+			</if>
+			<if test="systemLogId != null">
+				SYSTEM_LOG_ID,
+			</if>
+			<if test="oasSheetType != null">
+				OAS_SHEET_TYPE,
+			</if>
+			<if test="oasProposer != null">
+				OAS_PROPOSER,
+			</if>
+			<if test="proposeTime != null">
+				PROPOSE_TIME,
+			</if>
+			<if test="proposeContent != null">
+				PROPOSE_CONTENT,
+			</if>
+			<if test="needComplteTime != null">
+				NEED_COMPLTE_TIME,
+			</if>
+			<if test="oasPriority != null">
+				OAS_PRIORITY,
+			</if>
+			<if test="solveContent != null">
+				SOLVE_CONTENT,
+			</if>
+			<if test="complteTime != null">
+				COMPLTE_TIME,
+			</if>
+			<if test="dealStatus != null">
+				DEAL_STATUS,
+			</if>
+			<if test="oasDeviceRefid != null">
+				OAS_DEVICE_REFID,
+			</if>
+			<if test="oasDeviceType != null">
+				OAS_DEVICE_TYPE,
+			</if>
+			<if test="oasBackups != null">
+				OAS_BACKUPS,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="umId != null">
+				#{umId,jdbcType=VARCHAR},
+			</if>
+			<if test="systemLogId != null">
+				#{systemLogId,jdbcType=VARCHAR},
+			</if>
+			<if test="oasSheetType != null">
+				#{oasSheetType,jdbcType=VARCHAR},
+			</if>
+			<if test="oasProposer != null">
+				#{oasProposer,jdbcType=VARCHAR},
+			</if>
+			<if test="proposeTime != null">
+				#{proposeTime,jdbcType=VARCHAR},
+			</if>
+			<if test="proposeContent != null">
+				#{proposeContent,jdbcType=VARCHAR},
+			</if>
+			<if test="needComplteTime != null">
+				#{needComplteTime,jdbcType=VARCHAR},
+			</if>
+			<if test="oasPriority != null">
+				#{oasPriority,jdbcType=VARCHAR},
+			</if>
+			<if test="solveContent != null">
+				#{solveContent,jdbcType=VARCHAR},
+			</if>
+			<if test="complteTime != null">
+				#{complteTime,jdbcType=VARCHAR},
+			</if>
+			<if test="dealStatus != null">
+				#{dealStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="oasDeviceRefid != null">
+				#{oasDeviceRefid,jdbcType=VARCHAR},
+			</if>
+			<if test="oasDeviceType != null">
+				#{oasDeviceType,jdbcType=VARCHAR},
+			</if>
+			<if test="oasBackups != null">
+				#{oasBackups,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.gs.domain.PomsOperationAssignmentSheet">
+		update poms_operation_assignment_sheet
+		<set>
+			<if test="umId != null">
+				UM_ID = #{umId,jdbcType=VARCHAR},
+			</if>
+			<if test="systemLogId != null">
+				SYSTEM_LOG_ID = #{systemLogId,jdbcType=VARCHAR},
+			</if>
+			<if test="oasSheetType != null">
+				OAS_SHEET_TYPE = #{oasSheetType,jdbcType=VARCHAR},
+			</if>
+			<if test="oasProposer != null">
+				OAS_PROPOSER = #{oasProposer,jdbcType=VARCHAR},
+			</if>
+			<if test="proposeTime != null">
+				PROPOSE_TIME = #{proposeTime,jdbcType=VARCHAR},
+			</if>
+			<if test="proposeContent != null">
+				PROPOSE_CONTENT = #{proposeContent,jdbcType=VARCHAR},
+			</if>
+			<if test="needComplteTime != null">
+				NEED_COMPLTE_TIME = #{needComplteTime,jdbcType=VARCHAR},
+			</if>
+			<if test="oasPriority != null">
+				OAS_PRIORITY = #{oasPriority,jdbcType=VARCHAR},
+			</if>
+			<if test="solveContent != null">
+				SOLVE_CONTENT = #{solveContent,jdbcType=VARCHAR},
+			</if>
+			<if test="complteTime != null">
+				COMPLTE_TIME = #{complteTime,jdbcType=VARCHAR},
+			</if>
+			<if test="dealStatus != null">
+				DEAL_STATUS = #{dealStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="oasDeviceRefid != null">
+				OAS_DEVICE_REFID = #{oasDeviceRefid,jdbcType=VARCHAR},
+			</if>
+			<if test="oasDeviceType != null">
+				OAS_DEVICE_TYPE = #{oasDeviceType,jdbcType=VARCHAR},
+			</if>
+			<if test="oasBackups != null">
+				OAS_BACKUPS = #{oasBackups,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.gs.domain.PomsOperationAssignmentSheet">
+		update poms_operation_assignment_sheet
+		set UM_ID = #{umId,jdbcType=VARCHAR},
+		SYSTEM_LOG_ID = #{systemLogId,jdbcType=VARCHAR},
+		OAS_SHEET_TYPE = #{oasSheetType,jdbcType=VARCHAR},
+		OAS_PROPOSER = #{oasProposer,jdbcType=VARCHAR},
+		PROPOSE_TIME = #{proposeTime,jdbcType=VARCHAR},
+		PROPOSE_CONTENT = #{proposeContent,jdbcType=VARCHAR},
+		NEED_COMPLTE_TIME = #{needComplteTime,jdbcType=VARCHAR},
+		OAS_PRIORITY = #{oasPriority,jdbcType=VARCHAR},
+		SOLVE_CONTENT = #{solveContent,jdbcType=VARCHAR},
+		COMPLTE_TIME = #{complteTime,jdbcType=VARCHAR},
+		DEAL_STATUS = #{dealStatus,jdbcType=VARCHAR},
+		OAS_DEVICE_REFID = #{oasDeviceRefid,jdbcType=VARCHAR},
+		OAS_DEVICE_TYPE = #{oasDeviceType,jdbcType=VARCHAR},
+		OAS_BACKUPS = #{oasBackups,jdbcType=VARCHAR}
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+</mapper>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gs.mapper.PomsEnergyUsingSubitemMapper" >
+  <resultMap id="BaseResultMap" type="com.gs.domain.PomsEnergyUsingSubitem" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="EUI_ID" property="euiId" jdbcType="VARCHAR" />
+    <result column="EUSSUB_NAMES" property="eussubNames" jdbcType="VARCHAR" />
+    <result column="EUSSUB_ORDERS" property="eussubOrders" jdbcType="VARCHAR" />
+    <result column="EUSSUB_BACKUPS" property="eussubBackups" jdbcType="VARCHAR" />
+    <result column="EUSSUB_PARENT_ID" property="eussubParentId" jdbcType="VARCHAR" />
+    <result column="EUSSUB_CODE" property="eussubCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.gs.domain.PomsEnergyUsingSubitem" >
+    insert into poms_energy_using_subitem (ID, EUI_ID, EUSSUB_NAMES, 
+      EUSSUB_ORDERS, EUSSUB_BACKUPS, EUSSUB_PARENT_ID, 
+      EUSSUB_CODE)
+    values (#{id,jdbcType=VARCHAR}, #{euiId,jdbcType=VARCHAR}, #{eussubNames,jdbcType=VARCHAR}, 
+      #{eussubOrders,jdbcType=VARCHAR}, #{eussubBackups,jdbcType=VARCHAR}, #{eussubParentId,jdbcType=VARCHAR}, 
+      #{eussubCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gs.domain.PomsEnergyUsingSubitem" >
+    insert into poms_energy_using_subitem
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="euiId != null" >
+        EUI_ID,
+      </if>
+      <if test="eussubNames != null" >
+        EUSSUB_NAMES,
+      </if>
+      <if test="eussubOrders != null" >
+        EUSSUB_ORDERS,
+      </if>
+      <if test="eussubBackups != null" >
+        EUSSUB_BACKUPS,
+      </if>
+      <if test="eussubParentId != null" >
+        EUSSUB_PARENT_ID,
+      </if>
+      <if test="eussubCode != null" >
+        EUSSUB_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="euiId != null" >
+        #{euiId,jdbcType=VARCHAR},
+      </if>
+      <if test="eussubNames != null" >
+        #{eussubNames,jdbcType=VARCHAR},
+      </if>
+      <if test="eussubOrders != null" >
+        #{eussubOrders,jdbcType=VARCHAR},
+      </if>
+      <if test="eussubBackups != null" >
+        #{eussubBackups,jdbcType=VARCHAR},
+      </if>
+      <if test="eussubParentId != null" >
+        #{eussubParentId,jdbcType=VARCHAR},
+      </if>
+      <if test="eussubCode != null" >
+        #{eussubCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,71 @@
+body{
+	margin:0px;
+	width:100%;
+	background:url(../../image/poms-system/bg.png);
+	overflow: auto;
+	background-repeat:repeat-x;
+	margin-top: 0px;
+	margin-left: 0px;
+	margin:auto;
+	z-index:1;
+}
+
+#div_body {
+	/*background: #FFF url(img/bg.gif) repeat-y center top;*/
+	width:1440px;
+	height: 100%;
+}
+
+#div_loginleft{
+	background:url(../../image/poms-system/jc.png) right bottom;
+	width:1080px;
+	height: 680px;
+	background-repeat:no-repeat;
+	float:left;
+	overflow: auto;
+	z-index:1;
+}
+#div_logincenter{
+	width: 2px;
+	height: 80%;
+	float:left;
+	z-index:3;
+}
+
+#div_loginright{
+	width: 350px;
+	height: 680px;
+	float:left;
+}
+
+.imgClass{
+	filter:alpha(opacity=20);
+	opacity:0.2;
+}
+
+.testcss{
+	width:150px;
+	height:16px;
+}
+
+.pcss{
+	max-width:240px;
+	min-height:16px;
+}
+
+.code{
+	font-family:"新宋体";
+	font-style:italic;
+	font-size:18px;
+	color:green;
+	border:0;
+	padding:2px 3px;
+	letter-spacing:3px;
+	font-weight:bolder;
+	width:100px;
+	height:40px;
+}
+.unchanged {
+	border:0;
+}
+

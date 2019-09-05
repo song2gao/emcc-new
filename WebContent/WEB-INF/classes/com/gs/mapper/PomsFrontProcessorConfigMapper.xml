@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gs.mapper.PomsFrontProcessorConfigMapper" >
+  <resultMap id="BaseResultMap" type="com.gs.domain.PomsFrontProcessorConfig" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="FRONT_PROCESSOR_IP" property="frontProcessorIp" jdbcType="VARCHAR" />
+    <result column="FRONT_PROCESSOR_PORT" property="frontProcessorPort" jdbcType="VARCHAR" />
+    <result column="COMMUNICATE_PROTOCAL" property="communicateProtocal" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, FRONT_PROCESSOR_IP, FRONT_PROCESSOR_PORT, COMMUNICATE_PROTOCAL
+  </sql>
+  
+  <select id="selectByAll" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_front_processor_config
+  </select>
+  
+  <select id="getFrontendAll" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_front_processor_config limit #{i},#{pageSize}
+  </select>
+ 
+   <select id="getFrontendAllCount" resultType="int">
+        select count(*) poms_front_processor_config
+    </select>
+   
+   <select id="getFrontendMo" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_front_processor_config
+    where  limit #{i},#{pageSize}
+  </select>
+  
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_front_processor_config
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from poms_front_processor_config
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gs.domain.PomsFrontProcessorConfig" >
+    insert into poms_front_processor_config (id, FRONT_PROCESSOR_IP, FRONT_PROCESSOR_PORT, 
+      COMMUNICATE_PROTOCAL)
+    values (#{id,jdbcType=VARCHAR}, #{frontProcessorIp,jdbcType=VARCHAR}, #{frontProcessorPort,jdbcType=VARCHAR}, 
+      #{communicateProtocal,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gs.domain.PomsFrontProcessorConfig" >
+    insert into poms_front_processor_config
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="frontProcessorIp != null" >
+        FRONT_PROCESSOR_IP,
+      </if>
+      <if test="frontProcessorPort != null" >
+        FRONT_PROCESSOR_PORT,
+      </if>
+      <if test="communicateProtocal != null" >
+        COMMUNICATE_PROTOCAL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="frontProcessorIp != null" >
+        #{frontProcessorIp,jdbcType=VARCHAR},
+      </if>
+      <if test="frontProcessorPort != null" >
+        #{frontProcessorPort,jdbcType=VARCHAR},
+      </if>
+      <if test="communicateProtocal != null" >
+        #{communicateProtocal,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gs.domain.PomsFrontProcessorConfig" >
+    update poms_front_processor_config
+    <set >
+      <if test="frontProcessorIp != null" >
+        FRONT_PROCESSOR_IP = #{frontProcessorIp,jdbcType=VARCHAR},
+      </if>
+      <if test="frontProcessorPort != null" >
+        FRONT_PROCESSOR_PORT = #{frontProcessorPort,jdbcType=VARCHAR},
+      </if>
+      <if test="communicateProtocal != null" >
+        COMMUNICATE_PROTOCAL = #{communicateProtocal,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gs.domain.PomsFrontProcessorConfig" >
+    update poms_front_processor_config
+    set FRONT_PROCESSOR_IP = #{frontProcessorIp,jdbcType=VARCHAR},
+      FRONT_PROCESSOR_PORT = #{frontProcessorPort,jdbcType=VARCHAR},
+      COMMUNICATE_PROTOCAL = #{communicateProtocal,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

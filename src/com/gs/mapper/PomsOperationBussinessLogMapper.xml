@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gs.mapper.PomsOperationBussinessLogMapper" >
+  <resultMap id="BaseResultMap" type="com.gs.domain.PomsOperationBussinessLog" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="UM_ID" property="umId" jdbcType="VARCHAR" />
+    <result column="OBL_OPERATE_TIME" property="oblOperateTime" jdbcType="VARCHAR" />
+    <result column="OBL_OPERATE_CONTENT" property="oblOperateContent" jdbcType="VARCHAR" />
+    <result column="OBL_OPERATE_TYPE" property="oblOperateType" jdbcType="VARCHAR" />
+    <result column="OBL_BACKUPS" property="oblBackups" jdbcType="VARCHAR" />
+    <result column="OBL_SYSTEM_FLAG" property="oblSystemFlag" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, UM_ID, OBL_OPERATE_TIME, OBL_OPERATE_CONTENT, OBL_OPERATE_TYPE, OBL_BACKUPS, 
+    OBL_SYSTEM_FLAG
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_operation_bussiness_log
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from poms_operation_bussiness_log
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gs.domain.PomsOperationBussinessLog" >
+    insert into poms_operation_bussiness_log (ID, UM_ID, OBL_OPERATE_TIME, 
+      OBL_OPERATE_CONTENT, OBL_OPERATE_TYPE, OBL_BACKUPS, 
+      OBL_SYSTEM_FLAG)
+    values (#{id,jdbcType=VARCHAR}, #{umId,jdbcType=VARCHAR}, #{oblOperateTime,jdbcType=VARCHAR}, 
+      #{oblOperateContent,jdbcType=VARCHAR}, #{oblOperateType,jdbcType=VARCHAR}, #{oblBackups,jdbcType=VARCHAR}, 
+      #{oblSystemFlag,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gs.domain.PomsOperationBussinessLog" >
+    insert into poms_operation_bussiness_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="umId != null" >
+        UM_ID,
+      </if>
+      <if test="oblOperateTime != null" >
+        OBL_OPERATE_TIME,
+      </if>
+      <if test="oblOperateContent != null" >
+        OBL_OPERATE_CONTENT,
+      </if>
+      <if test="oblOperateType != null" >
+        OBL_OPERATE_TYPE,
+      </if>
+      <if test="oblBackups != null" >
+        OBL_BACKUPS,
+      </if>
+      <if test="oblSystemFlag != null" >
+        OBL_SYSTEM_FLAG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="umId != null" >
+        #{umId,jdbcType=VARCHAR},
+      </if>
+      <if test="oblOperateTime != null" >
+        #{oblOperateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="oblOperateContent != null" >
+        #{oblOperateContent,jdbcType=VARCHAR},
+      </if>
+      <if test="oblOperateType != null" >
+        #{oblOperateType,jdbcType=VARCHAR},
+      </if>
+      <if test="oblBackups != null" >
+        #{oblBackups,jdbcType=VARCHAR},
+      </if>
+      <if test="oblSystemFlag != null" >
+        #{oblSystemFlag,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gs.domain.PomsOperationBussinessLog" >
+    update poms_operation_bussiness_log
+    <set >
+      <if test="umId != null" >
+        UM_ID = #{umId,jdbcType=VARCHAR},
+      </if>
+      <if test="oblOperateTime != null" >
+        OBL_OPERATE_TIME = #{oblOperateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="oblOperateContent != null" >
+        OBL_OPERATE_CONTENT = #{oblOperateContent,jdbcType=VARCHAR},
+      </if>
+      <if test="oblOperateType != null" >
+        OBL_OPERATE_TYPE = #{oblOperateType,jdbcType=VARCHAR},
+      </if>
+      <if test="oblBackups != null" >
+        OBL_BACKUPS = #{oblBackups,jdbcType=VARCHAR},
+      </if>
+      <if test="oblSystemFlag != null" >
+        OBL_SYSTEM_FLAG = #{oblSystemFlag,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gs.domain.PomsOperationBussinessLog" >
+    update poms_operation_bussiness_log
+    set UM_ID = #{umId,jdbcType=VARCHAR},
+      OBL_OPERATE_TIME = #{oblOperateTime,jdbcType=VARCHAR},
+      OBL_OPERATE_CONTENT = #{oblOperateContent,jdbcType=VARCHAR},
+      OBL_OPERATE_TYPE = #{oblOperateType,jdbcType=VARCHAR},
+      OBL_BACKUPS = #{oblBackups,jdbcType=VARCHAR},
+      OBL_SYSTEM_FLAG = #{oblSystemFlag,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

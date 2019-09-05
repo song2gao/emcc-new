@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gs.mapper.PomsRoleCalculateTerminalRelationshipMapper" >
+  <resultMap id="BaseResultMap" type="com.gs.domain.PomsRoleCalculateTerminalRelationship" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="RA_ID" property="raId" jdbcType="VARCHAR" />
+    <result column="CTD_ID" property="ctdId" jdbcType="VARCHAR" />
+    <result column="RCTR_BACKUPS" property="rctrBackups" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, RA_ID, CTD_ID, RCTR_BACKUPS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_role_calculate_terminal_relationship
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from poms_role_calculate_terminal_relationship
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gs.domain.PomsRoleCalculateTerminalRelationship" >
+    insert into poms_role_calculate_terminal_relationship (ID, RA_ID, CTD_ID, 
+      RCTR_BACKUPS)
+    values (#{id,jdbcType=VARCHAR}, #{raId,jdbcType=VARCHAR}, #{ctdId,jdbcType=VARCHAR}, 
+      #{rctrBackups,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gs.domain.PomsRoleCalculateTerminalRelationship" >
+    insert into poms_role_calculate_terminal_relationship
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="raId != null" >
+        RA_ID,
+      </if>
+      <if test="ctdId != null" >
+        CTD_ID,
+      </if>
+      <if test="rctrBackups != null" >
+        RCTR_BACKUPS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="raId != null" >
+        #{raId,jdbcType=VARCHAR},
+      </if>
+      <if test="ctdId != null" >
+        #{ctdId,jdbcType=VARCHAR},
+      </if>
+      <if test="rctrBackups != null" >
+        #{rctrBackups,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gs.domain.PomsRoleCalculateTerminalRelationship" >
+    update poms_role_calculate_terminal_relationship
+    <set >
+      <if test="raId != null" >
+        RA_ID = #{raId,jdbcType=VARCHAR},
+      </if>
+      <if test="ctdId != null" >
+        CTD_ID = #{ctdId,jdbcType=VARCHAR},
+      </if>
+      <if test="rctrBackups != null" >
+        RCTR_BACKUPS = #{rctrBackups,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gs.domain.PomsRoleCalculateTerminalRelationship" >
+    update poms_role_calculate_terminal_relationship
+    set RA_ID = #{raId,jdbcType=VARCHAR},
+      CTD_ID = #{ctdId,jdbcType=VARCHAR},
+      RCTR_BACKUPS = #{rctrBackups,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

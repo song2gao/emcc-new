@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gs.mapper.EsmspSumMeasurOrganizationYearMapper" >
+  <resultMap id="BaseResultMap" type="com.gs.domain.EsmspSumMeasurOrganizationYear" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="EUO_CODE" property="euoCode" jdbcType="VARCHAR" />
+    <result column="MMP_CODE" property="mmpCode" jdbcType="VARCHAR" />
+    <result column="EUS_CODE" property="eusCode" jdbcType="VARCHAR" />
+    <result column="ENERGY_CODE" property="energyCode" jdbcType="VARCHAR" />
+    <result column="DATE_CODE" property="dateCode" jdbcType="VARCHAR" />
+    <result column="point1" property="point1" jdbcType="DECIMAL" />
+    <result column="point2" property="point2" jdbcType="DECIMAL" />
+    <result column="point3" property="point3" jdbcType="DECIMAL" />
+    <result column="point4" property="point4" jdbcType="DECIMAL" />
+    <result column="point5" property="point5" jdbcType="DECIMAL" />
+    <result column="point6" property="point6" jdbcType="DECIMAL" />
+    <result column="point7" property="point7" jdbcType="DECIMAL" />
+    <result column="point8" property="point8" jdbcType="DECIMAL" />
+    <result column="point9" property="point9" jdbcType="DECIMAL" />
+    <result column="point10" property="point10" jdbcType="DECIMAL" />
+    <result column="point11" property="point11" jdbcType="DECIMAL" />
+    <result column="point12" property="point12" jdbcType="DECIMAL" />
+    <result column="flag" property="flag" jdbcType="VARCHAR" />
+    <result column="MAX_VALUE" property="maxValue" jdbcType="DECIMAL" />
+    <result column="MIN_VALUE" property="minValue" jdbcType="DECIMAL" />
+    <result column="AVG_VALUE" property="avgValue" jdbcType="DECIMAL" />
+    <result column="SUM_VALUE" property="sumValue" jdbcType="DECIMAL" />
+    <result column="J_VALUE" property="jValue" jdbcType="DECIMAL" />
+    <result column="F_VALUE" property="fValue" jdbcType="DECIMAL" />
+    <result column="P_VALUE" property="pValue" jdbcType="DECIMAL" />
+    <result column="G_VALUE" property="gValue" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, EUO_CODE, MMP_CODE, EUS_CODE, ENERGY_CODE, DATE_CODE, point1, point2, point3, 
+    point4, point5, point6, point7, point8, point9, point10, point11, point12, flag, 
+    MAX_VALUE, MIN_VALUE, AVG_VALUE, SUM_VALUE, J_VALUE, F_VALUE, P_VALUE, G_VALUE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from esmsp_sum_measur_organization_year
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectTop5" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from esmsp_sum_measur_organization_year
+		where date_code=#{date} and eus_code not in('0')
+		order by sum_value desc LIMIT 5
+	</select>
+	<select id="selectByCode" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from esmsp_sum_measur_organization_year
+		 where 1=1
+		 <if test="eusCodes!=null"> 
+		 	 and eus_code in 
+		 	<foreach collection="eusCodes" item="eusCode" open="(" separator="," close=")">  
+            	#{eusCode}  
+        	</foreach>
+        </if> 
+        and mmp_code=#{mmpCode}
+        and euo_code=#{euoCode}
+		and date_code in
+		 <foreach collection="date" item="d" open="(" separator="," close=")">  
+            #{d}  
+        </foreach> 
+		order by sum_value desc
+	</select>
+	<select id="yearSum" parameterType="java.lang.String"
+		resultType="java.lang.Double">
+		select
+		sum(sum_value)
+		from esmsp_sum_measur_organization_year
+		where 1=1
+		<if test="ctds!=null and ctds.length>0">
+			and eus_code in
+			<foreach collection="ctds" item="ctd" open="(" separator="," close=")">  
+            	#{ctd}  
+       	 	</foreach> 
+		</if>
+		and date_code=#{dateCode}
+		<if test="mmpCode!=null and mmpCode.length>0">
+			and mmp_code in
+			<foreach collection="mmpCode" item="m" open="(" separator="," close=")">  
+            	#{m} 
+       	 	</foreach> 
+		</if>
+	</select>
+  </mapper>

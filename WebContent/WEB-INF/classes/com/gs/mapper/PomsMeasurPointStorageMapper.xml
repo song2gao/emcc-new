@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gs.mapper.PomsMeasurPointStorageMapper" >
+  <resultMap id="BaseResultMap" type="com.gs.domain.PomsMeasurPointStorage" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="MPS_STORAGE_TIME" property="mpsStorageTime" jdbcType="VARCHAR" />
+    <result column="EQUIPMENT_CODES" property="equipmentCodes" jdbcType="VARCHAR" />
+    <result column="POINT_CODES" property="pointCodes" jdbcType="VARCHAR" />
+    <result column="MPS_VALUES" property="mpsValues" jdbcType="DECIMAL" />
+    <result column="MPS_VALUES_TYPE" property="mpsValuesType" jdbcType="VARCHAR" />
+    <result column="MPS_BACKUPS" property="mpsBackups" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.gs.domain.PomsMeasurPointStorage" extends="BaseResultMap" >
+    <result column="MPS_ENTERPRISE_CODES" property="mpsEnterpriseCodes" jdbcType="LONGVARBINARY" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, MPS_STORAGE_TIME, EQUIPMENT_CODES, POINT_CODES, MPS_VALUES, MPS_VALUES_TYPE, 
+    MPS_BACKUPS
+  </sql>
+  <sql id="Blob_Column_List" >
+    MPS_ENTERPRISE_CODES
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from poms_measur_point_storage
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from poms_measur_point_storage
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gs.domain.PomsMeasurPointStorage" >
+    insert into poms_measur_point_storage (ID, MPS_STORAGE_TIME, EQUIPMENT_CODES, 
+      POINT_CODES, MPS_VALUES, MPS_VALUES_TYPE, 
+      MPS_BACKUPS, MPS_ENTERPRISE_CODES)
+    values (#{id,jdbcType=VARCHAR}, #{mpsStorageTime,jdbcType=VARCHAR}, #{equipmentCodes,jdbcType=VARCHAR}, 
+      #{pointCodes,jdbcType=VARCHAR}, #{mpsValues,jdbcType=DECIMAL}, #{mpsValuesType,jdbcType=VARCHAR}, 
+      #{mpsBackups,jdbcType=VARCHAR}, #{mpsEnterpriseCodes,jdbcType=LONGVARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gs.domain.PomsMeasurPointStorage" >
+    insert into poms_measur_point_storage
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="mpsStorageTime != null" >
+        MPS_STORAGE_TIME,
+      </if>
+      <if test="equipmentCodes != null" >
+        EQUIPMENT_CODES,
+      </if>
+      <if test="pointCodes != null" >
+        POINT_CODES,
+      </if>
+      <if test="mpsValues != null" >
+        MPS_VALUES,
+      </if>
+      <if test="mpsValuesType != null" >
+        MPS_VALUES_TYPE,
+      </if>
+      <if test="mpsBackups != null" >
+        MPS_BACKUPS,
+      </if>
+      <if test="mpsEnterpriseCodes != null" >
+        MPS_ENTERPRISE_CODES,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="mpsStorageTime != null" >
+        #{mpsStorageTime,jdbcType=VARCHAR},
+      </if>
+      <if test="equipmentCodes != null" >
+        #{equipmentCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="pointCodes != null" >
+        #{pointCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="mpsValues != null" >
+        #{mpsValues,jdbcType=DECIMAL},
+      </if>
+      <if test="mpsValuesType != null" >
+        #{mpsValuesType,jdbcType=VARCHAR},
+      </if>
+      <if test="mpsBackups != null" >
+        #{mpsBackups,jdbcType=VARCHAR},
+      </if>
+      <if test="mpsEnterpriseCodes != null" >
+        #{mpsEnterpriseCodes,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gs.domain.PomsMeasurPointStorage" >
+    update poms_measur_point_storage
+    <set >
+      <if test="mpsStorageTime != null" >
+        MPS_STORAGE_TIME = #{mpsStorageTime,jdbcType=VARCHAR},
+      </if>
+      <if test="equipmentCodes != null" >
+        EQUIPMENT_CODES = #{equipmentCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="pointCodes != null" >
+        POINT_CODES = #{pointCodes,jdbcType=VARCHAR},
+      </if>
+      <if test="mpsValues != null" >
+        MPS_VALUES = #{mpsValues,jdbcType=DECIMAL},
+      </if>
+      <if test="mpsValuesType != null" >
+        MPS_VALUES_TYPE = #{mpsValuesType,jdbcType=VARCHAR},
+      </if>
+      <if test="mpsBackups != null" >
+        MPS_BACKUPS = #{mpsBackups,jdbcType=VARCHAR},
+      </if>
+      <if test="mpsEnterpriseCodes != null" >
+        MPS_ENTERPRISE_CODES = #{mpsEnterpriseCodes,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.gs.domain.PomsMeasurPointStorage" >
+    update poms_measur_point_storage
+    set MPS_STORAGE_TIME = #{mpsStorageTime,jdbcType=VARCHAR},
+      EQUIPMENT_CODES = #{equipmentCodes,jdbcType=VARCHAR},
+      POINT_CODES = #{pointCodes,jdbcType=VARCHAR},
+      MPS_VALUES = #{mpsValues,jdbcType=DECIMAL},
+      MPS_VALUES_TYPE = #{mpsValuesType,jdbcType=VARCHAR},
+      MPS_BACKUPS = #{mpsBackups,jdbcType=VARCHAR},
+      MPS_ENTERPRISE_CODES = #{mpsEnterpriseCodes,jdbcType=LONGVARBINARY}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gs.domain.PomsMeasurPointStorage" >
+    update poms_measur_point_storage
+    set MPS_STORAGE_TIME = #{mpsStorageTime,jdbcType=VARCHAR},
+      EQUIPMENT_CODES = #{equipmentCodes,jdbcType=VARCHAR},
+      POINT_CODES = #{pointCodes,jdbcType=VARCHAR},
+      MPS_VALUES = #{mpsValues,jdbcType=DECIMAL},
+      MPS_VALUES_TYPE = #{mpsValuesType,jdbcType=VARCHAR},
+      MPS_BACKUPS = #{mpsBackups,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

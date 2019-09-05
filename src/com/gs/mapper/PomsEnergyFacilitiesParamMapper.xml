@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gs.mapper.PomsEnergyFacilitiesParamMapper" >
+  <resultMap id="BaseResultMap" type="com.gs.domain.PomsEnergyFacilitiesParam" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="ENERGY_FACILITIES_ID" property="energyFacilitiesId" jdbcType="VARCHAR" />
+    <result column="FACILITIES_PARAM_NAME" property="facilitiesParamName" jdbcType="VARCHAR" />
+    <result column="FACILITIES_PARAM_VAL" property="facilitiesParamVal" jdbcType="DECIMAL" />
+    <result column="FACILITIES_BACKUPS" property="facilitiesBackups" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, ENERGY_FACILITIES_ID, FACILITIES_PARAM_NAME, FACILITIES_PARAM_VAL, FACILITIES_BACKUPS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from poms_energy_facilities_param
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from poms_energy_facilities_param
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gs.domain.PomsEnergyFacilitiesParam" >
+    insert into poms_energy_facilities_param (ID, ENERGY_FACILITIES_ID, FACILITIES_PARAM_NAME, 
+      FACILITIES_PARAM_VAL, FACILITIES_BACKUPS)
+    values (#{id,jdbcType=VARCHAR}, #{energyFacilitiesId,jdbcType=VARCHAR}, #{facilitiesParamName,jdbcType=VARCHAR}, 
+      #{facilitiesParamVal,jdbcType=DECIMAL}, #{facilitiesBackups,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gs.domain.PomsEnergyFacilitiesParam" >
+    insert into poms_energy_facilities_param
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="energyFacilitiesId != null" >
+        ENERGY_FACILITIES_ID,
+      </if>
+      <if test="facilitiesParamName != null" >
+        FACILITIES_PARAM_NAME,
+      </if>
+      <if test="facilitiesParamVal != null" >
+        FACILITIES_PARAM_VAL,
+      </if>
+      <if test="facilitiesBackups != null" >
+        FACILITIES_BACKUPS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="energyFacilitiesId != null" >
+        #{energyFacilitiesId,jdbcType=VARCHAR},
+      </if>
+      <if test="facilitiesParamName != null" >
+        #{facilitiesParamName,jdbcType=VARCHAR},
+      </if>
+      <if test="facilitiesParamVal != null" >
+        #{facilitiesParamVal,jdbcType=DECIMAL},
+      </if>
+      <if test="facilitiesBackups != null" >
+        #{facilitiesBackups,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gs.domain.PomsEnergyFacilitiesParam" >
+    update poms_energy_facilities_param
+    <set >
+      <if test="energyFacilitiesId != null" >
+        ENERGY_FACILITIES_ID = #{energyFacilitiesId,jdbcType=VARCHAR},
+      </if>
+      <if test="facilitiesParamName != null" >
+        FACILITIES_PARAM_NAME = #{facilitiesParamName,jdbcType=VARCHAR},
+      </if>
+      <if test="facilitiesParamVal != null" >
+        FACILITIES_PARAM_VAL = #{facilitiesParamVal,jdbcType=DECIMAL},
+      </if>
+      <if test="facilitiesBackups != null" >
+        FACILITIES_BACKUPS = #{facilitiesBackups,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gs.domain.PomsEnergyFacilitiesParam" >
+    update poms_energy_facilities_param
+    set ENERGY_FACILITIES_ID = #{energyFacilitiesId,jdbcType=VARCHAR},
+      FACILITIES_PARAM_NAME = #{facilitiesParamName,jdbcType=VARCHAR},
+      FACILITIES_PARAM_VAL = #{facilitiesParamVal,jdbcType=DECIMAL},
+      FACILITIES_BACKUPS = #{facilitiesBackups,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

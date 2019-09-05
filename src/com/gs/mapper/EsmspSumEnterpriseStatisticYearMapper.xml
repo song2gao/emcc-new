@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gs.mapper.EsmspSumEnterpriseStatisticYearMapper" >
+  <resultMap id="BaseResultMap" type="com.gs.domain.EsmspSumEnterpriseStatisticYear" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="EUI_CODE" property="euiCode" jdbcType="VARCHAR" />
+    <result column="INDUSTRY_CODE" property="industryCode" jdbcType="VARCHAR" />
+    <result column="GOVERNMENT_DISTRICT_CODE" property="governmentDistrictCode" jdbcType="VARCHAR" />
+    <result column="ENERGY_CODE" property="energyCode" jdbcType="VARCHAR" />
+    <result column="MMP_CODE" property="mmpCode" jdbcType="VARCHAR" />
+    <result column="DATE_CODE" property="dateCode" jdbcType="VARCHAR" />
+    <result column="point1" property="point1" jdbcType="DECIMAL" />
+    <result column="point2" property="point2" jdbcType="DECIMAL" />
+    <result column="point3" property="point3" jdbcType="DECIMAL" />
+    <result column="point4" property="point4" jdbcType="DECIMAL" />
+    <result column="point5" property="point5" jdbcType="DECIMAL" />
+    <result column="point6" property="point6" jdbcType="DECIMAL" />
+    <result column="point7" property="point7" jdbcType="DECIMAL" />
+    <result column="point8" property="point8" jdbcType="DECIMAL" />
+    <result column="point9" property="point9" jdbcType="DECIMAL" />
+    <result column="point10" property="point10" jdbcType="DECIMAL" />
+    <result column="point11" property="point11" jdbcType="DECIMAL" />
+    <result column="point12" property="point12" jdbcType="DECIMAL" />
+    <result column="flag" property="flag" jdbcType="VARCHAR" />
+    <result column="MAX_VALUE" property="maxValue" jdbcType="DECIMAL" />
+    <result column="MIN_VALUE" property="minValue" jdbcType="DECIMAL" />
+    <result column="AVG_VALUE" property="avgValue" jdbcType="DECIMAL" />
+    <result column="SUM_VALUE" property="sumValue" jdbcType="DECIMAL" />
+    <result column="J_VALUE" property="jValue" jdbcType="DECIMAL" />
+    <result column="F_VALUE" property="fValue" jdbcType="DECIMAL" />
+    <result column="P_VALUE" property="pValue" jdbcType="DECIMAL" />
+    <result column="G_VALUE" property="gValue" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, EUI_CODE, INDUSTRY_CODE, GOVERNMENT_DISTRICT_CODE, ENERGY_CODE, MMP_CODE, DATE_CODE, 
+    point1, point2, point3, point4, point5, point6, point7, point8, point9, point10, 
+    point11, point12, flag, MAX_VALUE, MIN_VALUE, AVG_VALUE, SUM_VALUE, J_VALUE, F_VALUE, 
+    P_VALUE, G_VALUE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from esmsp_sum_enterprise_statistic_year
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from esmsp_sum_enterprise_statistic_year
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gs.domain.EsmspSumEnterpriseStatisticYear" >
+    insert into esmsp_sum_enterprise_statistic_year (ID, EUI_CODE, INDUSTRY_CODE, 
+      GOVERNMENT_DISTRICT_CODE, ENERGY_CODE, MMP_CODE, 
+      DATE_CODE, point1, point2, 
+      point3, point4, point5, 
+      point6, point7, point8, 
+      point9, point10, point11, 
+      point12, flag, MAX_VALUE, 
+      MIN_VALUE, AVG_VALUE, SUM_VALUE, 
+      J_VALUE, F_VALUE, P_VALUE, 
+      G_VALUE)
+    values (#{id,jdbcType=INTEGER}, #{euiCode,jdbcType=VARCHAR}, #{industryCode,jdbcType=VARCHAR}, 
+      #{governmentDistrictCode,jdbcType=VARCHAR}, #{energyCode,jdbcType=VARCHAR}, #{mmpCode,jdbcType=VARCHAR}, 
+      #{dateCode,jdbcType=VARCHAR}, #{point1,jdbcType=DECIMAL}, #{point2,jdbcType=DECIMAL}, 
+      #{point3,jdbcType=DECIMAL}, #{point4,jdbcType=DECIMAL}, #{point5,jdbcType=DECIMAL}, 
+      #{point6,jdbcType=DECIMAL}, #{point7,jdbcType=DECIMAL}, #{point8,jdbcType=DECIMAL}, 
+      #{point9,jdbcType=DECIMAL}, #{point10,jdbcType=DECIMAL}, #{point11,jdbcType=DECIMAL}, 
+      #{point12,jdbcType=DECIMAL}, #{flag,jdbcType=VARCHAR}, #{maxValue,jdbcType=DECIMAL}, 
+      #{minValue,jdbcType=DECIMAL}, #{avgValue,jdbcType=DECIMAL}, #{sumValue,jdbcType=DECIMAL}, 
+      #{jValue,jdbcType=DECIMAL}, #{fValue,jdbcType=DECIMAL}, #{pValue,jdbcType=DECIMAL}, 
+      #{gValue,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gs.domain.EsmspSumEnterpriseStatisticYear" >
+    insert into esmsp_sum_enterprise_statistic_year
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="euiCode != null" >
+        EUI_CODE,
+      </if>
+      <if test="industryCode != null" >
+        INDUSTRY_CODE,
+      </if>
+      <if test="governmentDistrictCode != null" >
+        GOVERNMENT_DISTRICT_CODE,
+      </if>
+      <if test="energyCode != null" >
+        ENERGY_CODE,
+      </if>
+      <if test="mmpCode != null" >
+        MMP_CODE,
+      </if>
+      <if test="dateCode != null" >
+        DATE_CODE,
+      </if>
+      <if test="point1 != null" >
+        point1,
+      </if>
+      <if test="point2 != null" >
+        point2,
+      </if>
+      <if test="point3 != null" >
+        point3,
+      </if>
+      <if test="point4 != null" >
+        point4,
+      </if>
+      <if test="point5 != null" >
+        point5,
+      </if>
+      <if test="point6 != null" >
+        point6,
+      </if>
+      <if test="point7 != null" >
+        point7,
+      </if>
+      <if test="point8 != null" >
+        point8,
+      </if>
+      <if test="point9 != null" >
+        point9,
+      </if>
+      <if test="point10 != null" >
+        point10,
+      </if>
+      <if test="point11 != null" >
+        point11,
+      </if>
+      <if test="point12 != null" >
+        point12,
+      </if>
+      <if test="flag != null" >
+        flag,
+      </if>
+      <if test="maxValue != null" >
+        MAX_VALUE,
+      </if>
+      <if test="minValue != null" >
+        MIN_VALUE,
+      </if>
+      <if test="avgValue != null" >
+        AVG_VALUE,
+      </if>
+      <if test="sumValue != null" >
+        SUM_VALUE,
+      </if>
+      <if test="jValue != null" >
+        J_VALUE,
+      </if>
+      <if test="fValue != null" >
+        F_VALUE,
+      </if>
+      <if test="pValue != null" >
+        P_VALUE,
+      </if>
+      <if test="gValue != null" >
+        G_VALUE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="euiCode != null" >
+        #{euiCode,jdbcType=VARCHAR},
+      </if>
+      <if test="industryCode != null" >
+        #{industryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="governmentDistrictCode != null" >
+        #{governmentDistrictCode,jdbcType=VARCHAR},
+      </if>
+      <if test="energyCode != null" >
+        #{energyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="mmpCode != null" >
+        #{mmpCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dateCode != null" >
+        #{dateCode,jdbcType=VARCHAR},
+      </if>
+      <if test="point1 != null" >
+        #{point1,jdbcType=DECIMAL},
+      </if>
+      <if test="point2 != null" >
+        #{point2,jdbcType=DECIMAL},
+      </if>
+      <if test="point3 != null" >
+        #{point3,jdbcType=DECIMAL},
+      </if>
+      <if test="point4 != null" >
+        #{point4,jdbcType=DECIMAL},
+      </if>
+      <if test="point5 != null" >
+        #{point5,jdbcType=DECIMAL},
+      </if>
+      <if test="point6 != null" >
+        #{point6,jdbcType=DECIMAL},
+      </if>
+      <if test="point7 != null" >
+        #{point7,jdbcType=DECIMAL},
+      </if>
+      <if test="point8 != null" >
+        #{point8,jdbcType=DECIMAL},
+      </if>
+      <if test="point9 != null" >
+        #{point9,jdbcType=DECIMAL},
+      </if>
+      <if test="point10 != null" >
+        #{point10,jdbcType=DECIMAL},
+      </if>
+      <if test="point11 != null" >
+        #{point11,jdbcType=DECIMAL},
+      </if>
+      <if test="point12 != null" >
+        #{point12,jdbcType=DECIMAL},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=VARCHAR},
+      </if>
+      <if test="maxValue != null" >
+        #{maxValue,jdbcType=DECIMAL},
+      </if>
+      <if test="minValue != null" >
+        #{minValue,jdbcType=DECIMAL},
+      </if>
+      <if test="avgValue != null" >
+        #{avgValue,jdbcType=DECIMAL},
+      </if>
+      <if test="sumValue != null" >
+        #{sumValue,jdbcType=DECIMAL},
+      </if>
+      <if test="jValue != null" >
+        #{jValue,jdbcType=DECIMAL},
+      </if>
+      <if test="fValue != null" >
+        #{fValue,jdbcType=DECIMAL},
+      </if>
+      <if test="pValue != null" >
+        #{pValue,jdbcType=DECIMAL},
+      </if>
+      <if test="gValue != null" >
+        #{gValue,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gs.domain.EsmspSumEnterpriseStatisticYear" >
+    update esmsp_sum_enterprise_statistic_year
+    <set >
+      <if test="euiCode != null" >
+        EUI_CODE = #{euiCode,jdbcType=VARCHAR},
+      </if>
+      <if test="industryCode != null" >
+        INDUSTRY_CODE = #{industryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="governmentDistrictCode != null" >
+        GOVERNMENT_DISTRICT_CODE = #{governmentDistrictCode,jdbcType=VARCHAR},
+      </if>
+      <if test="energyCode != null" >
+        ENERGY_CODE = #{energyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="mmpCode != null" >
+        MMP_CODE = #{mmpCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dateCode != null" >
+        DATE_CODE = #{dateCode,jdbcType=VARCHAR},
+      </if>
+      <if test="point1 != null" >
+        point1 = #{point1,jdbcType=DECIMAL},
+      </if>
+      <if test="point2 != null" >
+        point2 = #{point2,jdbcType=DECIMAL},
+      </if>
+      <if test="point3 != null" >
+        point3 = #{point3,jdbcType=DECIMAL},
+      </if>
+      <if test="point4 != null" >
+        point4 = #{point4,jdbcType=DECIMAL},
+      </if>
+      <if test="point5 != null" >
+        point5 = #{point5,jdbcType=DECIMAL},
+      </if>
+      <if test="point6 != null" >
+        point6 = #{point6,jdbcType=DECIMAL},
+      </if>
+      <if test="point7 != null" >
+        point7 = #{point7,jdbcType=DECIMAL},
+      </if>
+      <if test="point8 != null" >
+        point8 = #{point8,jdbcType=DECIMAL},
+      </if>
+      <if test="point9 != null" >
+        point9 = #{point9,jdbcType=DECIMAL},
+      </if>
+      <if test="point10 != null" >
+        point10 = #{point10,jdbcType=DECIMAL},
+      </if>
+      <if test="point11 != null" >
+        point11 = #{point11,jdbcType=DECIMAL},
+      </if>
+      <if test="point12 != null" >
+        point12 = #{point12,jdbcType=DECIMAL},
+      </if>
+      <if test="flag != null" >
+        flag = #{flag,jdbcType=VARCHAR},
+      </if>
+      <if test="maxValue != null" >
+        MAX_VALUE = #{maxValue,jdbcType=DECIMAL},
+      </if>
+      <if test="minValue != null" >
+        MIN_VALUE = #{minValue,jdbcType=DECIMAL},
+      </if>
+      <if test="avgValue != null" >
+        AVG_VALUE = #{avgValue,jdbcType=DECIMAL},
+      </if>
+      <if test="sumValue != null" >
+        SUM_VALUE = #{sumValue,jdbcType=DECIMAL},
+      </if>
+      <if test="jValue != null" >
+        J_VALUE = #{jValue,jdbcType=DECIMAL},
+      </if>
+      <if test="fValue != null" >
+        F_VALUE = #{fValue,jdbcType=DECIMAL},
+      </if>
+      <if test="pValue != null" >
+        P_VALUE = #{pValue,jdbcType=DECIMAL},
+      </if>
+      <if test="gValue != null" >
+        G_VALUE = #{gValue,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gs.domain.EsmspSumEnterpriseStatisticYear" >
+    update esmsp_sum_enterprise_statistic_year
+    set EUI_CODE = #{euiCode,jdbcType=VARCHAR},
+      INDUSTRY_CODE = #{industryCode,jdbcType=VARCHAR},
+      GOVERNMENT_DISTRICT_CODE = #{governmentDistrictCode,jdbcType=VARCHAR},
+      ENERGY_CODE = #{energyCode,jdbcType=VARCHAR},
+      MMP_CODE = #{mmpCode,jdbcType=VARCHAR},
+      DATE_CODE = #{dateCode,jdbcType=VARCHAR},
+      point1 = #{point1,jdbcType=DECIMAL},
+      point2 = #{point2,jdbcType=DECIMAL},
+      point3 = #{point3,jdbcType=DECIMAL},
+      point4 = #{point4,jdbcType=DECIMAL},
+      point5 = #{point5,jdbcType=DECIMAL},
+      point6 = #{point6,jdbcType=DECIMAL},
+      point7 = #{point7,jdbcType=DECIMAL},
+      point8 = #{point8,jdbcType=DECIMAL},
+      point9 = #{point9,jdbcType=DECIMAL},
+      point10 = #{point10,jdbcType=DECIMAL},
+      point11 = #{point11,jdbcType=DECIMAL},
+      point12 = #{point12,jdbcType=DECIMAL},
+      flag = #{flag,jdbcType=VARCHAR},
+      MAX_VALUE = #{maxValue,jdbcType=DECIMAL},
+      MIN_VALUE = #{minValue,jdbcType=DECIMAL},
+      AVG_VALUE = #{avgValue,jdbcType=DECIMAL},
+      SUM_VALUE = #{sumValue,jdbcType=DECIMAL},
+      J_VALUE = #{jValue,jdbcType=DECIMAL},
+      F_VALUE = #{fValue,jdbcType=DECIMAL},
+      P_VALUE = #{pValue,jdbcType=DECIMAL},
+      G_VALUE = #{gValue,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
